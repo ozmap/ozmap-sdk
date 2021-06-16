@@ -1,0 +1,34 @@
+{
+  "name": "ozmap-sdk",
+  "version": "1.0.0",
+  "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "jose.raupp@ozmap.com.br <Jose Raupp da Rosa Junior>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ozmap/ozmap-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ozmap/ozmap-sdk/issues"
+  },
+  "homepage": "https://github.com/ozmap/ozmap-sdk#readme",
+  "dependencies": {
+    "@types/superagent": "^4.1.11",
+    "http-status": "^1.5.0",
+    "socket.io-client": "^4.1.2",
+    "superagent": "^6.1.0",
+    "tslog": "^3.2.0",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
+  },
+  "devDependencies": {
+    "jest": "^27.0.4",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
