@@ -14,6 +14,18 @@ class Project extends Base {
         return this.restapi.fetchAllWithPagination<IProject>({model: this.endpoint});
     }
 
+    async create(dados :IProject): Promise<IProject> {
+        return Promise.reject(undefined);
+    }
+
+    async delete(idModel :string): Promise<IProject> {
+        return Promise.reject(undefined);
+    }
+
+    async update(model: IProject): Promise<IProject> {
+        return Promise.reject(undefined);
+    }
+
 }
 
 export default Project;

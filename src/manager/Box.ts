@@ -13,6 +13,18 @@ class Box extends Base {
         return this.restapi.fetchAllWithPagination<IBox>({model: this.endpoint});
     }
 
+    create(model: IBox): Promise<IBox> {
+        return Promise.reject(undefined);
+    }
+
+    delete(id: string): Promise<IBox> {
+        return Promise.reject(undefined);
+    }
+
+    update(model: IBox): Promise<IBox> {
+        return Promise.reject(undefined);
+    }
+
 }
 
 export default Box;

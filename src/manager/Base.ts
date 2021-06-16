@@ -10,7 +10,10 @@ abstract class Base {
         this.restapi = restapi;
     }
 
-    abstract getById(modelId) :Promise<IModel>;
+    abstract create(model :IModel) :Promise<IModel>;
+    abstract update(model :IModel) :Promise<IModel>;
+    abstract delete(id :string) :Promise<IModel>;
+    abstract getById(id :string) :Promise<IModel>;
     abstract getAll(): Promise<IPagination<IModel>>;
 }
 
