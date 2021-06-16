@@ -1,6 +1,3 @@
-const path = require("path");
-const fs = require("fs");
-
 class Util {
     static deg2rad(deg) {
         return deg * (Math.PI / 180);

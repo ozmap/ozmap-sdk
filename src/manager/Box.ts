@@ -1,17 +1,16 @@
-import Logger from "../util/Logger";
-const logger = Logger('Box');
-
 import Base from "./Base";
+import IPagination from "../interface/IPagination";
+import IBox from "../interface/model/IBox";
 
 class Box extends Base {
-    protected modelName = 'boxes';
+    protected endpoint = 'boxes';
 
-    async getBoxById(boxId) {
-        return this.restapi.readById({model: this.modelName, model_id: boxId});
+    async getById(boxId) :Promise<IBox> {
+        return this.restapi.readById({model: this.endpoint, model_id: boxId});
     }
 
-    async getAllBoxes() {
-        return this.restapi.fetchAllWithPagination({model: this.modelName});
+    async getAll(): Promise<IPagination<IBox>> {
+        return this.restapi.fetchAllWithPagination<IBox>({model: this.endpoint});
     }
 
 }

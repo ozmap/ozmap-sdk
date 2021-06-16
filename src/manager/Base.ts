@@ -1,15 +1,17 @@
-import Logger from "../util/Logger";
 import RESTAPI from "../util/RESTAPI";
-const logger = Logger('Base');
+import IPagination from "../interface/IPagination";
+import IModel from "../interface/model/IModel";
 
 abstract class Base {
-    protected abstract modelName;
-    protected restapi:RESTAPI;
+    protected abstract endpoint;
+    protected restapi: RESTAPI;
 
-    constructor( restapi: RESTAPI) {
+    constructor(restapi: RESTAPI) {
         this.restapi = restapi;
     }
 
+    abstract getById(modelId) :Promise<IModel>;
+    abstract getAll(): Promise<IPagination<IModel>>;
 }
 
 export default Base;

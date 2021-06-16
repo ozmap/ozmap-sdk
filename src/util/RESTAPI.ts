@@ -1,4 +1,6 @@
-import {SuperAgent} from "superagent"
+import Logger from "../util/Logger";
+import IPagination from "../interface/IPagination";
+const logger = Logger(__filename);
 
 const superagent = require('superagent');
 
@@ -13,6 +15,7 @@ class RESTAPI {
     }
 
     public async authentication(login?, password?){
+        logger.info(`Authentication called. username:${login}` )
         try {
             await superagent.get(`${this.url}/api/v2/authenticated`).set({Authorization: this.key}).send();
             this.connected = true;
@@ -25,13 +28,14 @@ class RESTAPI {
             if(this.key){
                 this.connected = true;
             }else{
+                logger.error("Fail to login");
                 this.connected = false;
             }
         }
         return this.key;
     }
 
-    async create({model, data, retrying}) {
+    async create({model, data}) {
         let base_url = `${this.url}/api/v2/${model}?`;
         try {
             let result = await superagent.post(base_url).set({Authorization: this.key}).send(data);
@@ -41,7 +45,7 @@ class RESTAPI {
         }
     }
 
-    async update({model, model_id, data, retrying}) {
+    async update({model, model_id, data}) {
         let base_url = `${this.url}/api/v2/${model}/${model_id}`;
         try {
             let result = await superagent.patch(base_url).set({Authorization: this.key}).send(data);
@@ -51,7 +55,7 @@ class RESTAPI {
         }
     }
 
-    async delete({model, model_id, retrying}) {
+    async delete({model, model_id}) {
         let base_url = `${this.url}/api/v2/${model}/${model_id}`;
         try {
             let result = await superagent.delete(base_url).set({Authorization: this.key}).send();
@@ -136,7 +140,7 @@ class RESTAPI {
         }
     }
 
-    async readById({model, model_id, select, retrying} : {model, model_id, select?, retrying?}) {
+    async readById({model, model_id, select} : {model, model_id, select?, retrying?}) {
         let base_url = `${this.url}/api/v2/${model}/${model_id}?`;
 
         if (select) {
@@ -152,7 +156,7 @@ class RESTAPI {
 
     }
 
-    async fetchAllWithPagination({model, limit = 500, filter, populate, select, sort} : {model, limit?, filter?, populate?, select?, sort?}) {
+    async fetchAllWithPagination<T>({model, limit = 500, filter, populate, select, sort} : {model, limit?, filter?, populate?, select?, sort?}): Promise<IPagination<T>> {
         let finished = false;
         let ret = [];
         let page = 1;
@@ -169,7 +173,7 @@ class RESTAPI {
         } catch (e) {
             throw e;
         }
-        return {rows: ret};
+        return {rows: ret as Array<T>, total:ret.length, count:ret.length, start:0, limit:-1}; //@TODO Resolver isso de forma mais correta
     }
 
     async customRequest({method = "GET", v2_route = "", query = {}, data}) {
