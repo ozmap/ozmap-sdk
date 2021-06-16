@@ -1,20 +1,24 @@
 import Logger from "./util/Logger";
 const logger = Logger(__filename);
 
-import Box from "./manager/Box";
+import Box from "./proxy/Box";
 import RESTAPI from "./util/RESTAPI";
-import Project from "./manager/Project";
+import Project from "./proxy/Project";
+import User from "./proxy/User";
 
 class OZMapSDK {
     private restapi:RESTAPI;
-    private box:Box;
-    private project: Project;
+    private box :Box;
+    private project :Project;
+    private user :User;
+
 
     constructor(url, key?) {
         logger.debug("OZMapSDK created")
         this.restapi = new RESTAPI(url, key);
         this.box = new Box(this.restapi);
         this.project = new Project(this.restapi);
+        this.user = new User(this.restapi);
     }
 
     async authentication(login?, password?){
@@ -27,6 +31,10 @@ class OZMapSDK {
 
     getProject() :Project{
         return this.project;
+    }
+
+    getUser() :User{
+        return this.user;
     }
 
 }

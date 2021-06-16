@@ -1,6 +1,7 @@
 import Base from "./Base";
 import IPagination from "../interface/IPagination";
 import IProject from "../interface/model/IProject";
+import IFilter from "../interface/IFilter";
 
 
 class Project extends Base {
@@ -24,6 +25,10 @@ class Project extends Base {
 
     async update(model: IProject): Promise<IProject> {
         return Promise.reject(undefined);
+    }
+
+    getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IProject>> {
+        return Promise.resolve(undefined);
     }
 
 }

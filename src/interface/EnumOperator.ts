@@ -1,0 +1,4 @@
+
+enum EnumOperator{
+    EQUAL= '='
+}

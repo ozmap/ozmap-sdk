@@ -1,6 +1,7 @@
 import Base from "./Base";
 import IPagination from "../interface/IPagination";
 import IBox from "../interface/model/IBox";
+import IFilter from "../interface/IFilter";
 
 class Box extends Base {
     protected endpoint = 'boxes';
@@ -23,6 +24,10 @@ class Box extends Base {
 
     update(model: IBox): Promise<IBox> {
         return Promise.reject(undefined);
+    }
+
+    getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IBox>> {
+        return Promise.resolve(undefined);
     }
 
 }

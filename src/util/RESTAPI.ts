@@ -12,6 +12,9 @@ class RESTAPI {
     constructor(url, key?) {
         this.url = url;
         this.key = key;
+        if(key){
+            this.authentication();
+        }
     }
 
     public async authentication(login?, password?){
