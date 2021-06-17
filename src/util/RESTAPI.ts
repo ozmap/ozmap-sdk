@@ -1,6 +1,10 @@
 import Logger from "../util/Logger";
 import IPagination from "../interface/IPagination";
+
 const logger = Logger(__filename);
+import IFilter from "../interface/IFilter";
+import {query} from "winston";
+import IReadQueryInput from "../interface/IReadQueryInput";
 
 const superagent = require('superagent');
 
@@ -12,13 +16,13 @@ class RESTAPI {
     constructor(url, key?) {
         this.url = url;
         this.key = key;
-        if(key){
+        if (key) {
             this.authentication();
         }
     }
 
-    public async authentication(login?, password?){
-        logger.info(`Authentication called. username:${login}` )
+    public async authentication(login?, password?) {
+        logger.info(`Authentication called. username:${login}`)
         try {
             await superagent.get(`${this.url}/api/v2/authenticated`).set({Authorization: this.key}).send();
             this.connected = true;
@@ -28,9 +32,9 @@ class RESTAPI {
                 password: password
             });
             this.key = result.body.authorization;
-            if(this.key){
+            if (this.key) {
                 this.connected = true;
-            }else{
+            } else {
                 logger.error("Fail to login");
                 this.connected = false;
             }
@@ -68,7 +72,9 @@ class RESTAPI {
         }
     }
 
-    async read(model, query?) {
+    // async read({model, query}: {model:any, query?:Array<IFilter>} ) {
+    async read(model: IReadQueryInput) {
+
         if (model instanceof Object && model.constructor === Object) {
             return this._read(model);
         } else if (typeof model === "string") {
@@ -83,7 +89,15 @@ class RESTAPI {
         }
     }
 
-    async _read({model, limit, page, filter, select, sort, populate} : {model:any, limit?, page?, filter?, select?, sort?, populate?}) {
+    async _read({
+                    model,
+                    limit,
+                    page,
+                    filter,
+                    select,
+                    sort,
+                    populate
+                }: { model: any, limit?, page?, filter?, select?, sort?, populate? }) {
         let body = null;
         let base_url = `${this.url}/api/v2/${model}?`;
 
@@ -143,7 +157,7 @@ class RESTAPI {
         }
     }
 
-    async readById({model, model_id, select} : {model, model_id, select?, retrying?}) {
+    async readById({model, model_id, select}: { model, model_id, select?, retrying? }) {
         let base_url = `${this.url}/api/v2/${model}/${model_id}?`;
 
         if (select) {
@@ -159,7 +173,14 @@ class RESTAPI {
 
     }
 
-    async fetchAllWithPagination<T>({model, limit = 500, filter, populate, select, sort} : {model, limit?, filter?, populate?, select?, sort?}): Promise<IPagination<T>> {
+    async fetchAllWithPagination<T>({
+                                        model,
+                                        limit = 500,
+                                        filter,
+                                        populate,
+                                        select,
+                                        sort
+                                    }: { model, limit?, filter?, populate?, select?, sort? }): Promise<IPagination<T>> {
         let finished = false;
         let ret = [];
         let page = 1;
@@ -176,7 +197,7 @@ class RESTAPI {
         } catch (e) {
             throw e;
         }
-        return {rows: ret as Array<T>, total:ret.length, count:ret.length, start:0, limit:-1}; //@TODO Resolver isso de forma mais correta
+        return {rows: ret as Array<T>, total: ret.length, count: ret.length, start: 0, limit: -1}; //@TODO Resolver isso de forma mais correta
     }
 
     async customRequest({method = "GET", v2_route = "", query = {}, data}) {
