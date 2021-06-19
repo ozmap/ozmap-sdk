@@ -1,4 +1,4 @@
-export default interface IProjectRole{
-    project :string
-    role :string
+export default interface IProjectRole {
+	project :string
+	role :string
 }

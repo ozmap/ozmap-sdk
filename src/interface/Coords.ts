@@ -1,4 +1,3 @@
+export default interface Coords extends Array<number> {
 
-export default interface Coords extends Array<number>{
-    
 }
