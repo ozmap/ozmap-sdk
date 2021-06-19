@@ -47,16 +47,18 @@ class RESTAPI {
 			let result = await superagent.post(base_url).set({Authorization: this.key}).send(data);
 			return result.body;
 		} catch (e) {
+			logger.error("Fail to create: ", {model, data});
 			throw e;
 		}
 	}
 	
-	async update({model, model_id, data}) {
+	async update(model, model_id, data) {
 		let base_url = `${this.url}/api/v2/${model}/${model_id}`;
 		try {
 			let result = await superagent.patch(base_url).set({Authorization: this.key}).send(data);
 			return result.body;
 		} catch (e) {
+			logger.error("Fail to update: ", {model, data});
 			throw e;
 		}
 	}
@@ -67,12 +69,13 @@ class RESTAPI {
 			let result = await superagent.delete(base_url).set({Authorization: this.key}).send();
 			return result.body;
 		} catch (e) {
+			logger.error("Fail to delete: ", {model, model_id});
 			throw e;
 		}
 	}
 	
 	// async read({model, query}: {model:any, query?:Array<IFilter>} ) {
-	async read(model :IReadQueryInput) {
+	async read<T>(model :IReadQueryInput) :Promise<IPagination<T>>{
 		
 		if (model instanceof Object && model.constructor === Object) {
 			return this._read(model);
@@ -81,14 +84,14 @@ class RESTAPI {
 			if (query && Object.keys(query).length) {
 				filter = Object.keys(query).map(el => ({property: el, operator: "=", value: query[el]}));
 			}
-			return this._read({
+			return this._read<T>({
 				model: model,
 				filter: filter
 			});
 		}
 	}
 	
-	async _read({
+	async _read<T>({
 		            model,
 		            limit,
 		            page,
@@ -96,7 +99,7 @@ class RESTAPI {
 		            select,
 		            sort,
 		            populate
-	            } :{ model :any, limit?, page?, filter?, select?, sort?, populate? }) {
+	            } :{ model :any, limit?, page?, filter?, select?, sort?, populate? }) :Promise<IPagination<T>> {
 		let body = null;
 		let base_url = `${this.url}/api/v2/${model}?`;
 		
@@ -106,15 +109,15 @@ class RESTAPI {
 					filter = [filter];
 				}
 				
-				let encodeURIRecursive = function (el) {
-					filter = el.map(el => {
+				let encodeURIRecursive = function (elIn) {
+					filter = elIn.map(el => {
 						if ((Array.isArray(el))) {
 							return encodeURIRecursive(el);
 						} else {
 							if (el.operator === "near") {
 								return el;
 							} else if (Array.isArray(el.value)) {
-								el.value = el.value.map(el => encodeURIComponent(el));
+								el.value = el.value.map(elOut => encodeURIComponent(elOut));
 								return el;
 							} else {
 								return {...el, value: encodeURIComponent(el.value)}
@@ -150,8 +153,9 @@ class RESTAPI {
 		}
 		try {
 			let result = await superagent.get(base_url).set({Authorization: this.key}).send(body);
-			return result.body;
+			return result.body as IPagination<T>;
 		} catch (e) {
+			logger.error("Fail to _read", {model, filter})
 			throw e;
 		}
 	}
@@ -167,6 +171,7 @@ class RESTAPI {
 			let result = await superagent.get(base_url).set({Authorization: this.key}).send();
 			return result.body;
 		} catch (e) {
+			logger.error("Fail to readById", {model, model_id, select})
 			throw e;
 		}
 		
@@ -194,15 +199,16 @@ class RESTAPI {
 				page++;
 			}
 		} catch (e) {
+			logger.error("Fail to fetchAllWithPagination", {model, filter, select})
 			throw e;
 		}
 		return {rows: ret as Array<T>, total: ret.length, count: ret.length, start: 0, limit: -1}; //@TODO Resolver isso de forma mais correta
 	}
 	
-	async customRequest({method = "GET", v2_route = "", query = {}, data}) {
+	async customRequest({method = "GET", v2_route = "", queryInput = {}, data}) {
 		let base_url = `${this.url}/api/v2/${v2_route}?`;
-		for (let query_name in query) {
-			if (query.hasOwnProperty(query_name)) {
+		for (let query_name in queryInput) {
+			if (queryInput.hasOwnProperty(query_name)) {
 				base_url = `${base_url}&${query_name}=${query[query_name]}`;
 			}
 		}
@@ -210,6 +216,7 @@ class RESTAPI {
 			let result = await superagent[method.toLowerCase()](base_url).set({Authorization: this.key}).timeout(999999).send(data);
 			return result.body;
 		} catch (e) {
+			logger.error("Fail to customRequest", {method, data, queryInput})
 			throw e;
 		}
 	}

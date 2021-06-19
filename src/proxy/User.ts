@@ -8,11 +8,6 @@ import {EnumOperator} from "../interface/EnumOperator"
 class User extends Base {
 	protected endpoint = 'users';
 	
-	
-	// setNewPassword(model: IUser) :Promise<IUser>{
-	//     return Promise.resolve(model);
-	// }
-	
 	create(model :IUser) :Promise<IUser> {
 		return Promise.resolve(undefined);
 	}
@@ -33,31 +28,30 @@ class User extends Base {
 		return this.restapi.readById({model: this.endpoint, model_id: id});
 	}
 	
-	getByEmail(email :string) :Promise<IUser> {
-		return this.restapi.read({
+	async getByEmail(email :string) :Promise<IUser> {
+		let userpage = await this.restapi.read<IUser>({
 			model: this.endpoint,
 			filter: [{property: "email", operator: EnumOperator.EQUAL, value: email}]
 		})
+		return userpage.rows[0];
 	}
 	
-	getByUsername(userName :string) :Promise<IUser> {
-		return this.restapi.read({
+	async getByUsername(userName :string) :Promise<IUser> {
+		let userpage = await this.restapi.read<IUser>({
 			model: this.endpoint,
 			filter: [{property: "username", operator: EnumOperator.EQUAL, value: userName}]
 		})
+		return userpage.rows[0];
 	}
 	
-	// setNewPassword()
-	
-	async getAllProjects(userName :string) :Promise<IProjectRole> {
+	async getAllProjects(userName :string) :Promise<Array<IProjectRole>> {
 		const user = await this.getByUsername(userName)
-		// @ts-ignore
-		return user.rows[0].projects
+		return user.projects;
 		
 	}
 	
 	update(model :IUser) :Promise<IUser> {
-		return Promise.resolve(undefined);
+		return this.updateHelper<IUser>(model);
 	}
 }
 
