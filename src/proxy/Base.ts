@@ -13,6 +13,14 @@ abstract class Base {
 
     abstract create(model :IModel) :Promise<IModel>;
     abstract update(model :IModel) :Promise<IModel>;
+    
+    protected async updateHelper<T>(model :IModel) :Promise<T> {
+        if(!model.id){
+            throw new Error("ID is required for updates")
+        }
+        return this.restapi.update(this.endpoint, model.id, model);
+    }
+    
     abstract delete(id :string) :Promise<IModel>;
     abstract getById(id :string) :Promise<IModel>;
     abstract getAll() :Promise<IPagination<IModel>>;
