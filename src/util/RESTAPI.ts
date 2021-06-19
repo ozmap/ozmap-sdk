@@ -113,34 +113,13 @@ class RESTAPI {
 		let body = null;
 		let base_url = `${this.url}/api/v2/${model}?`;
 		
-		if (process.env.FILTER_MODE === "URL") {
-			if (filter) {
-				if (!Array.isArray(filter)) {
-					filter = [filter];
-				}
-				
-				let encodeURIRecursive = function (elIn) {
-					filter = elIn.map(el => {
-						if ((Array.isArray(el))) {
-							return encodeURIRecursive(el);
-						} else {
-							if (el.operator === "near") {
-								return el;
-							} else if (Array.isArray(el.value)) {
-								el.value = el.value.map(elOut => encodeURIComponent(elOut));
-								return el;
-							} else {
-								return {...el, value: encodeURIComponent(el.value)}
-							}
-						}
-					});
-					return filter;
-				};
-				filter = encodeURIRecursive(filter);
-				base_url = `${base_url}&filter=${JSON.stringify(filter)}`;
+		if (filter) {
+			if (!Array.isArray(filter)) {
+				filter = [filter];
 			}
-		} else {
-			body = {filter};
+			
+			filter = this.encodeURIRecursive(filter);
+			base_url = `${base_url}&filter=${JSON.stringify(filter)}`;
 		}
 		
 		if (select) {
@@ -168,6 +147,24 @@ class RESTAPI {
 			logger.error("Fail to _read", {model, filter})
 			throw e;
 		}
+	}
+	
+	encodeURIRecursive(filter) {
+		filter = filter.map(el => {
+			if ((Array.isArray(el))) {
+				return this.encodeURIRecursive(el);
+			} else {
+				if (el.operator === "near") {
+					return el;
+				} else if (Array.isArray(el.value)) {
+					el.value = el.value.map(elOut => encodeURIComponent(elOut));
+					return el;
+				} else {
+					return {...el, value: encodeURIComponent(el.value)}
+				}
+			}
+		});
+		return filter;
 	}
 	
 	async readById<T>({model, model_id, select} :{ model, model_id, select?, retrying? }) :Promise<T> {
