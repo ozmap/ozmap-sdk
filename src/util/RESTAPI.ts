@@ -1,7 +1,7 @@
 import Logger from "../util/Logger";
-import IPagination from "../interface/IPagination";
-
 const logger = Logger(__filename);
+
+import IPagination from "../interface/IPagination";
 import {query} from "winston";
 import IReadQueryInput from "../interface/IReadQueryInput";
 
@@ -12,9 +12,11 @@ class RESTAPI {
 	readonly url :string;
 	private key :string;
 	
+	
 	constructor(url, key?) {
 		this.url = url;
 		this.key = key;
+		this.connected=false;
 		if (key) {
 			this.authentication();
 		}
@@ -22,23 +24,31 @@ class RESTAPI {
 	
 	public async authentication(login?, password?) {
 		logger.info(`Authentication called. username:${login}`)
+		let failToUseAPIKey = false;
 		try {
 			await superagent.get(`${this.url}/api/v2/authenticated`).set({Authorization: this.key}).send();
 			this.connected = true;
+			return this.key;
 		} catch (err) {
-			let result = await superagent.post(`${this.url}/api/v2/users/login`).send({
-				login: login,
-				password: password
-			});
-			this.key = result.body.authorization;
-			if (this.key) {
+			logger.warn("Fail to use the API-Key");
+			failToUseAPIKey=true;
+		}
+		
+		if(failToUseAPIKey) {
+			try {
+				let result = await superagent.post(`${this.url}/api/v2/users/login`).send({
+					login: login,
+					password: password
+				});
+				this.key = result.body.authorization;
 				this.connected = true;
-			} else {
-				logger.error("Fail to login");
-				this.connected = false;
+				return this.key;
+			}catch (e){
+				logger.info("Fail to login, username and/or password are wrong");
 			}
 		}
-		return this.key;
+		this.connected = false;
+		return null;
 	}
 	
 	async create({model, data}) {
@@ -160,7 +170,7 @@ class RESTAPI {
 		}
 	}
 	
-	async readById({model, model_id, select} :{ model, model_id, select?, retrying? }) {
+	async readById<T>({model, model_id, select} :{ model, model_id, select?, retrying? }) :Promise<T> {
 		let base_url = `${this.url}/api/v2/${model}/${model_id}?`;
 		
 		if (select) {
@@ -169,7 +179,7 @@ class RESTAPI {
 		
 		try {
 			let result = await superagent.get(base_url).set({Authorization: this.key}).send();
-			return result.body;
+			return result.body as T;
 		} catch (e) {
 			logger.error("Fail to readById", {model, model_id, select})
 			throw e;
@@ -202,7 +212,7 @@ class RESTAPI {
 			logger.error("Fail to fetchAllWithPagination", {model, filter, select})
 			throw e;
 		}
-		return {rows: ret as Array<T>, total: ret.length, count: ret.length, start: 0, limit: -1}; //@TODO Resolver isso de forma mais correta
+		return {rows: ret as Array<T>, total: ret.length, count: ret.length, start: 0, limit: -1};
 	}
 	
 	async customRequest({method = "GET", v2_route = "", queryInput = {}, data}) {
@@ -221,6 +231,9 @@ class RESTAPI {
 		}
 	}
 	
+	isConnected() {
+		return this.connected;
+	}
 }
 
 export default RESTAPI;

@@ -1,13 +1,14 @@
 import Coords from "../Coords";
 import IModel from "./IModel";
+import ObjectID from "bson-objectid";
 
 export default interface IProject extends IModel {
 	area :{ coordinates :[Array<Coords>], type :string }
 	lat :number
 	lng :number
-	parents :Array<{ project :string }>
+	parents :Array<{ project :ObjectID }>
 	name :string
-	drop :{ maxSize :number, defaults :{ cableType :string } }
+	drop :{ maxSize :number, defaults :{ cableType :ObjectID } }
 	defaultPonPotency :number
 	createdAt :Date
 	updatedAt :Date

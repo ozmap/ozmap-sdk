@@ -1,4 +1,6 @@
+import ObjectID from "bson-objectid";
+
 export default interface IProjectRole {
-	project :string
-	role :string
+	project :ObjectID
+	role :ObjectID
 }

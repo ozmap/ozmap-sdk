@@ -13,13 +13,12 @@ class OZMapSDK {
 	private project :Project;
 	private user :User;
 	
-	
 	constructor(url, key?) {
 		logger.debug("OZMapSDK created")
 		this.restapi = new RESTAPI(url, key);
-		this.box = new Box(this.restapi);
-		this.project = new Project(this.restapi);
-		this.user = new User(this.restapi);
+		this.box = new Box(this.restapi, this);
+		this.project = new Project(this.restapi, this);
+		this.user = new User(this.restapi, this);
 	}
 	
 	async authentication(login?, password?) {
@@ -38,6 +37,9 @@ class OZMapSDK {
 		return this.user;
 	}
 	
+	isConnected() {
+		return this.restapi.isConnected();
+	}
 }
 
 export default OZMapSDK;

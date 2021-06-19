@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ozmap/ozmap-sdk#readme",
   "dependencies": {
     "@types/superagent": "^4.1.11",
+    "bson-objectid": "^2.0.1",
     "http-status": "^1.5.0",
     "socket.io-client": "^4.1.2",
     "superagent": "^6.1.0",

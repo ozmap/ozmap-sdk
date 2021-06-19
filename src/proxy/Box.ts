@@ -2,6 +2,7 @@ import Base from "./Base";
 import IPagination from "../interface/IPagination";
 import IBox from "../interface/model/IBox";
 import IFilter from "../interface/IFilter";
+import ObjectID from "bson-objectid";
 
 class Box extends Base {
 	protected endpoint = 'boxes';
@@ -18,7 +19,7 @@ class Box extends Base {
 		return Promise.reject(undefined);
 	}
 	
-	delete(id :string) :Promise<IBox> {
+	delete(id :ObjectID) :Promise<IBox> {
 		return Promise.reject(undefined);
 	}
 	
@@ -28,6 +29,10 @@ class Box extends Base {
 	
 	getAllByFilter(filter :Array<IFilter>) :Promise<IPagination<IBox>> {
 		return Promise.resolve(undefined);
+	}
+	
+	getByIds(ids :Array<ObjectID>) :Promise<Array<IBox>> {
+		return this.byIdsHelper<IBox>(ids);
 	}
 	
 }

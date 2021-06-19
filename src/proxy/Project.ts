@@ -2,13 +2,14 @@ import Base from "./Base";
 import IPagination from "../interface/IPagination";
 import IProject from "../interface/model/IProject";
 import IFilter from "../interface/IFilter";
+import ObjectID from "bson-objectid";
 
 
 class Project extends Base {
 	protected endpoint = 'projects';
 	
 	async getById(projectId) :Promise<IProject> {
-		return this.restapi.readById({model: this.endpoint, model_id: projectId});
+		return this.byIdHelper<IProject>(projectId);
 	}
 	
 	async getAll() :Promise<IPagination<IProject>> {
@@ -19,7 +20,7 @@ class Project extends Base {
 		return Promise.reject(undefined);
 	}
 	
-	async delete(idModel :string) :Promise<IProject> {
+	async delete(idModel :ObjectID) :Promise<IProject> {
 		return Promise.reject(undefined);
 	}
 	
@@ -31,6 +32,9 @@ class Project extends Base {
 		return Promise.resolve(undefined);
 	}
 	
+	getByIds(ids :Array<ObjectID>) :Promise<Array<IProject>> {
+		return this.byIdsHelper<IProject>(ids);
+	}
 }
 
 export default Project;

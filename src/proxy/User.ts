@@ -2,8 +2,9 @@ import Base from "./Base";
 import IUser from "../interface/model/IUser";
 import IPagination from "../interface/IPagination";
 import IFilter from "../interface/IFilter";
-import IProjectRole from "../interface/IProjectRole";
 import {EnumOperator} from "../interface/EnumOperator"
+import IProject from "../interface/model/IProject";
+import ObjectID from "bson-objectid";
 
 class User extends Base {
 	protected endpoint = 'users';
@@ -12,7 +13,7 @@ class User extends Base {
 		return Promise.resolve(undefined);
 	}
 	
-	delete(id :string) :Promise<IUser> {
+	delete(id :ObjectID) :Promise<IUser> {
 		return Promise.resolve(undefined);
 	}
 	
@@ -24,7 +25,7 @@ class User extends Base {
 		return Promise.resolve(undefined);
 	}
 	
-	getById(id :string) :Promise<IUser> {
+	getById(id :ObjectID) :Promise<IUser> {
 		return this.restapi.readById({model: this.endpoint, model_id: id});
 	}
 	
@@ -44,14 +45,25 @@ class User extends Base {
 		return userpage.rows[0];
 	}
 	
-	async getAllProjects(userName :string) :Promise<Array<IProjectRole>> {
-		const user = await this.getByUsername(userName)
-		return user.projects;
-		
+	/**
+	 * Return a list of projects of a given userId
+	 * @param id Id of the user
+	 */
+	async getAllProjects(id :ObjectID) :Promise<Array<IProject>> {
+		const user = await this.getById(id);
+		let projectIds = [];
+		for( let projectRole of user.projects){
+			projectIds.push(projectRole.project);
+		}
+		return this.ozmapSdk.getProject().getByIds(projectIds);
 	}
 	
 	update(model :IUser) :Promise<IUser> {
 		return this.updateHelper<IUser>(model);
+	}
+	
+	getByIds(ids :Array<ObjectID>) :Promise<Array<IUser>> {
+		return this.byIdsHelper<IUser>(ids);
 	}
 }
 
