@@ -5,6 +5,7 @@ import IFilter from "../interface/IFilter";
 import {EnumOperator} from "../interface/EnumOperator"
 import IProject from "../interface/model/IProject";
 import ObjectID from "bson-objectid";
+import IModel from "../interface/model/IModel";
 
 
 class User extends Base {
@@ -50,6 +51,17 @@ class User extends Base {
 		return users.rows[0];
 	}
 	
+	async addProject(userId :ObjectID, projectId :ObjectID, roleId :ObjectID){
+		await this.update({
+			id: userId,
+			projects: [
+				{
+					project: projectId,
+					role: roleId
+				}]
+		});
+	}
+	
 	/**
 	 * Return a list of projects of a given userId
 	 * @param id Id of the user
@@ -63,8 +75,8 @@ class User extends Base {
 		return this.ozmapSdk.getProject().getByIds(projectIds);
 	}
 	
-	update(model :IUser) :Promise<void> {
-		if(model.password){
+	update(model :IModel|IUser) :Promise<void> {
+		if("password" in model && model.password){
 			const crypto = require('crypto');
 			model.password = crypto.createHash('sha256').update(model.password).digest('hex');
 		}

@@ -35,6 +35,10 @@ class Project extends Base {
 	getByIds(ids :Array<ObjectID>) :Promise<Array<IProject>> {
 		return this.byIdsHelper<IProject>(ids);
 	}
+	
+	clone(id :ObjectID){
+		return this.restapi.customRequest('POST',`${this.endpoint}/${id}/clone`);
+	}
 }
 
 export default Project;

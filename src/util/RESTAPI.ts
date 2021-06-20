@@ -72,7 +72,10 @@ class RESTAPI {
 		try {
 			await superagent.patch(base_url).set({Authorization: this.key}).send(data);
 		} catch (e) {
-			logger.error("Fail to update: ", {model, data});
+			logger.error(`Fail to update: Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`, {model, data});
+			if(e.status === 404){
+				throw new Error(`This id do not exist on OZMap. Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}` )
+			}
 			throw e;
 		}
 	}

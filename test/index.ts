@@ -1,4 +1,5 @@
 import Logger from "../src/util/Logger";
+
 const logger = Logger(__filename);
 
 import OZMapSDK from "../src";
@@ -8,7 +9,9 @@ import ObjectID from "bson-objectid";
 	logger.info("Iniciando os testes!");
 	const ozmap = new OZMapSDK('https://fiberschoolclass.ozmap.com.br:9994');
 	await ozmap.authentication('admin', 'admin');
-	if(ozmap.isConnected()) {
+	
+	
+	if (ozmap.isConnected()) {
 		try {
 			await ozmap.getUser().update({
 				id: new ObjectID("60cf534380067800241ea9fd"),
@@ -22,14 +25,21 @@ import ObjectID from "bson-objectid";
 				status: 0,
 				username: "1raupp",
 			});
-		}catch (e){
+		} catch (e) {
 			console.log(e);
 		}
 		
+		ozmap.getUser().addProject(
+			new ObjectID("60cf534380067800241ea9fd"),
+			new ObjectID("40ccee1480067800241ea51e"),
+			new ObjectID("4accf8ee0ff2c819a4ffd38e")
+		)
 		
+		
+		/**
 		const user = await ozmap.getUser().getByUsername("1raupp");
 		console.log(user);
-		/**
+		
 		const projectByUsername = await ozmap.getUser().getAllProjects(user.id)
 		console.log("PROJECTS BY USERNAME: ",user, projectByUsername)
 		
@@ -39,6 +49,11 @@ import ObjectID from "bson-objectid";
 		const userToFindByEmail = await ozmap.getUser().getByEmail("contato@devoz.com.br")
 		console.log("GET USER BY EMAIL: ", userToFindByEmail)
 		 **/
-		 
+		
+		//const userToFindByUsername = await ozmap.getUser().getByUsername('1raupp')
+		
+		//let allprojects = await ozmap.getProject().getAll()//getUser().getAllProjects(userToFindByUsername.id);
+		//console.log("GET USER BY USERNAME: ", allprojects)
+		
 	}
 })();
