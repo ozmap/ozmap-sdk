@@ -12,6 +12,7 @@ import ObjectID from "bson-objectid";
 	
 	
 	if (ozmap.isConnected()) {
+		/**
 		try {
 			await ozmap.getUser().update({
 				id: new ObjectID("60cf534380067800241ea9fd"),
@@ -28,6 +29,10 @@ import ObjectID from "bson-objectid";
 		} catch (e) {
 			console.log(e);
 		}
+		**/
+		let clonedProject = await ozmap.getProject().clone(new ObjectID("60cf83e7286cb60018458741"));
+		
+		console.log(clonedProject)
 		
 		ozmap.getUser().addProject(
 			new ObjectID("60cf534380067800241ea9fd"),

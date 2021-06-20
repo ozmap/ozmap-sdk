@@ -28,16 +28,17 @@ class Project extends Base {
 		return this.updateHelper(model);
 	}
 	
-	getAllByFilter(filter :Array<IFilter>) :Promise<IPagination<IProject>> {
+	async getAllByFilter(filter :Array<IFilter>) :Promise<IPagination<IProject>> {
 		return this.getAllByFilterHelper<IProject>(filter);
 	}
 	
-	getByIds(ids :Array<ObjectID>) :Promise<Array<IProject>> {
+	async getByIds(ids :Array<ObjectID>) :Promise<Array<IProject>> {
 		return this.byIdsHelper<IProject>(ids);
 	}
 	
-	clone(id :ObjectID){
-		return this.restapi.customRequest('POST',`${this.endpoint}/${id}/clone`);
+	async clone(id :ObjectID) :Promise<ObjectID>{
+		let clone = await this.restapi.customRequest('POST',`${this.endpoint}/${id}/clone`);
+		return new ObjectID(clone._id);
 	}
 }
 

@@ -235,11 +235,13 @@ class RESTAPI {
 	}
 	
 	async customRequest(method: string = "GET", v2_route: string = "", queryInput?:IReadQueryInput, data?: any) {
-		let base_url = `${this.url}/api/v2/${v2_route}?`;
+		let base_url = `${this.url}/api/v2/${v2_route}`;
+		let questionMark = "?"
 		for (let query_name in queryInput) {
 			if (queryInput.hasOwnProperty(query_name)) {
 				// @ts-ignore
-				base_url = `${base_url}&${query_name}=${query[query_name]}`;
+				base_url = `${base_url}${questionMark}&${query_name}=${query[query_name]}`;
+				questionMark="";
 			}
 		}
 		try {
