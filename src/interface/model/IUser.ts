@@ -3,8 +3,8 @@ import ObjectID from "bson-objectid";
 import IModel from "./IModel";
 
 export default interface IUser extends IModel{
-	allProjects :boolean
-	resources :Array<EnumResources>
+	allProjects? :boolean
+	resources? :Array<EnumResources>
 	username :string
 	email :string
 	password? :string
@@ -12,7 +12,9 @@ export default interface IUser extends IModel{
 	observation :string
 	role :ObjectID
 	projects :Array<IProjectRole>
-	createdAt :Date
-	updatedAt :Date
-	locale :string
+	createdAt? :Date
+	updatedAt? :Date
+	locale? :string
+	status? :number
+	phone?: string
 }

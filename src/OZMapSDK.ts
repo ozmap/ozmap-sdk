@@ -13,7 +13,7 @@ class OZMapSDK {
 	private project :Project;
 	private user :User;
 	
-	constructor(url, key?) {
+	constructor(url :string, key? :string) {
 		logger.debug("OZMapSDK created")
 		this.restapi = new RESTAPI(url, key);
 		this.box = new Box(this.restapi, this);
@@ -21,7 +21,7 @@ class OZMapSDK {
 		this.user = new User(this.restapi, this);
 	}
 	
-	async authentication(login?, password?) {
+	async authentication(login? :string, password? :string) {
 		return this.restapi.authentication(login, password);
 	}
 	

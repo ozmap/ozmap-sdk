@@ -3,6 +3,8 @@
     "module": "commonjs",
     "target": "es6",
     "moduleResolution": "node",
+    "preserveConstEnums": true,
+    "noImplicitAny": true,
     "outDir": "./dist",
     "sourceMap": true
   },

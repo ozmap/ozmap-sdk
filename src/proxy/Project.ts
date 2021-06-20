@@ -8,28 +8,28 @@ import ObjectID from "bson-objectid";
 class Project extends Base {
 	protected endpoint = 'projects';
 	
-	async getById(projectId) :Promise<IProject> {
+	async getById(projectId:ObjectID) :Promise<IProject> {
 		return this.byIdHelper<IProject>(projectId);
 	}
 	
 	async getAll() :Promise<IPagination<IProject>> {
-		return this.restapi.fetchAllWithPagination<IProject>({model: this.endpoint});
+		return this.getAllHelper<IProject>();
 	}
 	
-	async create(dados :IProject) :Promise<IProject> {
-		return Promise.reject(undefined);
+	async create(model :IProject) :Promise<IProject> {
+		return this.createHelper(model);
 	}
 	
-	async delete(idModel :ObjectID) :Promise<IProject> {
-		return Promise.reject(undefined);
+	async delete(id :ObjectID) :Promise<IProject> {
+		return this.deleteHelper(id);
 	}
 	
-	async update(model :IProject) :Promise<IProject> {
-		return Promise.reject(undefined);
+	async update(model :IProject) :Promise<void> {
+		return this.updateHelper(model);
 	}
 	
 	getAllByFilter(filter :Array<IFilter>) :Promise<IPagination<IProject>> {
-		return Promise.resolve(undefined);
+		return this.getAllByFilterHelper<IProject>(filter);
 	}
 	
 	getByIds(ids :Array<ObjectID>) :Promise<Array<IProject>> {

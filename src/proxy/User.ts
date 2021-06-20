@@ -6,43 +6,48 @@ import {EnumOperator} from "../interface/EnumOperator"
 import IProject from "../interface/model/IProject";
 import ObjectID from "bson-objectid";
 
+
 class User extends Base {
 	protected endpoint = 'users';
 	
 	create(model :IUser) :Promise<IUser> {
-		return Promise.resolve(undefined);
+		if(model.password){
+			const crypto = require('crypto');
+			model.password = crypto.createHash('sha256').update(model.password).digest('hex');
+		}
+		return this.createHelper<IUser>(model);
 	}
 	
-	delete(id :ObjectID) :Promise<IUser> {
-		return Promise.resolve(undefined);
+	delete(id :IUser|ObjectID) :Promise<IUser> {
+		return this.deleteHelper<IUser>(id);
 	}
 	
-	getAll() :Promise<IPagination<IUser>> {
-		return this.restapi.fetchAllWithPagination<IUser>({model: this.endpoint});
+	async getAll() :Promise<IPagination<IUser>> {
+		return this.getAllHelper<IUser>();
 	}
 	
 	getAllByFilter(filter :Array<IFilter>) :Promise<IPagination<IUser>> {
-		return Promise.resolve(undefined);
+		return this.getAllByFilterHelper<IUser>(filter);
 	}
 	
-	getById(id :ObjectID) :Promise<IUser> {
-		return this.restapi.readById({model: this.endpoint, model_id: id});
+	getById(id :IUser|ObjectID) :Promise<IUser> {
+		return this.byIdHelper<IUser>(id);
 	}
 	
 	async getByEmail(email :string) :Promise<IUser> {
-		let userpage = await this.restapi.read<IUser>({
-			model: this.endpoint,
-			filter: [{property: "email", operator: EnumOperator.EQUAL, value: email}]
-		})
-		return userpage.rows[0];
+		let users = await this.getAllByFilter([{property: "email", operator: EnumOperator.EQUAL, value: email}]);
+		if(users.rows.length > 1){
+			throw new Error(`There is more than one user with the same email ${email}`);
+		}
+		return users.rows[0];
 	}
 	
 	async getByUsername(userName :string) :Promise<IUser> {
-		let userpage = await this.restapi.read<IUser>({
-			model: this.endpoint,
-			filter: [{property: "username", operator: EnumOperator.EQUAL, value: userName}]
-		})
-		return userpage.rows[0];
+		let users = await this.getAllByFilter([{property: "username", operator: EnumOperator.EQUAL, value: userName}]);
+		if(users.rows.length > 1){
+			throw new Error(`There is more than one user with the same userName ${userName}`);
+		}
+		return users.rows[0];
 	}
 	
 	/**
@@ -58,7 +63,11 @@ class User extends Base {
 		return this.ozmapSdk.getProject().getByIds(projectIds);
 	}
 	
-	update(model :IUser) :Promise<IUser> {
+	update(model :IUser) :Promise<void> {
+		if(model.password){
+			const crypto = require('crypto');
+			model.password = crypto.createHash('sha256').update(model.password).digest('hex');
+		}
 		return this.updateHelper<IUser>(model);
 	}
 	
