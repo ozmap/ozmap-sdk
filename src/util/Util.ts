@@ -1,9 +1,11 @@
+import IGPS from "../interface/GPS";
+
 class Util {
-	static deg2rad(deg) {
+	static deg2rad(deg :number) {
 		return deg * (Math.PI / 180);
 	}
 	
-	static elementDistanceLatLng(elementA, elementB) {
+	static elementDistanceLatLng(elementA:IGPS, elementB:IGPS) {
 		let dLat = this.deg2rad(elementB.lat - elementA.lat);
 		let dLon = this.deg2rad(elementB.lng - elementA.lng);
 		let a =
@@ -14,7 +16,7 @@ class Util {
 		return 6378.137 * c; // Distance in km
 	}
 	
-	static elementDistance(elementA, elementB) {
+	static elementDistance(elementA:any, elementB:any) {
 		let R = 6378.137;
 		let dLat = Util.deg2rad(parseFloat(elementB["latitude"]) - parseFloat(elementA["latitude"]));
 		let dLon = Util.deg2rad(parseFloat(elementB["longitude"]) - parseFloat(elementA["longitude"]));

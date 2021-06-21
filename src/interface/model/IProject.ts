@@ -1,9 +1,9 @@
-import Coords from "../Coords";
+import ICoords from "../ICoords";
 import IModel from "./IModel";
 import ObjectID from "bson-objectid";
 
 export default interface IProject extends IModel {
-	area :{ coordinates :[Array<Coords>], type :string }
+	area :{ coordinates :[Array<ICoords>], type :string }
 	lat :number
 	lng :number
 	parents :Array<{ project :ObjectID }>

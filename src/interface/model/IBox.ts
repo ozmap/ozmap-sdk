@@ -1,4 +1,4 @@
-import Coords from "../Coords";
+import ICoords from "../ICoords";
 import IModel from "./IModel";
 
 export default interface IBox extends IModel {
@@ -7,9 +7,9 @@ export default interface IBox extends IModel {
 	default_reserve :number
 	certified :boolean
 	tags :Array<string>
-	coords :Coords
+	coords :ICoords
 	cables :Array<string>
-	kind :Kind
+	kind :EnumKind
 	project :string
 	implanted :true
 	hierarchyLevel :3
