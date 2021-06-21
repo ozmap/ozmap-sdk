@@ -8,9 +8,6 @@ const bson_objectid_1 = require("bson-objectid");
     logger.info("Iniciando os testes!");
     const ozmap = new src_1.default('https://fiberschoolclass.ozmap.com.br:9994');
     await ozmap.authentication('admin', 'admin');
-
-    ozmap.getUser().getAllProjects("ddd");
-
     if (ozmap.isConnected()) {
         /**
         try {

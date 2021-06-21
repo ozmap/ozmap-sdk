@@ -19,16 +19,12 @@ P
 test/index.ts,f/3/f3ff8b55a62c9dbec6b4b6c0fa69d345fa21bf65
 K
 src/interface/model/IBox.ts,8/a/8a6acba16f37e8cf69babd9e1f3f9e44e5ade0ef
-F
-dist/src/proxy/Base.js,9/6/967e0b6c0d6983837a001060be0e42cf8bab888a
 J
 dist/src/proxy/Base.js.map,1/a/1a583bc57253cda3488e410012f11050db07b3b7
 E
 dist/src/proxy/Box.js,c/f/cfca102c46fc4784bf2a7d289f3fb19d325c4662
 I
 dist/src/proxy/Box.js.map,5/b/5bae239042cdb73daf38580235d13867a81e47c8
-N
-dist/src/interface/EnumKind.js,e/c/ec74b99c368150b1a8cedb8e47ac79564d808a2a
 R
 "dist/src/interface/EnumKind.js.map,d/3/d3960742033c6253089667e976ac102fe4869ca9
 R
@@ -39,14 +35,8 @@ S
 #dist/src/interface/EnumResources.js,f/6/f61eabedfaf4d9d8c90e014bf96aa41eca493bc9
 W
 'dist/src/interface/EnumResources.js.map,c/5/c534eeca8280c3d9b071040ee54f990b41e29fb8
-I
-dist/src/interface/GPS.js,e/2/e2209721491c12115e92e9bdabc5981faf829fdf
 M
 dist/src/interface/GPS.js.map,f/6/f6a086081de0fb74129fbff2417263d3862d7c66
-P
- dist/src/interface/model/IBox.js,6/f/6fb6333018e6d4971548b756e09420889ea7626d
-T
-$dist/src/interface/model/IBox.js.map,a/0/a0fc23816fac9049e7f75ba70cf194af147b867e
 M
 dist/src/interface/ICoords.js,2/a/2a56ede45ddc5b182bad5a1a3bb14add89b1d26f
 Q
@@ -59,12 +49,8 @@ R
 "dist/src/interface/model/IModel.js,3/8/38257e2b7fca14b68b72075416bc0231de88039c
 V
 &dist/src/interface/model/IModel.js.map,f/8/f81fcbd1e750a2120db2fa54f73e687a99c8fc45
-E
-dist/src/index.js.map,2/9/299c58c86f116326d54d2cacc739cff25aea14b4
 F
 dist/test/index.js.map,3/5/35aac4929c3ff790a065a8a32bdb71e540100261
-Q
-!dist/src/interface/IPagination.js,d/d/ddef4536ddc2f377c35ebe47e8ff255a057b32d7
 U
 %dist/src/interface/IPagination.js.map,1/0/101ca171e7aa7eda88b92a9750577075a828f92f
 T
@@ -79,8 +65,6 @@ U
 %dist/src/interface/IReadQueryInput.js,d/0/d089e16e14b1fa2352a6ddcd4b8230fd8001a33e
 Y
 )dist/src/interface/IReadQueryInput.js.map,3/1/315f75a61a90c8b920e7a058bbf2bdb109da65a3
-Q
-!dist/src/interface/model/IUser.js,f/0/f013cf928d166174b5f9aea00d1e91671f49689e
 U
 %dist/src/interface/model/IUser.js.map,2/2/22fad818b73282028ed3e66e163a810000435495
 K
