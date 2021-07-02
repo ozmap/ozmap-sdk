@@ -1,16 +1,89 @@
-import OZMapSDK from "../src";
+import Logger from '../src/util/Logger';
 
-(async function() {
-    const ozmap = new OZMapSDK('https://fiberschoolclass.ozmap.com.br:9994','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2R1bGUiOiJhcGkiLCJ1c2VyIjoiNWMzMTczZWU0ZmUzYTcwMDE2ZDA1YmNkIiwiY3JlYXRpb25EYXRlIjoiMjAyMS0wNi0xNlQxNzo1MToyMC40MTlaIiwiaWF0IjoxNjIzODY1ODgwfQ.LNpo5STfHxCbKeaqTnX27d_VtC8M4AhsffayPOMYJ30');
-    //await ozmap.authentication('admin', 'admin');
-    let data = await ozmap.getProject().getAll();
+const logger = Logger(__filename);
 
-    //let project  = await ozmap.getProject().getById('60c243a5b5ebed001655a129');
-    let users = await ozmap.getUser().getAll();
+import OZMapSDK from '../src';
+import ObjectID from 'bson-objectid';
+
+(async function () {
+    logger.info('Iniciando os testes!');
+    const ozmap = new OZMapSDK('********************',);
+    await ozmap.authentication("******","***************");
+
+    // if (ozmap.isConnected()) {
+    //   try {
+    //     await ozmap
+    //       .getUser()
+    //       .update({
+    //         id: new ObjectID('60d0f62380067800241eb202'),
+    //         password: '12345678',
+    //       });
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+
+    // if (ozmap.isConnected()) {
+    //     try {
+    //         await ozmap
+    //             .getUser().getAll()
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+
+    // if (ozmap.isConnected()) {
+    //     try {
+    //         await ozmap
+    //             .getClient()
+    //             .update({
+    //                 id: new ObjectID('5da76c5111450e000694908c'),
+    //                 onu: {
+    //                     user_PPPoE: '12345678 - Atualizado 3006',
+    //                     serial_number: '123456712345678 - Atualizado 3006',
+    //                     mac_address: '1234567812345678 - Atualizado 3006'
+    //                 }
+    //             });
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
 
 
-    //let data = await ozmap.getBox().getAllBoxes();
-    //let data = await ozmap.getBox().getBoxById('60c248c1da36980022f150ec');
+        // if (ozmap.isConnected()) {
+        //     try {
+        //         const client = await ozmap
+        //             .getClient().getOneByONUCode("12345678 - Atualizado - Via Node-red")
+        //         console.log(client)
+        //     } catch (e) {
+        //         console.log(e);
+        //     }
 
-    console.log(users.rows[0], data);
+
+        // let clonedProject = await ozmap.getProject().clone(new ObjectID("60cf83e7286cb60018458741"));
+
+        // console.log(clonedProject)
+
+        // ozmap.getUser().addProject(
+        // 	new ObjectID("60cf534380067800241ea9fd"),
+        // 	new ObjectID("40ccee1480067800241ea51e"),
+        // 	new ObjectID("4accf8ee0ff2c819a4ffd38e")
+        // )
+
+        /**
+         const user = await ozmap.getUser().getByUsername("1raupp");
+         console.log(user);
+
+         const projectByUsername = await ozmap.getUser().getAllProjects(user.id)
+         console.log("PROJECTS BY USERNAME: ",user, projectByUsername)
+
+         const userToFindByUsername = await ozmap.getUser().getByUsername('admin')
+         console.log("GET USER BY USERNAME: ", userToFindByUsername)
+
+         const userToFindByEmail = await ozmap.getUser().getByEmail("contato@devoz.com.br")
+         console.log("GET USER BY EMAIL: ", userToFindByEmail)
+         **/
+
+        //const userToFindByUsername = await ozmap.getUser().getByUsername('1raupp')
+
+        //let allprojects = await ozmap.getProject().getAll()//getUser().getAllProjects(userToFindByUsername.id);
+        //console.log("GET USER BY USERNAME: ", allprojects)
+    // }
 })();

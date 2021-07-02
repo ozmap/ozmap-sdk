@@ -1,6 +1,6 @@
-enum EnumResources{
-    OZMAP = "OZmap",
-    OZMOB = "OZmob",
-    LOKI = "Loki",
-    API = "API"
+enum EnumResources {
+	OZMAP = "OZmap",
+	OZMOB = "OZmob",
+	LOKI = "Loki",
+	API = "API"
 }

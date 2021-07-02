@@ -1,3 +1,0 @@
-enum Kind{
-    BOX = 'Box'
-}

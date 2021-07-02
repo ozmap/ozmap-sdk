@@ -2,35 +2,44 @@ import Base from "./Base";
 import IPagination from "../interface/IPagination";
 import IProject from "../interface/model/IProject";
 import IFilter from "../interface/IFilter";
+import ObjectID from "bson-objectid";
 
 
 class Project extends Base {
-    protected endpoint = 'projects';
-
-    async getById(projectId) :Promise<IProject> {
-        return this.restapi.readById({model: this.endpoint, model_id: projectId});
-    }
-
-    async getAll(): Promise<IPagination<IProject>> {
-        return this.restapi.fetchAllWithPagination<IProject>({model: this.endpoint});
-    }
-
-    async create(dados :IProject): Promise<IProject> {
-        return Promise.reject(undefined);
-    }
-
-    async delete(idModel :string): Promise<IProject> {
-        return Promise.reject(undefined);
-    }
-
-    async update(model: IProject): Promise<IProject> {
-        return Promise.reject(undefined);
-    }
-
-    getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IProject>> {
-        return Promise.resolve(undefined);
-    }
-
+	protected endpoint = 'projects';
+	
+	async getById(projectId:ObjectID) :Promise<IProject> {
+		return this.byIdHelper<IProject>(projectId);
+	}
+	
+	async getAll() :Promise<IPagination<IProject>> {
+		return this.getAllHelper<IProject>();
+	}
+	
+	async create(model :IProject) :Promise<IProject> {
+		return this.createHelper(model);
+	}
+	
+	async delete(id :ObjectID) :Promise<IProject> {
+		return this.deleteHelper(id);
+	}
+	
+	async update(model :IProject) :Promise<void> {
+		return this.updateHelper(model);
+	}
+	
+	async getAllByFilter(filter :Array<IFilter>) :Promise<IPagination<IProject>> {
+		return this.getAllByFilterHelper<IProject>(filter);
+	}
+	
+	async getByIds(ids :Array<ObjectID>) :Promise<Array<IProject>> {
+		return this.byIdsHelper<IProject>(ids);
+	}
+	
+	async clone(id :ObjectID) :Promise<ObjectID>{
+		let clone = await this.restapi.customRequest('POST',`${this.endpoint}/${id}/clone`);
+		return new ObjectID(clone._id);
+	}
 }
 
 export default Project;

@@ -1,0 +1,3 @@
+enum EnumKind {
+	BOX = 'Box'
+}

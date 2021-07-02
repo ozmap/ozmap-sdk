@@ -1,4 +1,5 @@
+import ObjectID from "bson-objectid";
 
 export default interface IModel {
-    id: string
+	id? :ObjectID
 }
