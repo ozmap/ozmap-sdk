@@ -13,7 +13,7 @@ class OZMapSDK {
     private box: Box;
     private project: Project;
     private user: User;
-    private client: Client;
+    public client: Client;
 
     constructor(url: string, key?: string) {
         logger.debug('OZMapSDK created');

@@ -7,8 +7,8 @@ import ObjectID from 'bson-objectid';
 
 (async function () {
     logger.info('Iniciando os testes!');
-    const ozmap = new OZMapSDK('************');
-    await ozmap.authentication('*****', '****************');
+    const ozmap = new OZMapSDK('********************',);
+    await ozmap.authentication("******","***************");
 
     // if (ozmap.isConnected()) {
     //   try {
@@ -30,21 +30,31 @@ import ObjectID from 'bson-objectid';
     //         console.log(e);
     //     }
 
-    if (ozmap.isConnected()) {
-        try {
-            await ozmap
-                .getClient()
-                .update({
-                    id: new ObjectID('5da76c5111450e000694908c'),
-                    onu: {
-                        user_PPPoE: '12345678',
-                        serial_number: '12345678',
-                        mac_address: '12345678'
-                    }
-                });
-        } catch (e) {
-            console.log(e);
-        }
+    // if (ozmap.isConnected()) {
+    //     try {
+    //         await ozmap
+    //             .getClient()
+    //             .update({
+    //                 id: new ObjectID('5da76c5111450e000694908c'),
+    //                 onu: {
+    //                     user_PPPoE: '12345678 - Atualizado 3006',
+    //                     serial_number: '123456712345678 - Atualizado 3006',
+    //                     mac_address: '1234567812345678 - Atualizado 3006'
+    //                 }
+    //             });
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+
+
+        // if (ozmap.isConnected()) {
+        //     try {
+        //         const client = await ozmap
+        //             .getClient().getOneByONUCode("12345678 - Atualizado - Via Node-red")
+        //         console.log(client)
+        //     } catch (e) {
+        //         console.log(e);
+        //     }
 
 
         // let clonedProject = await ozmap.getProject().clone(new ObjectID("60cf83e7286cb60018458741"));
@@ -75,5 +85,5 @@ import ObjectID from 'bson-objectid';
 
         //let allprojects = await ozmap.getProject().getAll()//getUser().getAllProjects(userToFindByUsername.id);
         //console.log("GET USER BY USERNAME: ", allprojects)
-    }
+    // }
 })();

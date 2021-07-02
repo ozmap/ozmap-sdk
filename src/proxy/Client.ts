@@ -3,6 +3,7 @@ import IPagination from '../interface/IPagination';
 import IClient from '../interface/model/IClient';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
+import {EnumOperator} from '../interface/EnumOperator';
 
 class Client extends Base {
     protected endpoint = 'ftth-clients';
@@ -29,6 +30,11 @@ class Client extends Base {
 
     getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IClient>> {
         return this.getAllByFilterHelper<IClient>(filter);
+    }
+
+    getOneByONUCode(ONUCode: string): Promise<IClient> {
+        const filter: IFilter = {property: 'onu.serial_number', value: ONUCode, operator: EnumOperator.EQUAL};
+        return this.getAllByFilter([filter]).then(data => data.rows[0]);
     }
 
     getByIds(ids: Array<ObjectID>): Promise<Array<IClient>> {
