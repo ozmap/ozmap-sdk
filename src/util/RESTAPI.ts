@@ -127,6 +127,7 @@ class RESTAPI {
 			}
 			
 			filter = this.encodeURIRecursive(filter);
+			filter[0].value = filter[0].value==='null' ? filter[0].value=null : filter[0].value
 			base_url = `${base_url}&filter=${JSON.stringify(filter)}`;
 		}
 		

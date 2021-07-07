@@ -26,11 +26,14 @@ class Client extends Base_1.default {
         return this.getAllByFilterHelper(filter);
     }
     getOneByONUCode(ONUCode) {
-        const filter = { property: "onu.serial_number", value: ONUCode, operator: EnumOperator_1.EnumOperator.EQUAL };
+        const filter = { property: 'onu.serial_number', value: ONUCode, operator: EnumOperator_1.EnumOperator.EQUAL };
         return this.getAllByFilter([filter]).then(data => data.rows[0]);
     }
     getByIds(ids) {
         return this.byIdsHelper(ids);
+    }
+    getAllByQuery(readQueryInput) {
+        return this.getAllByQueryHelper(readQueryInput);
     }
 }
 exports.default = Client;

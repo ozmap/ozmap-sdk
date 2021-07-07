@@ -27,6 +27,9 @@ class Box extends Base_1.default {
     getByIds(ids) {
         return this.byIdsHelper(ids);
     }
+    getAllByQuery(readQueryInput) {
+        return this.getAllByQueryHelper(readQueryInput);
+    }
 }
 exports.default = Box;
 //# sourceMappingURL=Box.js.map
