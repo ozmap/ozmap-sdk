@@ -3,11 +3,10 @@ import Logger from '../src/util/Logger';
 const logger = Logger(__filename);
 
 import OZMapSDK from '../src';
-import ObjectID from 'bson-objectid';
 
 (async function () {
     logger.info('Iniciando os testes!');
-    const ozmap = new OZMapSDK('http://vpn.demoadm.ozmap.com.br:35000');
+    const ozmap = new OZMapSDK('http://exemplo.com.br');
     await ozmap.authentication('**********', '****************');
 
     // if (ozmap.isConnected()) {
