@@ -6,7 +6,7 @@ import OZMapSDK from '../src';
 
 (async function () {
     logger.info('Iniciando os testes!');
-    const ozmap = new OZMapSDK('http://exemplo.com.br');
+    const ozmap = new OZMapSDK('********************');
     await ozmap.authentication('**********', '****************');
 
     // if (ozmap.isConnected()) {
