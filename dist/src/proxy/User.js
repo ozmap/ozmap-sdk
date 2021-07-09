@@ -26,15 +26,18 @@ class User extends Base_1.default {
     getById(id) {
         return this.byIdHelper(id);
     }
+    getAllByQuery(readQueryInput) {
+        return this.getAllByQueryHelper(readQueryInput);
+    }
     async getByEmail(email) {
-        let users = await this.getAllByFilter([{ property: "email", operator: EnumOperator_1.EnumOperator.EQUAL, value: email }]);
+        let users = await this.getAllByFilter([{ property: 'email', operator: EnumOperator_1.EnumOperator.EQUAL, value: email }]);
         if (users.rows.length > 1) {
             throw new Error(`There is more than one user with the same email ${email}`);
         }
         return users.rows[0];
     }
     async getByUsername(userName) {
-        let users = await this.getAllByFilter([{ property: "username", operator: EnumOperator_1.EnumOperator.EQUAL, value: userName }]);
+        let users = await this.getAllByFilter([{ property: 'username', operator: EnumOperator_1.EnumOperator.EQUAL, value: userName }]);
         if (users.rows.length > 1) {
             throw new Error(`There is more than one user with the same userName ${userName}`);
         }
@@ -64,7 +67,7 @@ class User extends Base_1.default {
         return this.ozmapSdk.getProject().getByIds(projectIds);
     }
     update(model) {
-        if ("password" in model && model.password) {
+        if ('password' in model && model.password) {
             const crypto = require('crypto');
             model.password = crypto.createHash('sha256').update(model.password).digest('hex');
         }

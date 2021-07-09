@@ -28,6 +28,9 @@ class Project extends Base_1.default {
     async getByIds(ids) {
         return this.byIdsHelper(ids);
     }
+    getAllByQuery(readQueryInput) {
+        return this.getAllByQueryHelper(readQueryInput);
+    }
     async clone(id) {
         let clone = await this.restapi.customRequest('POST', `${this.endpoint}/${id}/clone`);
         return new bson_objectid_1.default(clone._id);
