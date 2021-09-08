@@ -78,7 +78,8 @@ abstract class Base {
     protected getAllByFilterHelper<T extends IModel>(filter :Array<IFilter>) {
         let readFilter :IReadQueryInput = {
             model: this.endpoint,
-            filter: filter
+            filter: filter,
+            limit: -1
         };
         return this.restapi.read<T>(readFilter);
     }
