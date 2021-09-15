@@ -9,5 +9,6 @@ export enum EnumOperator {
 	GREATER_OR_EQUAL = '>=',
 	LESS_OR_EQUAL = '<=',
 	IN = 'in',
-	NOT_IN = 'notin'
+	NOT_IN = 'notin',
+	WITHIN = 'within'
 }

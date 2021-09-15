@@ -25,9 +25,13 @@ class Client extends Base_1.default {
     getAllByFilter(filter) {
         return this.getAllByFilterHelper(filter);
     }
-    getOneByONUCode(ONUCode) {
+    async getOneByONUCode(ONUCode) {
         const filter = { property: 'onu.serial_number', value: ONUCode, operator: EnumOperator_1.EnumOperator.EQUAL };
-        return this.getAllByFilter([filter]).then(data => data.rows[0]);
+        let paginatedClient = await this.getAllByFilter([filter]);
+        if (paginatedClient.count > 1) {
+            throw new Error('found more than one client with this id');
+        }
+        return paginatedClient.rows[0];
     }
     getByIds(ids) {
         return this.byIdsHelper(ids);

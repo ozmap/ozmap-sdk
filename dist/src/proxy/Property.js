@@ -35,7 +35,7 @@ class Property extends Base_1.default {
         const filter = { property: 'client', value: id, operator: EnumOperator_1.EnumOperator.EQUAL };
         let paginatedClients = await this.getAllByFilterHelper([filter]);
         if (paginatedClients.count > 1) {
-            throw new Error("found more than one property for this client");
+            throw new Error('found more than one property for this client');
         }
         return paginatedClients.rows[0];
     }

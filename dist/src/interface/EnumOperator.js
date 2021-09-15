@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EnumOperator = void 0;
 var EnumOperator;
 (function (EnumOperator) {
     EnumOperator["EQUAL"] = "=";
@@ -14,5 +13,6 @@ var EnumOperator;
     EnumOperator["LESS_OR_EQUAL"] = "<=";
     EnumOperator["IN"] = "in";
     EnumOperator["NOT_IN"] = "notin";
+    EnumOperator["WITHIN"] = "within";
 })(EnumOperator = exports.EnumOperator || (exports.EnumOperator = {}));
 //# sourceMappingURL=EnumOperator.js.map

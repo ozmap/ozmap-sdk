@@ -103,13 +103,18 @@ class RESTAPI {
     async _read({ model, limit, page, filter, select, sort, populate }) {
         let body = null;
         let base_url = `${this.url}/api/v2/${model}?`;
-        if (filter) {
-            if (!Array.isArray(filter)) {
-                filter = [filter];
+        if (process.env.OZMAP_FILTER_MODE === "URL") {
+            if (filter) {
+                if (!Array.isArray(filter)) {
+                    filter = [filter];
+                }
+                filter = this.encodeURIRecursive(filter);
+                filter[0].value = filter[0].value === 'null' ? null : filter[0].value;
+                base_url = `${base_url}&filter=${JSON.stringify(filter)}`;
             }
-            filter = this.encodeURIRecursive(filter);
-            filter[0].value = filter[0].value === 'null' ? filter[0].value = null : filter[0].value;
-            base_url = `${base_url}&filter=${JSON.stringify(filter)}`;
+        }
+        else {
+            body = { filter };
         }
         if (select) {
             base_url = `${base_url}&select=${select}`;
