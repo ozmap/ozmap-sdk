@@ -44,7 +44,8 @@ class Base {
     getAllByFilterHelper(filter) {
         let readFilter = {
             model: this.endpoint,
-            filter: filter
+            filter: filter,
+            limit: -1
         };
         return this.restapi.read(readFilter);
     }

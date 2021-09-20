@@ -5,8 +5,8 @@ const logger = Logger_1.default(__filename);
 const src_1 = require("../src");
 (async function () {
     logger.info('Iniciando os testes!');
-    const ozmap = new src_1.default("http://vpn.demoadm.ozmap.com.br:35000");
-    await ozmap.authentication("devoz", "isisDevozFirefox2*");
+    const ozmap = new src_1.default('********************');
+    await ozmap.authentication('**********', '****************');
     // if (ozmap.isConnected()) {
     //   try {
     //     await ozmap
@@ -81,7 +81,7 @@ const src_1 = require("../src");
     if (ozmap.isConnected()) {
         try {
             const allClientsData = await ozmap
-                .getProperty().getAllByQuery({ select: "client", limit: 20 });
+                .getProperty().getAllByQuery({ select: 'client', limit: 20 });
             console.log(allClientsData);
         }
         catch (e) {
