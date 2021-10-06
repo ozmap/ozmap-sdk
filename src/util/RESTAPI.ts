@@ -166,7 +166,7 @@ class RESTAPI {
 		}
 	}
 	
-	encodeURIRecursive(filter :any) {
+	encodeURIRecursive(filter : any) {
 		filter = filter.map((el :any) => {
 			if ((Array.isArray(el))) {
 				return this.encodeURIRecursive(el);

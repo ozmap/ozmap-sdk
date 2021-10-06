@@ -1,12 +1,15 @@
 {
-  "name": "ozmap-sdk",
-  "version": "1.0.0",
+  "name": "@ozmap/ozmap-sdk",
+  "version": "0.0.7",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
+
+  "files": ["dist/**/*"],
+  "keywords": ["ozmap", "sdk", "ozmap-api", "devoz", "ftth"],
   "author": "jose.raupp@ozmap.com.br <Jose Raupp da Rosa Junior>",
   "license": "MIT",
   "repository": {

@@ -1,5 +1,5 @@
 import OZMapSDK from './OZMapSDK';
 
-//export default OZMapSDK;
+export default OZMapSDK;
 
-module.exports = OZMapSDK;
+//module.exports = OZMapSDK;

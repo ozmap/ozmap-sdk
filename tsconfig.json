@@ -2,6 +2,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2019",
+    "strict": true,
+    "declaration": true,
     "moduleResolution": "node",
     "preserveConstEnums": true,
     "noImplicitAny": true,
@@ -10,6 +12,8 @@
     "lib": ["es2019", "es2020.bigint", "es2020.string", "es2020.symbol.wellknown"]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "test"
   ]
 }
