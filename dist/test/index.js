@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Logger_1 = require("../src/util/Logger");
 const logger = Logger_1.default(__filename);
-const src_1 = require("../src");
+const OZMapSDK_1 = require("../src/OZMapSDK");
 (async function () {
     logger.info('Iniciando os testes!');
-    const ozmap = new src_1.default('********************');
+    const ozmap = new OZMapSDK_1.default('********************');
     await ozmap.authentication('**********', '****************');
     // if (ozmap.isConnected()) {
     //   try {

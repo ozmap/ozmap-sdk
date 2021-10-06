@@ -27,7 +27,7 @@ class Base {
         if (!(id instanceof bson_objectid_1.default)) {
             id = id.id;
         }
-        if (id) {
+        if (!id) {
             throw new Error('ID is required for delete');
         }
         return this.restapi.delete(this.endpoint, id);

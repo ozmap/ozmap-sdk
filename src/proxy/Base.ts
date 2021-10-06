@@ -58,7 +58,7 @@ abstract class Base {
             id = id.id;
         }
 
-        if (id) {
+        if (!id) {
             throw new Error('ID is required for delete');
         }
         return this.restapi.delete<T>(this.endpoint, id);

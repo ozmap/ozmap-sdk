@@ -2,7 +2,7 @@ import Logger from '../src/util/Logger';
 
 const logger = Logger(__filename);
 
-import OZMapSDK from '../src';
+import OZMapSDK from '../src/OZMapSDK';
 
 (async function () {
     logger.info('Iniciando os testes!');
