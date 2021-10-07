@@ -12,8 +12,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: yarn install
-        run: yarn install
+      - name: npm install
+        run: npm install
       - name: tsc
         uses: icrawl/action-tsc@v1
       - name: setup node
@@ -21,6 +21,7 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
           node-version: 12
+      - name: Publish
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
