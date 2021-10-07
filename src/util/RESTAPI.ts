@@ -91,6 +91,7 @@ class RESTAPI {
         .set({ Authorization: this.key })
         .send(data);
     } catch (e) {
+
       logger.error(
         //@ts-ignore
         `Fail to update: Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`,
