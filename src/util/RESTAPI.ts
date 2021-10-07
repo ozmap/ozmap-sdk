@@ -68,11 +68,14 @@ class RESTAPI {
       return result.body as T;
     } catch (e) {
       logger.error(
+        //@ts-ignore
         `Fail to create: Error: ${e.message}, StatusCode: ${e.status}`,
         { model, data }
       );
+      //@ts-ignore
       if (e.status === 409) {
         throw new Error(
+          //@ts-ignore
           `This model already exist on OZMap. Error: ${e.message}, StatusCode: ${e.status}`
         );
       }
@@ -89,11 +92,14 @@ class RESTAPI {
         .send(data);
     } catch (e) {
       logger.error(
+        //@ts-ignore
         `Fail to update: Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`,
         { model, data }
       );
+      //@ts-ignore
       if (e.status === 404) {
         throw new Error(
+          //@ts-ignore
           `This id do not exist on OZMap. Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`
         );
       }
