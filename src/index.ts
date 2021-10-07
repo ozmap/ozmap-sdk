@@ -1,4 +1,4 @@
-import OZMapSDK from './OZMapSDK';
+import OZMapSDK from "./OZMapSDK";
 
 export default OZMapSDK;
 

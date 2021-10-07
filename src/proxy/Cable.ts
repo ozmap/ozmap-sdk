@@ -1,46 +1,44 @@
-import Base from './Base';
-import IPagination from '../interface/IPagination';
-import ICable from '../interface/model/ICable';
-import IFilter from '../interface/IFilter';
-import ObjectID from 'bson-objectid';
-import IReadQueryInput from '../interface/IReadQueryInput';
-
+import Base from "./Base";
+import IPagination from "../interface/IPagination";
+import ICable from "../interface/model/ICable";
+import IFilter from "../interface/IFilter";
+import ObjectID from "bson-objectid";
+import IReadQueryInput from "../interface/IReadQueryInput";
 
 class Cable extends Base {
-    protected endpoint = 'cables';
+  protected endpoint = "cables";
 
-    async getById(connectorId :ObjectID) :Promise<ICable> {
-        return this.byIdHelper<ICable>(connectorId);
-    }
+  async getById(connectorId: ObjectID): Promise<ICable> {
+    return this.byIdHelper<ICable>(connectorId);
+  }
 
-    async getAll() :Promise<IPagination<ICable>> {
-        return this.getAllHelper<ICable>();
-    }
+  async getAll(): Promise<IPagination<ICable>> {
+    return this.getAllHelper<ICable>();
+  }
 
-    create(model :ICable) :Promise<ICable> {
-        return this.createHelper<ICable>(model);
-    }
+  create(model: ICable): Promise<ICable> {
+    return this.createHelper<ICable>(model);
+  }
 
-    delete(id :ObjectID) :Promise<ICable> {
-        return this.deleteHelper<ICable>(id);
-    }
+  delete(id: ObjectID): Promise<ICable> {
+    return this.deleteHelper<ICable>(id);
+  }
 
-    update(model :ICable) :Promise<void> {
-        return this.updateHelper<ICable>(model);
-    }
+  update(model: ICable): Promise<void> {
+    return this.updateHelper<ICable>(model);
+  }
 
-    getAllByFilter(filter :Array<IFilter>) :Promise<IPagination<ICable>> {
-        return this.getAllByFilterHelper<ICable>(filter);
-    }
+  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<ICable>> {
+    return this.getAllByFilterHelper<ICable>(filter);
+  }
 
-    getByIds(ids :Array<ObjectID>) :Promise<Array<ICable>> {
-        return this.byIdsHelper<ICable>(ids);
-    }
+  getByIds(ids: Array<ObjectID>): Promise<Array<ICable>> {
+    return this.byIdsHelper<ICable>(ids);
+  }
 
-    getAllByQuery(readQueryInput :IReadQueryInput) :Promise<IPagination<ICable>> {
-        return this.getAllByQueryHelper<ICable>(readQueryInput);
-    }
-
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<ICable>> {
+    return this.getAllByQueryHelper<ICable>(readQueryInput);
+  }
 }
 
 export default Cable;
