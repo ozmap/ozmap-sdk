@@ -74,7 +74,7 @@ abstract class Base {
     if (!model.id) {
       throw new Error("Id is required for updates");
     }
-    return this.restapi.update<T>(this.endpoint, model.id, model);
+    return this.restapi.update(this.endpoint, model.id, model);
   }
 
   protected getAllHelper<T extends IModel>() {
