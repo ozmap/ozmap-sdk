@@ -1,11 +1,12 @@
 {
   "name": "@ozmap/ozmap-sdk",
-  "version": "0.0.8-teste",
+  "version": "0.0.8-teste2",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
+    "build": "tsc",
     "lint:check": "eslint 'src' --quiet",
     "lint": "eslint 'src' --quiet --fix"
   },

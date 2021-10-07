@@ -16,7 +16,7 @@ jobs:
       - name: npm install
         run: npm install
       - name: tsc
-        run: tsc
+        run: npm run build
       - name: publish
       - uses: JS-DevTools/npm-publish@v1
         with:
