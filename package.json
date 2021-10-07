@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint:check": "eslint 'src' --quiet",
+    "lint": "eslint 'src' --quiet --fix"
   },
   "files": [
     "dist/**/*"
