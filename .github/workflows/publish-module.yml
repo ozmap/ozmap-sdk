@@ -17,6 +17,7 @@ jobs:
       - name: tsc
         uses: icrawl/action-tsc@v1
       - name: setup node
+        uses: actions/setup-node@v1
         with:
           registry-url: 'https://registry.npmjs.org'
           node-version: 12
