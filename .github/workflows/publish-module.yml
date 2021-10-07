@@ -17,7 +17,8 @@ jobs:
       - name: tsc
         uses: icrawl/action-tsc@v1
       - name: publish
-        registry-url: 'https://registry.npmjs.org'
+        with:
+          registry-url: 'https://registry.npmjs.org'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
