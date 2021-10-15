@@ -82,6 +82,10 @@ class OZMapSDK {
   isConnected() {
     return this.restapi.isConnected();
   }
+  
+  getRestApi(): RESTAPI {
+    return this.restapi;
+  }
 }
 
 export default OZMapSDK;
