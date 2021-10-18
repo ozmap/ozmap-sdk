@@ -9,8 +9,8 @@ import IReadQueryInput from '../interface/IReadQueryInput';
 class Prospect extends Base {
 	protected endpoint = 'properties';
 	
-	async getById(propertyId: ObjectID): Promise<IProspect> {
-		return this.byIdHelper<IProspect>(propertyId);
+	async getById(prospectId: ObjectID | string): Promise<IProspect> {
+		return this.byIdHelper<IProspect>(prospectId);
 	}
 	
 	async getAll(): Promise<IPagination<IProspect>> {
@@ -21,7 +21,7 @@ class Prospect extends Base {
 		return this.createHelper<IProspect>(model);
 	}
 	
-	delete(id: ObjectID): Promise<IProspect> {
+	delete(id: ObjectID | string): Promise<IProspect> {
 		return this.deleteHelper<IProspect>(id);
 	}
 	
@@ -39,7 +39,7 @@ class Prospect extends Base {
 		return this.getAllByQueryHelper<IProspect>(readQueryInput);
 	}
 	
-	getByIds(ids: Array<ObjectID>): Promise<Array<IProspect>> {
+	getByIds(ids: Array<ObjectID> | Array<string>): Promise<Array<IProspect>> {
 		return this.byIdsHelper<IProspect>(ids);
 	}
 }
