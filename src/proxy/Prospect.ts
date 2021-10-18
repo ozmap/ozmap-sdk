@@ -7,7 +7,7 @@ import { EnumOperator } from '../interface/EnumOperator';
 import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Prospect extends Base {
-	protected endpoint = 'properties';
+	protected endpoint = 'prospects';
 	
 	async getById(prospectId: ObjectID | string): Promise<IProspect> {
 		return this.byIdHelper<IProspect>(prospectId);
