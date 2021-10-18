@@ -58,15 +58,16 @@ abstract class Base {
     }
     return this.restapi.create(this.endpoint, model);
   }
-
-  protected async deleteHelper<T>(id: IModel | ObjectID): Promise<T> {
-    if (!(id instanceof ObjectID)) {
+  
+  protected async deleteHelper<T>(id: IModel | ObjectID | string): Promise<T> {
+    if (!(id instanceof ObjectID) && id.id) {
       id = id.id as ObjectID;
     }
-
+    
     if (!id) {
       throw new Error("ID is required for delete");
     }
+    
     return this.restapi.delete<T>(this.endpoint, id as ObjectID);
   }
 
@@ -97,18 +98,21 @@ abstract class Base {
     return this.restapi.read<T>(readQueryInput);
   }
 
-  protected byIdHelper<T extends IModel>(id: ObjectID | IModel) {
+  protected byIdHelper<T extends IModel>(id: ObjectID | IModel | string) {
     if (!(id instanceof ObjectID)) {
-      if (!id.id) {
-        throw new Error("ID is required for gteById");
+      if (id.id) {
+        id = id.id;
       }
-      id = id.id;
+      
+      if (!id) {
+        throw new Error('ID is required for getById');
+      }
     }
     return this.restapi.readById<T>(this.endpoint, id);
   }
 
   protected async byIdsHelper<T extends IModel>(
-    ids: Array<ObjectID>
+    ids: Array<ObjectID> |  Array<string>
   ): Promise<Array<T>> {
     const paginatedModels = await this.restapi.read<T>({
       model: this.endpoint,

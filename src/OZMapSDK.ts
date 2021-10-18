@@ -12,6 +12,7 @@ import Property from "./proxy/Property";
 import NetworkConnector from "./proxy/NetworkConnector";
 import NetworkConnectable from "./proxy/NetworkConnectable";
 import Region from "./proxy/Region";
+import Prospect from './proxy/Prospect';
 
 class OZMapSDK {
   private restapi: RESTAPI;
@@ -24,6 +25,7 @@ class OZMapSDK {
   private networkConnector: NetworkConnector;
   private networkConnectable: NetworkConnectable;
   private region: Region;
+  private prospect: Prospect;
 
   constructor(url: string, key?: string) {
     logger.debug("OZMapSDK created");
@@ -37,6 +39,7 @@ class OZMapSDK {
     this.networkConnector = new NetworkConnector(this.restapi, this);
     this.networkConnectable = new NetworkConnectable(this.restapi, this);
     this.region = new Region(this.restapi, this);
+    this.prospect = new Prospect(this.restapi, this);
   }
 
   async authentication(login?: string, password?: string) {
@@ -85,6 +88,10 @@ class OZMapSDK {
   
   getRestApi(): RESTAPI {
     return this.restapi;
+  }
+  
+  getProspect(): Prospect {
+    return this.prospect;
   }
 }
 
