@@ -13,7 +13,7 @@ export default interface IBaseBox extends IModel {
   cables: (ICable | ObjectID)[];
   coords: number[];
   name: string;
-  history: any[];
+  history: unknown[];
   hierarchyLevel: number;
   boxType: ObjectID | IBoxType;
   pole: ObjectID | IPole;

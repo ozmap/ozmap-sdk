@@ -12,15 +12,15 @@ interface IClientLog {
 interface IClientLogData {
   id?: string;
   code?: string;
-  enter_date?: any;
-  exit_date?: any;
+  enter_date?: Date | string;
+  exit_date?: Date | string;
 }
 
 export default interface IProperty extends IModel {
   history?: IClientLog;
   observation?: string;
   drop?: ObjectID;
-  tags?: [any];
+  tags?: [unknown];
   cables?: [ObjectID];
   kind?: string;
   coords?: [ICoords];

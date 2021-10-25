@@ -13,7 +13,7 @@ export default interface IProject extends IModel {
   createdAt: Date;
   updatedAt: Date;
   hierarchyLevels: {
-    box: any; //{ POP: 1, CE: 2, CTO: 3 },
-    cable: any; //{ 'PRIMÁRIO': 1, 'SECUNDÁRIO': 2, DROP: 3, 'TERCIÁRIO': 4 }
+    box: number; //{ POP: 1, CE: 2, CTO: 3 },
+    cable: number; //{ 'PRIMÁRIO': 1, 'SECUNDÁRIO': 2, DROP: 3, 'TERCIÁRIO': 4 }
   };
 }
