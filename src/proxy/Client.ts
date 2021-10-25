@@ -26,7 +26,7 @@ class Client extends Base {
   }
 
   update(model: IClient): Promise<void> {
-    return this.updateHelper<IClient>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IClient>> {

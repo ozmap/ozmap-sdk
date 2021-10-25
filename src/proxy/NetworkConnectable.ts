@@ -25,7 +25,7 @@ class NetworkConnectable extends Base {
   }
 
   update(model: INetworkConnectable): Promise<void> {
-    return this.updateHelper<INetworkConnectable>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(

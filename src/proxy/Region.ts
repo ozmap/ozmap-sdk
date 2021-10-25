@@ -25,7 +25,7 @@ class Region extends Base {
   }
 
   update(model: IRegion): Promise<void> {
-    return this.updateHelper<IRegion>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IRegion>> {

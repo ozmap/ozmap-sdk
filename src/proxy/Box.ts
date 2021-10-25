@@ -25,7 +25,7 @@ class Box extends Base {
   }
 
   update(model: IBox): Promise<void> {
-    return this.updateHelper<IBox>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IBox>> {

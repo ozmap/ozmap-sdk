@@ -66,7 +66,11 @@ class User extends Base {
     return users.rows[0];
   }
 
-  async addProject(userId: ObjectID, projectId: ObjectID, roleId: ObjectID) {
+  async addProject(
+    userId: ObjectID,
+    projectId: ObjectID,
+    roleId: ObjectID
+  ): Promise<void> {
     await this.update({
       id: userId,
       projects: [
@@ -99,7 +103,7 @@ class User extends Base {
         .update(model.password)
         .digest("hex");
     }
-    return this.updateHelper<IUser>(model);
+    return this.updateHelper(model);
   }
 
   getByIds(ids: Array<ObjectID>): Promise<Array<IUser>> {

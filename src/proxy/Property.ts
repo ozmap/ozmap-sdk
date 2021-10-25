@@ -26,7 +26,7 @@ class Property extends Base {
   }
 
   update(model: IProperty): Promise<void> {
-    return this.updateHelper<IProperty>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IProperty>> {

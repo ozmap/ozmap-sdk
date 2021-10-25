@@ -25,7 +25,7 @@ class Cable extends Base {
   }
 
   update(model: ICable): Promise<void> {
-    return this.updateHelper<ICable>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<ICable>> {
