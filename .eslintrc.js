@@ -28,15 +28,11 @@ module.exports = {
     "plugin:prettier/recommended" // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
   ],
   rules: {
-    "no-console": [
-      "error",
-      {
-        "allow": ["info", "warn", "error"]
-      }
-    ],
+    "no-console": "error",
     "multiline-ternary": 0,
     "no-unused-vars": "off",
     "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "no-shadow": 0,
     "@typescript-eslint/no-unused-vars": "error",
     "no-useless-constructor": "off",
@@ -53,9 +49,9 @@ module.exports = {
     "max-len": [
       "warn",
       {
-        "code": 80,
+        "code": 120,
         "tabWidth": 2,
-        "comments": 80,
+        "comments": 120,
         "ignoreComments": false,
         "ignoreTrailingComments": true,
         "ignoreUrls": true,
