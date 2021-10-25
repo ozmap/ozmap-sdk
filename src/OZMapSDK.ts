@@ -45,7 +45,7 @@ class OZMapSDK {
     this.building = new Building(this.restapi, this);
   }
 
-  async authentication(login?: string, password?: string) {
+  async authentication(login?: string, password?: string): Promise<unknown> {
     return this.restapi.authentication(login, password);
   }
 
@@ -85,14 +85,14 @@ class OZMapSDK {
     return this.region;
   }
 
-  isConnected() {
+  isConnected(): boolean {
     return this.restapi.isConnected();
   }
-  
+
   getRestApi(): RESTAPI {
     return this.restapi;
   }
-  
+
   getProspect(): Prospect {
     return this.prospect;
   }
