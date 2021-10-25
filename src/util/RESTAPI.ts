@@ -210,7 +210,7 @@ class RESTAPI {
   }
 
   encodeURIRecursive(filter: (IFilter | IFilter[])[]): unknown[] {
-    const encodedFilter = filter.map((el: IFilter | IFilter[]) => {
+    return filter.map((el: IFilter | IFilter[]) => {
       if (Array.isArray(el)) {
         return this.encodeURIRecursive(el);
       } else {
@@ -227,7 +227,6 @@ class RESTAPI {
         }
       }
     });
-    return encodedFilter;
   }
 
   async readById<T extends IModel>(

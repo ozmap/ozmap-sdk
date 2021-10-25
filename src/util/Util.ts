@@ -39,7 +39,7 @@ class Util {
       getCoord(elm, SupportedCoords.LNG) ||
       getCoord(elm, SupportedCoords.LONGITUDE);
 
-    const elements = {
+    return {
       A: {
         ...(lat(elementA) !== undefined && {
           lat: Util.deg2rad(lat(elementA)),
@@ -57,8 +57,6 @@ class Util {
         }),
       },
     };
-
-    return elements;
   }
 
   static elementDistance(
@@ -87,8 +85,6 @@ class Util {
 
       return distanceInMeters ? distance * 1000 : distance;
     }
-
-    return;
   }
 }
 
