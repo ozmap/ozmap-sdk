@@ -7,8 +7,7 @@ import IReadQueryInput from "../interface/IReadQueryInput";
 import IModel from "../interface/model/IModel";
 import ObjectID from "bson-objectid";
 import IFilter from "../interface/IFilter";
-
-const superagent = require("superagent");
+import superagent = require("superagent");
 
 class RESTAPI {
   private connected = false;
@@ -24,15 +23,20 @@ class RESTAPI {
     }
   }
 
-  public async authentication(login?: string, password?: string): Promise<any> {
+  public async authentication(
+    login?: string,
+    password?: string
+  ): Promise<string | undefined | null> {
     logger.info(`Authentication called. username:${login}`);
     let failToUseAPIKey = false;
+
     try {
       await superagent
         .get(`${this.url}/api/v2/authenticated`)
         .set({ Authorization: this.key })
         .send();
       this.connected = true;
+
       return this.key;
     } catch (err) {
       logger.warn("Fail to use the API-Key");
@@ -47,8 +51,10 @@ class RESTAPI {
             login: login,
             password: password,
           });
+
         this.key = result.body.authorization;
         this.connected = true;
+
         return this.key;
       } catch (e) {
         logger.info("Fail to login, username and/or password are wrong");
@@ -65,6 +71,7 @@ class RESTAPI {
         .post(base_url)
         .set({ Authorization: this.key })
         .send(data);
+
       return result.body as T;
     } catch (e) {
       logger.error(
@@ -78,13 +85,13 @@ class RESTAPI {
 
   async update(model: string, model_id: ObjectID, data: IModel): Promise<void> {
     const base_url = `${this.url}/api/v2/${model}/${model_id}`;
+
     try {
       await superagent
         .patch(base_url)
         .set({ Authorization: this.key })
         .send(data);
     } catch (e) {
-
       logger.error(
         //@ts-ignore
         `Fail to update: Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`,
@@ -102,6 +109,7 @@ class RESTAPI {
         .delete(base_url)
         .set({ Authorization: this.key })
         .send();
+
       return result.body as T;
     } catch (e) {
       logger.error("Fail to delete: ", { model, model_id });
@@ -111,22 +119,25 @@ class RESTAPI {
 
   async read<T extends IModel>(
     model: IReadQueryInput,
-    query?: any
+    query?: Record<string, unknown>
   ): Promise<IPagination<T>> {
     if (model instanceof Object && model.constructor === Object) {
       return this._read(model);
     } else if (typeof model === "string") {
-      let filter: any = [];
+      let filter: IFilter[] = [];
+
       if (query && Object.keys(query).length) {
         filter = Object.keys(query).map((el: string) => {
           return { property: el, operator: "=", value: query[el] };
-        });
+        }) as IFilter[];
       }
+
       return this._read<T>({
         model: model,
         filter: filter,
       });
     }
+
     return {
       total: 0,
       rows: [],
@@ -145,7 +156,7 @@ class RESTAPI {
     sort,
     populate,
   }: IReadQueryInput): Promise<IPagination<T>> {
-    let body = null;
+    let body = {};
     let base_url = `${this.url}/api/v2/${model}?`;
 
     if (process.env.OZMAP_FILTER_MODE === "URL") {
@@ -154,7 +165,7 @@ class RESTAPI {
           filter = [filter];
         }
 
-        filter = this.encodeURIRecursive(filter);
+        filter = this.encodeURIRecursive(filter) as IFilter[];
         // if(filter && filter.length) {
         //   filter[0].value = filter[0].value === "null" ? null : filter[0].value;
         // }
@@ -198,24 +209,25 @@ class RESTAPI {
     }
   }
 
-  encodeURIRecursive(filter: Array<IFilter>) {
-    filter = filter.map((el: any) => {
+  encodeURIRecursive(filter: (IFilter | IFilter[])[]): unknown[] {
+    const encodedFilter = filter.map((el: IFilter | IFilter[]) => {
       if (Array.isArray(el)) {
         return this.encodeURIRecursive(el);
       } else {
         if (el.operator === "near") {
           return el;
         } else if (Array.isArray(el.value)) {
-          el.value = el.value.map((elOut: any) => {
-            return encodeURIComponent(elOut);
+          el.value = el.value.map((elOut: unknown) => {
+            return encodeURIComponent(elOut as string | number | boolean);
           });
+
           return el;
         } else {
-          return { ...el, value: encodeURIComponent(el.value) };
+          return { ...el, value: encodeURIComponent(el.value as string) };
         }
       }
     });
-    return filter;
+    return encodedFilter;
   }
 
   async readById<T extends IModel>(
@@ -234,6 +246,7 @@ class RESTAPI {
         .get(base_url)
         .set({ Authorization: this.key })
         .send();
+
       return result.body as T;
     } catch (e) {
       logger.error("Fail to readById", { model, model_id, select });
@@ -252,6 +265,7 @@ class RESTAPI {
     let finished = false;
     let ret: Array<T> = [];
     let page = 1;
+
     try {
       while (!finished) {
         const read_page: Array<T> = (
@@ -265,17 +279,20 @@ class RESTAPI {
             sort,
           })
         ).rows;
+
         if (read_page.length) {
           ret = ret.concat(read_page);
         } else {
           finished = true;
         }
+
         page++;
       }
     } catch (e) {
       logger.error("Fail to fetchAllWithPagination", { model, filter, select });
       throw e;
     }
+
     return {
       rows: ret,
       total: ret.length,
@@ -289,11 +306,12 @@ class RESTAPI {
     method = "GET",
     v2_route = "",
     queryInput?: IReadQueryInput,
-    data?: any
-  ) {
+    data?: Record<string, unknown>
+  ): Promise<Record<string, unknown>> {
     let base_url = `${this.url}/api/v2/${v2_route}`;
     let questionMark = "?";
     type K1 = keyof IReadQueryInput;
+
     for (const query_name in queryInput) {
       if (queryInput.hasOwnProperty(query_name)) {
         base_url = `${base_url}${questionMark}&${query_name}=${
@@ -302,6 +320,7 @@ class RESTAPI {
         questionMark = "";
       }
     }
+
     try {
       return await superagent[method.toLowerCase()](base_url)
         .set({ Authorization: this.key })
@@ -313,7 +332,7 @@ class RESTAPI {
     }
   }
 
-  isConnected() {
+  isConnected(): boolean {
     return this.connected;
   }
 }
