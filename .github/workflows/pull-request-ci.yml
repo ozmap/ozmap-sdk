@@ -24,7 +24,9 @@ jobs:
       - run: git --version
       # Install node_modules
       - run: npm ci
-      # Run tests
+      # Run code linting
       - run: npm run lint:fix
+      # Run unit tests
+      - run: npm run test
       # Run build
       - run: npm run build
