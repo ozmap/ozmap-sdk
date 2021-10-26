@@ -26,7 +26,7 @@ const colors = {
 
 winston.addColors(colors);
 
-const logger = (moduleName: string): winston.Logger => {
+const Logger = (moduleName: string): winston.Logger => {
   const format = winston.format.combine(
     winston.format.label({ label: moduleName }),
     winston.format.colorize({ all: true }),
@@ -51,4 +51,4 @@ const logger = (moduleName: string): winston.Logger => {
   });
 };
 
-export default logger;
+export default Logger;
