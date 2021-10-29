@@ -1,12 +1,11 @@
-import IModel from "./IModel";
-import ICoords from "../ICoords";
+import IModel from './IModel';
 
 export default interface IProspect extends IModel {
-  tags?: [unknown];
+  tags?: unknown[];
   phone?: string;
   code?: string;
   address?: string;
-  coords?: [ICoords];
+  coords?: Coords[];
   name?: string;
   observation?: string;
   viable?: boolean;
