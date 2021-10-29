@@ -320,7 +320,7 @@ class RESTAPI {
         .set({ Authorization: this.key })
         .timeout(999999)
         .send(data);
-      return { status: result.status, body: result.body };
+      return result;
     } catch (e) {
       logger.error("Fail to customRequest", { method, data, queryInput });
       throw e;
