@@ -72,13 +72,6 @@ class RESTAPI {
         `Fail to create: Error: ${e.message}, StatusCode: ${e.status}`,
         { model, data }
       );
-      //@ts-ignore
-      if (e.status === 409) {
-        throw new Error(
-          //@ts-ignore
-          `This model already exist on OZMap. Error: ${e.message}, StatusCode: ${e.status}`
-        );
-      }
       throw e;
     }
   }
@@ -97,13 +90,7 @@ class RESTAPI {
         `Fail to update: Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`,
         { model, data }
       );
-      //@ts-ignore
-      if (e.status === 404) {
-        throw new Error(
-          //@ts-ignore
-          `This id do not exist on OZMap. Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`
-        );
-      }
+     
       throw e;
     }
   }
