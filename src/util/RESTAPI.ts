@@ -316,11 +316,10 @@ class RESTAPI {
       }
     }
     try {
-      const result = await superagent[method.toLowerCase()](base_url)
+      return await superagent[method.toLowerCase()](base_url)
         .set({ Authorization: this.key })
         .timeout(999999)
         .send(data);
-      return result.body;
     } catch (e) {
       logger.error("Fail to customRequest", { method, data, queryInput });
       throw e;
