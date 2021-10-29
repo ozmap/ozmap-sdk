@@ -1,11 +1,11 @@
-import IGPS from "../interface/GPS";
-import { ConversionError } from "../exceptions/ConversionError";
+import IGPS from '../interface/GPS';
+import { ConversionError } from '../exceptions/ConversionError';
 
 enum SupportedCoords {
-  LAT = "lat",
-  LATITUDE = "latitude",
-  LNG = "lng",
-  LONGITUDE = "longitude",
+  LAT = 'lat',
+  LATITUDE = 'latitude',
+  LNG = 'lng',
+  LONGITUDE = 'longitude',
 }
 
 class Util {
@@ -18,20 +18,17 @@ class Util {
       return optimized ? deg * Util.PIOVER180 : deg * (Math.PI / 180);
     }
 
-    throw new ConversionError("A valid angle in degrees must be provided!");
+    throw new ConversionError('A valid angle in degrees must be provided!');
   }
 
-  private static _getCoord = (
-    elm: IGPS,
-    coordName: SupportedCoords
-  ): number | undefined => {
+  private static _getCoord = (elm: IGPS, coordName: SupportedCoords): number | undefined => {
     // Helper function that extracts the coordinate component
     // i.e., lat or lng, and then converts it into a numerical value.
 
     if (coordName in elm) {
       const coord = elm[coordName];
 
-      return typeof coord === "string" ? parseFloat(coord) : coord;
+      return typeof coord === 'string' ? parseFloat(coord) : coord;
     }
 
     return undefined;
@@ -42,12 +39,10 @@ class Util {
     // object with the latitudes and longitude converted to radians.
 
     const lat = (elm: IGPS): number | undefined =>
-      Util._getCoord(elm, SupportedCoords.LAT) ||
-      Util._getCoord(elm, SupportedCoords.LATITUDE);
+      Util._getCoord(elm, SupportedCoords.LAT) || Util._getCoord(elm, SupportedCoords.LATITUDE);
 
     const lng = (elm: IGPS): number | undefined =>
-      Util._getCoord(elm, SupportedCoords.LNG) ||
-      Util._getCoord(elm, SupportedCoords.LONGITUDE);
+      Util._getCoord(elm, SupportedCoords.LNG) || Util._getCoord(elm, SupportedCoords.LONGITUDE);
 
     return {
       A: {
@@ -86,10 +81,7 @@ class Util {
     if (diffLat && diffLng && A.lat && B.lat) {
       const { asin, cos, sqrt } = Math;
 
-      const a =
-        0.5 -
-        cos(diffLat / 2) / 2 +
-        (cos(A.lat) * cos(B.lat) * (1 - cos(diffLng))) / 2;
+      const a = 0.5 - cos(diffLat / 2) / 2 + (cos(A.lat) * cos(B.lat) * (1 - cos(diffLng))) / 2;
 
       return 12756 * asin(sqrt(a)); // 2*R = 12756 km; R = 6378 km
     }

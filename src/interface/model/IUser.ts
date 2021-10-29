@@ -1,7 +1,7 @@
-import IProjectRole from "../IProjectRole";
-import ObjectID from "bson-objectid";
-import IModel from "./IModel";
-import { EnumResources } from "../EnumResources";
+import IProjectRole from '../IProjectRole';
+import ObjectID from 'bson-objectid';
+import IModel from './IModel';
+import { EnumResources } from '../EnumResources';
 
 export default interface IUser extends IModel {
   allProjects?: boolean;

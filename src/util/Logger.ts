@@ -1,5 +1,5 @@
-"use strict";
-import * as winston from "winston";
+'use strict';
+import * as winston from 'winston';
 
 const levels = {
   error: 0,
@@ -10,18 +10,18 @@ const levels = {
 };
 
 const level = (): string => {
-  const env = process.env.NODE_ENV || "development";
-  const isDevelopment = env === "development";
+  const env = process.env.NODE_ENV || 'development';
+  const isDevelopment = env === 'development';
 
-  return isDevelopment ? "debug" : "warn";
+  return isDevelopment ? 'debug' : 'warn';
 };
 
 const colors = {
-  error: "red",
-  warn: "yellow",
-  info: "green",
-  http: "magenta",
-  debug: "white",
+  error: 'red',
+  warn: 'yellow',
+  info: 'green',
+  http: 'magenta',
+  debug: 'white',
 };
 
 winston.addColors(colors);
@@ -31,10 +31,10 @@ const Logger = (moduleName: string): winston.Logger => {
     winston.format.label({ label: moduleName }),
     winston.format.colorize({ all: true }),
     winston.format.label({ label: moduleName }),
-    winston.format.timestamp({ format: "YY-MM-DD HH:MM:SS" }),
+    winston.format.timestamp({ format: 'YY-MM-DD HH:MM:SS' }),
     winston.format.printf((info) => {
       return `${info.timestamp} - ${info.label} - ${info.level} - ${info.message}`;
-    })
+    }),
   );
 
   const transports = [

@@ -1,12 +1,12 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import IReadQueryInput from "../interface/IReadQueryInput";
-import IBaseBox from "../interface/model/IBaseBox";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import IBaseBox from '../interface/model/IBaseBox';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Box extends Base {
-  protected endpoint = "boxes";
+  protected endpoint = 'boxes';
 
   async getById(boxId: ObjectID): Promise<IBaseBox> {
     return this.byIdHelper<IBaseBox>(boxId);

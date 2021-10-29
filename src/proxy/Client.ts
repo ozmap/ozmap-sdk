@@ -1,13 +1,13 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import IClient from "../interface/model/IClient";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import { EnumOperator } from "../interface/EnumOperator";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import IClient from '../interface/model/IClient';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import { EnumOperator } from '../interface/EnumOperator';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Client extends Base {
-  protected endpoint = "ftth-clients";
+  protected endpoint = 'ftth-clients';
 
   async getById(clientId: ObjectID): Promise<IClient> {
     return this.byIdHelper<IClient>(clientId);
@@ -35,13 +35,13 @@ class Client extends Base {
 
   async getOneByONUCode(ONUCode: string): Promise<IClient> {
     const filter: IFilter = {
-      property: "onu.serial_number",
+      property: 'onu.serial_number',
       value: ONUCode,
       operator: EnumOperator.EQUAL,
     };
     const paginatedClient = await this.getAllByFilter([filter]);
     if (paginatedClient.count > 1) {
-      throw new Error("found more than one client with this id");
+      throw new Error('found more than one client with this id');
     }
     return paginatedClient.rows[0];
   }
@@ -50,9 +50,7 @@ class Client extends Base {
     return this.byIdsHelper<IClient>(ids);
   }
 
-  getAllByQuery(
-    readQueryInput: IReadQueryInput
-  ): Promise<IPagination<IClient>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IClient>> {
     return this.getAllByQueryHelper<IClient>(readQueryInput);
   }
 }

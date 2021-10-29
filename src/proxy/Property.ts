@@ -1,13 +1,13 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import IProperty from "../interface/model/IProperty";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import { EnumOperator } from "../interface/EnumOperator";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import IProperty from '../interface/model/IProperty';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import { EnumOperator } from '../interface/EnumOperator';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Property extends Base {
-  protected endpoint = "properties";
+  protected endpoint = 'properties';
 
   async getById(propertyId: ObjectID): Promise<IProperty> {
     return this.byIdHelper<IProperty>(propertyId);
@@ -33,9 +33,7 @@ class Property extends Base {
     return this.getAllByFilterHelper<IProperty>(filter);
   }
 
-  getAllByQuery(
-    readQueryInput: IReadQueryInput
-  ): Promise<IPagination<IProperty>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProperty>> {
     return this.getAllByQueryHelper<IProperty>(readQueryInput);
   }
 
@@ -45,15 +43,13 @@ class Property extends Base {
 
   async getPropertyByClientId(id: string): Promise<IProperty> {
     const filter: IFilter = {
-      property: "client",
+      property: 'client',
       value: id,
       operator: EnumOperator.EQUAL,
     };
-    const paginatedClients = await this.getAllByFilterHelper<IProperty>([
-      filter,
-    ]);
+    const paginatedClients = await this.getAllByFilterHelper<IProperty>([filter]);
     if (paginatedClients.count > 1) {
-      throw new Error("found more than one property for this client");
+      throw new Error('found more than one property for this client');
     }
     return paginatedClients.rows[0];
   }

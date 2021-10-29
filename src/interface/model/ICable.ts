@@ -1,4 +1,4 @@
-import IBaseCable from "./IBaseCable";
+import IBaseCable from './IBaseCable';
 
 export default interface ICable extends IBaseCable {
   hierarchyLevel: number;

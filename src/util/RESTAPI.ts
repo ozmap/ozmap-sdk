@@ -84,7 +84,7 @@ class RESTAPI {
         `Fail to update: Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`,
         { model, data },
       );
-     
+
       throw e;
     }
   }

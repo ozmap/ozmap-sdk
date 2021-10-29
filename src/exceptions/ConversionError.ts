@@ -1,8 +1,8 @@
-import { CustomError } from "./CustomError";
+import { CustomError } from './CustomError';
 
 class ConversionError extends CustomError {
   statusCode = 500;
-  private static _reason = "Failed to perform conversion of value.";
+  private static _reason = 'Failed to perform conversion of value.';
 
   constructor(message?: string) {
     super(message || ConversionError._reason);

@@ -1,23 +1,20 @@
-import Base from "./Base";
-import IUser from "../interface/model/IUser";
-import IPagination from "../interface/IPagination";
-import IFilter from "../interface/IFilter";
-import { EnumOperator } from "../interface/EnumOperator";
-import IProject from "../interface/model/IProject";
-import ObjectID from "bson-objectid";
-import IModel from "../interface/model/IModel";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IUser from '../interface/model/IUser';
+import IPagination from '../interface/IPagination';
+import IFilter from '../interface/IFilter';
+import { EnumOperator } from '../interface/EnumOperator';
+import IProject from '../interface/model/IProject';
+import ObjectID from 'bson-objectid';
+import IModel from '../interface/model/IModel';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class User extends Base {
-  protected endpoint = "users";
+  protected endpoint = 'users';
 
   create(model: IUser): Promise<IUser> {
     if (model.password) {
-      const crypto = require("crypto");
-      model.password = crypto
-        .createHash("sha256")
-        .update(model.password)
-        .digest("hex");
+      const crypto = require('crypto');
+      model.password = crypto.createHash('sha256').update(model.password).digest('hex');
     }
     return this.createHelper<IUser>(model);
   }
@@ -43,34 +40,22 @@ class User extends Base {
   }
 
   async getByEmail(email: string): Promise<IUser> {
-    const users = await this.getAllByFilter([
-      { property: "email", operator: EnumOperator.EQUAL, value: email },
-    ]);
+    const users = await this.getAllByFilter([{ property: 'email', operator: EnumOperator.EQUAL, value: email }]);
     if (users.rows.length > 1) {
-      throw new Error(
-        `There is more than one user with the same email ${email}`
-      );
+      throw new Error(`There is more than one user with the same email ${email}`);
     }
     return users.rows[0];
   }
 
   async getByUsername(userName: string): Promise<IUser> {
-    const users = await this.getAllByFilter([
-      { property: "username", operator: EnumOperator.EQUAL, value: userName },
-    ]);
+    const users = await this.getAllByFilter([{ property: 'username', operator: EnumOperator.EQUAL, value: userName }]);
     if (users.rows.length > 1) {
-      throw new Error(
-        `There is more than one user with the same userName ${userName}`
-      );
+      throw new Error(`There is more than one user with the same userName ${userName}`);
     }
     return users.rows[0];
   }
 
-  async addProject(
-    userId: ObjectID,
-    projectId: ObjectID,
-    roleId: ObjectID
-  ): Promise<void> {
+  async addProject(userId: ObjectID, projectId: ObjectID, roleId: ObjectID): Promise<void> {
     await this.update({
       id: userId,
       projects: [
@@ -96,12 +81,9 @@ class User extends Base {
   }
 
   update(model: IModel | IUser): Promise<void> {
-    if ("password" in model && model.password) {
-      const crypto = require("crypto");
-      model.password = crypto
-        .createHash("sha256")
-        .update(model.password)
-        .digest("hex");
+    if ('password' in model && model.password) {
+      const crypto = require('crypto');
+      model.password = crypto.createHash('sha256').update(model.password).digest('hex');
     }
     return this.updateHelper(model);
   }

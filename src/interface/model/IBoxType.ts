@@ -1,5 +1,5 @@
-import IModel from "./IModel";
-import ObjectID from "bson-objectid";
+import IModel from './IModel';
+import ObjectID from 'bson-objectid';
 
 export default interface IBoxType extends IModel {
   code: string;

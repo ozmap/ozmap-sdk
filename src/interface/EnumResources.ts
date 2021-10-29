@@ -1,6 +1,6 @@
 export enum EnumResources {
-  OZMAP = "OZmap",
-  OZMOB = "OZmob",
-  LOKI = "Loki",
-  API = "API",
+  OZMAP = 'OZmap',
+  OZMOB = 'OZmob',
+  LOKI = 'Loki',
+  API = 'API',
 }

@@ -1,5 +1,5 @@
-import IModel from "./IModel";
-import IONU from "./IONU";
+import IModel from './IModel';
+import IONU from './IONU';
 
 export default interface IClient extends IModel {
   certified?: boolean;

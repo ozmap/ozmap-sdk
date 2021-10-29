@@ -1,12 +1,12 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import INetworkConnector from "../interface/model/INetworkConnector";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import INetworkConnector from '../interface/model/INetworkConnector';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class NetworkConnector extends Base {
-  protected endpoint = "network-connectors";
+  protected endpoint = 'network-connectors';
 
   async getById(connectorId: ObjectID): Promise<INetworkConnector> {
     return this.byIdHelper<INetworkConnector>(connectorId);
@@ -28,9 +28,7 @@ class NetworkConnector extends Base {
     return this.updateHelper(model);
   }
 
-  getAllByFilter(
-    filter: Array<IFilter>
-  ): Promise<IPagination<INetworkConnector>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<INetworkConnector>> {
     return this.getAllByFilterHelper<INetworkConnector>(filter);
   }
 
@@ -38,9 +36,7 @@ class NetworkConnector extends Base {
     return this.byIdsHelper<INetworkConnector>(ids);
   }
 
-  getAllByQuery(
-    readQueryInput: IReadQueryInput
-  ): Promise<IPagination<INetworkConnector>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<INetworkConnector>> {
     return this.getAllByQueryHelper<INetworkConnector>(readQueryInput);
   }
 }

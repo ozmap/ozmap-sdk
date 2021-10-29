@@ -1,13 +1,13 @@
-import Logger from "../src/util/Logger";
+import Logger from '../src/util/Logger';
 
 const logger = Logger(__filename);
 
-import OZMapSDK from "../src/OZMapSDK";
+import OZMapSDK from '../src/OZMapSDK';
 
 (async function () {
-  logger.info("Iniciando os testes!");
-  const ozmap = new OZMapSDK("********************");
-  await ozmap.authentication("**********", "****************");
+  logger.info('Iniciando os testes!');
+  const ozmap = new OZMapSDK('********************');
+  await ozmap.authentication('**********', '****************');
 
   // if (ozmap.isConnected()) {
   //   try {
@@ -89,9 +89,7 @@ import OZMapSDK from "../src/OZMapSDK";
 
   if (ozmap.isConnected()) {
     try {
-      const allClientsData = await ozmap
-        .getProperty()
-        .getAllByQuery({ select: "client", limit: 20 });
+      const allClientsData = await ozmap.getProperty().getAllByQuery({ select: 'client', limit: 20 });
       logger.info(allClientsData);
     } catch (e) {
       logger.error(e);
