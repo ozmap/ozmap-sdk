@@ -25,7 +25,7 @@ class Building extends Base {
 	}
 	
 	update(model: IBaseBox): Promise<void> {
-		return this.updateHelper<IBaseBox>(model);
+		return this.updateHelper(model);
 	}
 	
 	getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IBaseBox>> {

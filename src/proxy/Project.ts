@@ -47,7 +47,9 @@ class Project extends Base {
       "POST",
       `${this.endpoint}/${id}/clone`
     );
-    return new ObjectID(clone._id as string);
+    const { body } = clone;
+
+    return new ObjectID(body._id as string);
   }
 }
 
