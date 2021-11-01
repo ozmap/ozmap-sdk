@@ -1,17 +1,17 @@
-import Logger from "./util/Logger";
+import Logger from './util/Logger';
 
 const logger = Logger(__filename);
 
-import Box from "./proxy/Box";
-import RESTAPI from "./util/RESTAPI";
-import Project from "./proxy/Project";
-import User from "./proxy/User";
-import Client from "./proxy/Client";
-import Cable from "./proxy/Cable";
-import Property from "./proxy/Property";
-import NetworkConnector from "./proxy/NetworkConnector";
-import NetworkConnectable from "./proxy/NetworkConnectable";
-import Region from "./proxy/Region";
+import Box from './proxy/Box';
+import RESTAPI from './util/RESTAPI';
+import Project from './proxy/Project';
+import User from './proxy/User';
+import Client from './proxy/Client';
+import Cable from './proxy/Cable';
+import Property from './proxy/Property';
+import NetworkConnector from './proxy/NetworkConnector';
+import NetworkConnectable from './proxy/NetworkConnectable';
+import Region from './proxy/Region';
 import Prospect from './proxy/Prospect';
 import Building from './proxy/Building';
 
@@ -28,9 +28,9 @@ class OZMapSDK {
   private region: Region;
   private prospect: Prospect;
   private building: Building;
-  
+
   constructor(url: string, key?: string) {
-    logger.debug("OZMapSDK created");
+    logger.debug('OZMapSDK created');
     this.restapi = new RESTAPI(url, key);
     this.box = new Box(this.restapi, this);
     this.project = new Project(this.restapi, this);
@@ -45,7 +45,7 @@ class OZMapSDK {
     this.building = new Building(this.restapi, this);
   }
 
-  async authentication(login?: string, password?: string) {
+  async authentication(login?: string, password?: string): Promise<unknown> {
     return this.restapi.authentication(login, password);
   }
 
@@ -85,18 +85,18 @@ class OZMapSDK {
     return this.region;
   }
 
-  isConnected() {
+  isConnected(): boolean {
     return this.restapi.isConnected();
   }
-  
+
   getRestApi(): RESTAPI {
     return this.restapi;
   }
-  
+
   getProspect(): Prospect {
     return this.prospect;
   }
-  
+
   getBuilding(): Building {
     return this.building;
   }

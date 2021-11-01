@@ -1,4 +1,4 @@
-import IModel from "./IModel";
+import IModel from './IModel';
 
 export default interface IPoleType extends IModel {
   name: string;

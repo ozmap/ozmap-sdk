@@ -1,9 +1,8 @@
-import IModel from "./IModel";
-import ObjectID from "bson-objectid";
-import ICoords from "../ICoords";
-import IProject from "./IProject";
-import IClient from "./IClient";
-import IConnection from "../IConnection";
+import IModel from './IModel';
+import ObjectID from 'bson-objectid';
+import IProject from './IProject';
+import IClient from './IClient';
+import IConnection from '../IConnection';
 
 interface IClientLog {
   clients: [IClientLogData];
@@ -12,18 +11,18 @@ interface IClientLog {
 interface IClientLogData {
   id?: string;
   code?: string;
-  enter_date?: any;
-  exit_date?: any;
+  enter_date?: Date | string;
+  exit_date?: Date | string;
 }
 
 export default interface IProperty extends IModel {
   history?: IClientLog;
   observation?: string;
   drop?: ObjectID;
-  tags?: [any];
+  tags?: [unknown];
   cables?: [ObjectID];
   kind?: string;
-  coords?: [ICoords];
+  coords?: Coords[];
   address?: string;
   box?: ObjectID;
   client?: IClient;

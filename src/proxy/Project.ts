@@ -1,12 +1,12 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import IProject from "../interface/model/IProject";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import IProject from '../interface/model/IProject';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Project extends Base {
-  protected endpoint = "projects";
+  protected endpoint = 'projects';
 
   async getById(projectId: ObjectID): Promise<IProject> {
     return this.byIdHelper<IProject>(projectId);
@@ -36,18 +36,15 @@ class Project extends Base {
     return this.byIdsHelper<IProject>(ids);
   }
 
-  getAllByQuery(
-    readQueryInput: IReadQueryInput
-  ): Promise<IPagination<IProject>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProject>> {
     return this.getAllByQueryHelper<IProject>(readQueryInput);
   }
 
   async clone(id: ObjectID): Promise<ObjectID> {
-    const clone = await this.restapi.customRequest(
-      "POST",
-      `${this.endpoint}/${id}/clone`
-    );
-    return new ObjectID(clone._id);
+    const clone = await this.restapi.customRequest('POST', `${this.endpoint}/${id}/clone`);
+    const { body } = clone;
+
+    return new ObjectID(body._id as string);
   }
 }
 

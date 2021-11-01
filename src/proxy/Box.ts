@@ -1,43 +1,43 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import IBox from "../interface/model/IBox";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import IBaseBox from '../interface/model/IBaseBox';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Box extends Base {
-  protected endpoint = "boxes";
+  protected endpoint = 'boxes';
 
-  async getById(boxId: ObjectID): Promise<IBox> {
-    return this.byIdHelper<IBox>(boxId);
+  async getById(boxId: ObjectID): Promise<IBaseBox> {
+    return this.byIdHelper<IBaseBox>(boxId);
   }
 
-  async getAll(): Promise<IPagination<IBox>> {
-    return this.getAllHelper<IBox>();
+  async getAll(): Promise<IPagination<IBaseBox>> {
+    return this.getAllHelper<IBaseBox>();
   }
 
-  create(model: IBox): Promise<IBox> {
-    return this.createHelper<IBox>(model);
+  create(model: IBaseBox): Promise<IBaseBox> {
+    return this.createHelper<IBaseBox>(model);
   }
 
-  delete(id: ObjectID): Promise<IBox> {
-    return this.deleteHelper<IBox>(id);
+  delete(id: ObjectID): Promise<IBaseBox> {
+    return this.deleteHelper<IBaseBox>(id);
   }
 
-  update(model: IBox): Promise<void> {
-    return this.updateHelper<IBox>(model);
+  update(model: IBaseBox): Promise<void> {
+    return this.updateHelper(model);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IBox>> {
-    return this.getAllByFilterHelper<IBox>(filter);
+  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IBaseBox>> {
+    return this.getAllByFilterHelper<IBaseBox>(filter);
   }
 
-  getByIds(ids: Array<ObjectID>): Promise<Array<IBox>> {
-    return this.byIdsHelper<IBox>(ids);
+  getByIds(ids: Array<ObjectID>): Promise<Array<IBaseBox>> {
+    return this.byIdsHelper<IBaseBox>(ids);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IBox>> {
-    return this.getAllByQueryHelper<IBox>(readQueryInput);
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IBaseBox>> {
+    return this.getAllByQueryHelper<IBaseBox>(readQueryInput);
   }
 }
 

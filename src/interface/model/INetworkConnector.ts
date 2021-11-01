@@ -1,7 +1,7 @@
-import ObjectID from "bson-objectid";
-import IModel from "./IModel";
-import INetworkConnectable from "./INetworkConnectable";
-import { EnumConnectorsType } from "../EnumConnectorsType";
+import ObjectID from 'bson-objectid';
+import IModel from './IModel';
+import INetworkConnectable from './INetworkConnectable';
+import { EnumConnectorsType } from '../EnumConnectorsType';
 
 export default interface INetworkConnector extends IModel {
   parent: ObjectID;

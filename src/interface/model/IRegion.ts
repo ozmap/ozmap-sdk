@@ -1,8 +1,8 @@
-import IModel from "./IModel";
-import IProject from "./IProject";
+import IModel from './IModel';
+import IProject from './IProject';
 
 export interface Polygon {
-  type: "Polygon";
+  type: 'Polygon';
   coordinates: [[[number]]];
 }
 

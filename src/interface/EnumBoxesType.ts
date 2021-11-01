@@ -1,5 +1,5 @@
 export enum EnumBoxesType {
-  BOX = "Box",
-  PROPERTY = "Property",
-  BUILDING = "Building",
+  BOX = 'Box',
+  PROPERTY = 'Property',
+  BUILDING = 'Building',
 }

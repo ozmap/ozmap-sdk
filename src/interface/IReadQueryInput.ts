@@ -1,7 +1,7 @@
 // model, limit, page, filter, select, sort, populate
 
-import IFilter from "./IFilter";
-import IModel from "./model/IModel";
+import IFilter from './IFilter';
+import IModel from './model/IModel';
 
 export default interface IReadQueryInput {
   model?: string | IModel;

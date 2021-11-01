@@ -1,6 +1,6 @@
-import IModel from "./IModel";
-import ObjectID from "bson-objectid";
-import INetworkConnector from "./INetworkConnector";
+import IModel from './IModel';
+import ObjectID from 'bson-objectid';
+import INetworkConnector from './INetworkConnector';
 
 export default interface INetworkConnectable extends IModel {
   connectors: (ObjectID | INetworkConnector)[];

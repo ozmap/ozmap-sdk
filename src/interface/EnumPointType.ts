@@ -1,4 +1,4 @@
 export enum EnumPointType {
-  POINT = "Point",
-  POLE = "Pole",
+  POINT = 'Point',
+  POLE = 'Pole',
 }

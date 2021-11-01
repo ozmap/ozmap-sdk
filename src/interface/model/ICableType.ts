@@ -1,6 +1,6 @@
-import IModel from "./IModel";
-import IFiberProfile from "./IFiberProfile";
-import ObjectID from "bson-objectid";
+import IModel from './IModel';
+import IFiberProfile from './IFiberProfile';
+import ObjectID from 'bson-objectid';
 
 export default interface ICableType extends IModel {
   description: string;

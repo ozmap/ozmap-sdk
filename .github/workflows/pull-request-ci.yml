@@ -1,0 +1,32 @@
+name: OZmap SDK CI pipeline
+
+on:
+  pull_request:
+    # Run on to branches with an open PR
+    branches:
+      - "*"
+
+jobs:
+  build:
+    name: Node.js v12 on ubuntu-latest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          cache: 'npm'
+      # Print current Node.js version
+      - run: node --version
+      # Print current npm version
+      - run: npm --version
+      # Print current Git version
+      - run: git --version
+      # Install node_modules
+      - run: npm ci
+      # Run code linting
+      - run: npm run lint:fix
+      # Run unit tests
+      - run: npm run test
+      # Run build
+      - run: npm run build

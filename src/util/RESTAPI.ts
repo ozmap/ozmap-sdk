@@ -1,14 +1,14 @@
-import Logger from "../util/Logger";
+import Logger from '../util/Logger';
 
 const logger = Logger(__filename);
 
-import IPagination from "../interface/IPagination";
-import IReadQueryInput from "../interface/IReadQueryInput";
-import IModel from "../interface/model/IModel";
-import ObjectID from "bson-objectid";
-import IFilter from "../interface/IFilter";
-
-const superagent = require("superagent");
+import IPagination from '../interface/IPagination';
+import IReadQueryInput from '../interface/IReadQueryInput';
+import IModel from '../interface/model/IModel';
+import ObjectID from 'bson-objectid';
+import IFilter from '../interface/IFilter';
+import superagent = require('superagent');
+import request = require('superagent');
 
 class RESTAPI {
   private connected = false;
@@ -24,34 +24,33 @@ class RESTAPI {
     }
   }
 
-  public async authentication(login?: string, password?: string): Promise<any> {
+  public async authentication(login?: string, password?: string): Promise<string | undefined | null> {
     logger.info(`Authentication called. username:${login}`);
     let failToUseAPIKey = false;
+
     try {
-      await superagent
-        .get(`${this.url}/api/v2/authenticated`)
-        .set({ Authorization: this.key })
-        .send();
+      await superagent.get(`${this.url}/api/v2/authenticated`).set({ Authorization: this.key }).send();
       this.connected = true;
+
       return this.key;
     } catch (err) {
-      logger.warn("Fail to use the API-Key");
+      logger.warn('Fail to use the API-Key');
       failToUseAPIKey = true;
     }
 
     if (failToUseAPIKey) {
       try {
-        const result = await superagent
-          .post(`${this.url}/api/v2/users/login`)
-          .send({
-            login: login,
-            password: password,
-          });
+        const result = await superagent.post(`${this.url}/api/v2/users/login`).send({
+          login: login,
+          password: password,
+        });
+
         this.key = result.body.authorization;
         this.connected = true;
+
         return this.key;
       } catch (e) {
-        logger.info("Fail to login, username and/or password are wrong");
+        logger.info('Fail to login, username and/or password are wrong');
       }
     }
     this.connected = false;
@@ -61,16 +60,14 @@ class RESTAPI {
   async create<T>(model: string, data: IModel): Promise<T> {
     const base_url = `${this.url}/api/v2/${model}?`;
     try {
-      const result = await superagent
-        .post(base_url)
-        .set({ Authorization: this.key })
-        .send(data);
+      const result = await superagent.post(base_url).set({ Authorization: this.key }).send(data);
+
       return result.body as T;
     } catch (e) {
       logger.error(
         //@ts-ignore
         `Fail to create: Error: ${e.message}, StatusCode: ${e.status}`,
-        { model, data }
+        { model, data },
       );
       throw e;
     }
@@ -78,19 +75,16 @@ class RESTAPI {
 
   async update(model: string, model_id: ObjectID, data: IModel): Promise<void> {
     const base_url = `${this.url}/api/v2/${model}/${model_id}`;
-    try {
-      await superagent
-        .patch(base_url)
-        .set({ Authorization: this.key })
-        .send(data);
-    } catch (e) {
 
+    try {
+      await superagent.patch(base_url).set({ Authorization: this.key }).send(data);
+    } catch (e) {
       logger.error(
         //@ts-ignore
         `Fail to update: Id: ${model_id} Error: ${e.message}, StatusCode: ${e.status}`,
-        { model, data }
+        { model, data },
       );
-     
+
       throw e;
     }
   }
@@ -98,35 +92,33 @@ class RESTAPI {
   async delete<T>(model: string, model_id: ObjectID): Promise<T> {
     const base_url = `${this.url}/api/v2/${model}/${model_id}`;
     try {
-      const result = await superagent
-        .delete(base_url)
-        .set({ Authorization: this.key })
-        .send();
+      const result = await superagent.delete(base_url).set({ Authorization: this.key }).send();
+
       return result.body as T;
     } catch (e) {
-      logger.error("Fail to delete: ", { model, model_id });
+      logger.error('Fail to delete: ', { model, model_id });
       throw e;
     }
   }
 
-  async read<T extends IModel>(
-    model: IReadQueryInput,
-    query?: any
-  ): Promise<IPagination<T>> {
+  async read<T extends IModel>(model: IReadQueryInput, query?: Record<string, unknown>): Promise<IPagination<T>> {
     if (model instanceof Object && model.constructor === Object) {
       return this._read(model);
-    } else if (typeof model === "string") {
-      let filter: any = [];
+    } else if (typeof model === 'string') {
+      let filter: IFilter[] = [];
+
       if (query && Object.keys(query).length) {
         filter = Object.keys(query).map((el: string) => {
-          return { property: el, operator: "=", value: query[el] };
-        });
+          return { property: el, operator: '=', value: query[el] };
+        }) as IFilter[];
       }
+
       return this._read<T>({
         model: model,
         filter: filter,
       });
     }
+
     return {
       total: 0,
       rows: [],
@@ -145,16 +137,16 @@ class RESTAPI {
     sort,
     populate,
   }: IReadQueryInput): Promise<IPagination<T>> {
-    let body = null;
+    let body = {};
     let base_url = `${this.url}/api/v2/${model}?`;
 
-    if (process.env.OZMAP_FILTER_MODE === "URL") {
+    if (process.env.OZMAP_FILTER_MODE === 'URL') {
       if (filter) {
         if (!Array.isArray(filter)) {
           filter = [filter];
         }
 
-        filter = this.encodeURIRecursive(filter);
+        filter = this.encodeURIRecursive(filter) as IFilter[];
         // if(filter && filter.length) {
         //   filter[0].value = filter[0].value === "null" ? null : filter[0].value;
         // }
@@ -183,46 +175,39 @@ class RESTAPI {
       base_url = `${base_url}&sort=${JSON.stringify(sort)}`;
     }
     try {
-      const result = await superagent
-        .get(base_url)
-        .set({ Authorization: this.key })
-        .send(body);
+      const result = await superagent.get(base_url).set({ Authorization: this.key }).send(body);
       const ret = result.body as IPagination<T>;
       for (const iModel of ret.rows) {
         iModel.id = new ObjectID(iModel.id as unknown as string);
       }
       return ret;
     } catch (e) {
-      logger.error("Fail to _read", { model, filter });
+      logger.error('Fail to _read', { model, filter });
       throw e;
     }
   }
 
-  encodeURIRecursive(filter: Array<IFilter>) {
-    filter = filter.map((el: any) => {
+  encodeURIRecursive(filter: (IFilter | IFilter[])[]): unknown[] {
+    return filter.map((el: IFilter | IFilter[]) => {
       if (Array.isArray(el)) {
         return this.encodeURIRecursive(el);
       } else {
-        if (el.operator === "near") {
+        if (el.operator === 'near') {
           return el;
         } else if (Array.isArray(el.value)) {
-          el.value = el.value.map((elOut: any) => {
-            return encodeURIComponent(elOut);
+          el.value = el.value.map((elOut: unknown) => {
+            return encodeURIComponent(elOut as string | number | boolean);
           });
+
           return el;
         } else {
-          return { ...el, value: encodeURIComponent(el.value) };
+          return { ...el, value: encodeURIComponent(el.value as string) };
         }
       }
     });
-    return filter;
   }
 
-  async readById<T extends IModel>(
-    model: string,
-    model_id: ObjectID,
-    select?: string
-  ): Promise<T> {
+  async readById<T extends IModel>(model: string, model_id: ObjectID, select?: string): Promise<T> {
     let base_url = `${this.url}/api/v2/${model}/${model_id}?`;
 
     if (select) {
@@ -230,13 +215,11 @@ class RESTAPI {
     }
 
     try {
-      const result = await superagent
-        .get(base_url)
-        .set({ Authorization: this.key })
-        .send();
+      const result = await superagent.get(base_url).set({ Authorization: this.key }).send();
+
       return result.body as T;
     } catch (e) {
-      logger.error("Fail to readById", { model, model_id, select });
+      logger.error('Fail to readById', { model, model_id, select });
       throw e;
     }
   }
@@ -252,6 +235,7 @@ class RESTAPI {
     let finished = false;
     let ret: Array<T> = [];
     let page = 1;
+
     try {
       while (!finished) {
         const read_page: Array<T> = (
@@ -265,17 +249,20 @@ class RESTAPI {
             sort,
           })
         ).rows;
+
         if (read_page.length) {
           ret = ret.concat(read_page);
         } else {
           finished = true;
         }
+
         page++;
       }
     } catch (e) {
-      logger.error("Fail to fetchAllWithPagination", { model, filter, select });
+      logger.error('Fail to fetchAllWithPagination', { model, filter, select });
       throw e;
     }
+
     return {
       rows: ret,
       total: ret.length,
@@ -286,34 +273,42 @@ class RESTAPI {
   }
 
   async customRequest(
-    method = "GET",
-    v2_route = "",
+    method = 'GET',
+    v2_route = '',
     queryInput?: IReadQueryInput,
-    data?: any
-  ) {
+    data?: Record<string, unknown>,
+  ): Promise<superagent.Response> {
     let base_url = `${this.url}/api/v2/${v2_route}`;
-    let questionMark = "?";
+    let questionMark = '?';
+
     type K1 = keyof IReadQueryInput;
+
+    // Callback type for superagent method callable
+    type CallbackHandler = GenericFunction<[unknown, request.Response], void>;
+
+    // Type of superagent method callable (GET, POST, ...)
+    type Method = GenericFunction<[string, CallbackHandler?], request.Request>;
+
     for (const query_name in queryInput) {
       if (queryInput.hasOwnProperty(query_name)) {
-        base_url = `${base_url}${questionMark}&${query_name}=${
-          queryInput[query_name as K1]
-        }`;
-        questionMark = "";
+        base_url = `${base_url}${questionMark}&${query_name}=${queryInput[query_name as K1]}`;
+        questionMark = '';
       }
     }
+
     try {
-      return await superagent[method.toLowerCase()](base_url)
-        .set({ Authorization: this.key })
-        .timeout(999999)
-        .send(data);
+      // Here we make the superagent.SuperAgentStatic indexable by string
+      // in order to extract the Method callable
+      const methodCallable = (superagent as unknown as Record<string, Method>)[method.toLowerCase()];
+
+      return await methodCallable(base_url).set({ Authorization: this.key }).timeout(999999).send(data);
     } catch (e) {
-      logger.error("Fail to customRequest", { method, data, queryInput });
+      logger.error('Fail to customRequest', { method, data, queryInput });
       throw e;
     }
   }
 
-  isConnected() {
+  isConnected(): boolean {
     return this.connected;
   }
 }

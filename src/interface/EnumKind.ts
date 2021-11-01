@@ -1,3 +1,3 @@
 export enum EnumKind {
-  BOX = "Box",
+  BOX = 'Box',
 }

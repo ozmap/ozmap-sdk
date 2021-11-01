@@ -1,12 +1,12 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import IRegion from "../interface/model/IRegion";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import IRegion from '../interface/model/IRegion';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Region extends Base {
-  protected endpoint = "regions";
+  protected endpoint = 'regions';
 
   async getById(boxId: ObjectID): Promise<IRegion> {
     return this.byIdHelper<IRegion>(boxId);
@@ -25,7 +25,7 @@ class Region extends Base {
   }
 
   update(model: IRegion): Promise<void> {
-    return this.updateHelper<IRegion>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IRegion>> {
@@ -36,9 +36,7 @@ class Region extends Base {
     return this.byIdsHelper<IRegion>(ids);
   }
 
-  getAllByQuery(
-    readQueryInput: IReadQueryInput
-  ): Promise<IPagination<IRegion>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IRegion>> {
     return this.getAllByQueryHelper<IRegion>(readQueryInput);
   }
 }

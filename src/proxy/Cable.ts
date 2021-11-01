@@ -1,12 +1,12 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import ICable from "../interface/model/ICable";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import ICable from '../interface/model/ICable';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class Cable extends Base {
-  protected endpoint = "cables";
+  protected endpoint = 'cables';
 
   async getById(connectorId: ObjectID): Promise<ICable> {
     return this.byIdHelper<ICable>(connectorId);
@@ -25,7 +25,7 @@ class Cable extends Base {
   }
 
   update(model: ICable): Promise<void> {
-    return this.updateHelper<ICable>(model);
+    return this.updateHelper(model);
   }
 
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<ICable>> {

@@ -1,10 +1,10 @@
-import IModel from "./IModel";
-import IProject from "./IProject";
-import ICableType from "./ICableType";
-import IBaseBox from "./IBaseBox";
-import IColor from "./IColor";
-import IPole from "./IPole";
-import ObjectID from "bson-objectid";
+import IModel from './IModel';
+import IProject from './IProject';
+import ICableType from './ICableType';
+import IBaseBox from './IBaseBox';
+import IColor from './IColor';
+import IPole from './IPole';
+import ObjectID from 'bson-objectid';
 
 export default interface IBaseCable extends IModel {
   certified: boolean;

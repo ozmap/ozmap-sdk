@@ -1,7 +1,7 @@
-import IProject from "./IProject";
-import IPoleType from "./IPoleType";
-import ObjectID from "bson-objectid";
-import { EnumPointType } from "../EnumPointType";
+import IProject from './IProject';
+import IPoleType from './IPoleType';
+import ObjectID from 'bson-objectid';
+import { EnumPointType } from '../EnumPointType';
 
 export default interface IPole {
   isAereo: boolean;

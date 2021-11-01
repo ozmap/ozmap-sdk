@@ -1,12 +1,12 @@
-import Base from "./Base";
-import IPagination from "../interface/IPagination";
-import INetworkConnectable from "../interface/model/INetworkConnectable";
-import IFilter from "../interface/IFilter";
-import ObjectID from "bson-objectid";
-import IReadQueryInput from "../interface/IReadQueryInput";
+import Base from './Base';
+import IPagination from '../interface/IPagination';
+import INetworkConnectable from '../interface/model/INetworkConnectable';
+import IFilter from '../interface/IFilter';
+import ObjectID from 'bson-objectid';
+import IReadQueryInput from '../interface/IReadQueryInput';
 
 class NetworkConnectable extends Base {
-  protected endpoint = "network-connectables";
+  protected endpoint = 'network-connectables';
 
   async getById(connectorId: ObjectID): Promise<INetworkConnectable> {
     return this.byIdHelper<INetworkConnectable>(connectorId);
@@ -25,12 +25,10 @@ class NetworkConnectable extends Base {
   }
 
   update(model: INetworkConnectable): Promise<void> {
-    return this.updateHelper<INetworkConnectable>(model);
+    return this.updateHelper(model);
   }
 
-  getAllByFilter(
-    filter: Array<IFilter>
-  ): Promise<IPagination<INetworkConnectable>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<INetworkConnectable>> {
     return this.getAllByFilterHelper<INetworkConnectable>(filter);
   }
 
@@ -38,9 +36,7 @@ class NetworkConnectable extends Base {
     return this.byIdsHelper<INetworkConnectable>(ids);
   }
 
-  getAllByQuery(
-    readQueryInput: IReadQueryInput
-  ): Promise<IPagination<INetworkConnectable>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<INetworkConnectable>> {
     return this.getAllByQueryHelper<INetworkConnectable>(readQueryInput);
   }
 }
