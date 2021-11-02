@@ -22,24 +22,22 @@ describe('Unit tests of the utility module', () => {
     ],
   ];
 
-  const distanceAlgTestCases: Record<string, Record<string, [IGPS, IGPS][] | number>> = {
+  const distanceAlgTestCases: Record<string, Record<string, number>> = {
     [DistanceAlgorithms.ELLIPSOID]: {
-      validElements,
       expectedValue: 9496707.64,
     },
     [DistanceAlgorithms.SPHERE]: {
-      validElements,
       expectedValue: 9343796.804,
     },
   };
 
   for (const algorithm of Object.keys(distanceAlgTestCases)) {
     it(`evaluates the distance with different types of GPS elements for the ${algorithm.toUpperCase()} method`, () => {
-      const { validElements, expectedValue } = distanceAlgTestCases[algorithm];
+      const { expectedValue } = distanceAlgTestCases[algorithm];
 
-      (validElements as [IGPS, IGPS][]).forEach(([elmA, elmB]) => {
+      validElements.forEach(([elmA, elmB]) => {
         const distance = Util.elementDistance(elmA, elmB, algorithm as DistanceAlgorithms);
-        expect(distance).toBeLessThanOrEqual(expectedValue as number);
+        expect(distance).toBeLessThanOrEqual(expectedValue);
       });
     });
 

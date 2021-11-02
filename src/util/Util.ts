@@ -7,7 +7,7 @@ class Util {
     elementB: IGPS,
     algorithm: DistanceAlgorithms = DistanceAlgorithms.SPHERE,
   ): number | undefined {
-    const distance = {
+    const callable = {
       [DistanceAlgorithms.SPHERE]: (elmA: IGPS, elmB: IGPS) => distanceSphere(elmA, elmB),
       [DistanceAlgorithms.ELLIPSOID]: (elmA: IGPS, elmB: IGPS) => {
         // Just extracting the distance. Other params are for debugging
@@ -17,7 +17,7 @@ class Util {
       },
     };
 
-    return distance[algorithm](elementA, elementB);
+    return callable[algorithm](elementA, elementB);
   }
 }
 
