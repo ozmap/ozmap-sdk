@@ -46,10 +46,10 @@ describe('Unit tests for the distance library', () => {
       },
     };
 
-    validElements.forEach(([elmA, elmB]) => {
+    for (const [elmA, elmB] of validElements) {
       const parsedElements = parseElementCoords(elmA, elmB);
       expect(parsedElements).toStrictEqual(expected);
-    });
+    }
   });
 
   it('tries to parse incomplete or mixed GPS elements', () => {
@@ -87,14 +87,13 @@ describe('Unit tests for the distance library', () => {
       },
     ];
 
-    testCases.forEach((testCase) => {
+    for (const testCase of testCases) {
       const {
         elements: [elmA, elmB],
         expected,
       } = testCase;
       const parsedElements = parseElementCoords(elmA, elmB);
-
       expect(parsedElements).toStrictEqual(expected);
-    });
+    }
   });
 });

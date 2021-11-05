@@ -28,7 +28,7 @@ jobs:
       - run: npm run lint:fix
       # Run unit tests
       - run: npm run test
-      # Run unit tests
+      # Run unit tests with coverage
       - run: npm run coverage
       # Run build
       - run: npm run build
