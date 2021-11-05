@@ -35,10 +35,10 @@ describe('Unit tests of the utility module', () => {
     it(`evaluates the distance with different types of GPS elements for the ${algorithm.toUpperCase()} method`, () => {
       const { expectedValue } = distanceAlgTestCases[algorithm];
 
-      validElements.forEach(([elmA, elmB]) => {
+      for (const [elmA, elmB] of validElements) {
         const distance = Util.elementDistance(elmA, elmB, algorithm as DistanceAlgorithms);
         expect(distance).toBeLessThanOrEqual(expectedValue);
-      });
+      }
     });
 
     it(`tries to evaluate distance with an incomplete GPS element for the ${algorithm.toUpperCase()} method`, () => {
@@ -52,9 +52,9 @@ describe('Unit tests of the utility module', () => {
         [{ lat: '35.6544' }, { longitude: 39.8261 }],
       ];
 
-      invalidElements.forEach(([elmA, elmB]) => {
+      for (const [elmA, elmB] of invalidElements) {
         expect(Util.elementDistance(elmA, elmB, algorithm as DistanceAlgorithms)).toBeUndefined();
-      });
+      }
     });
   }
 });
