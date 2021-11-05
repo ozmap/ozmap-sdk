@@ -2,9 +2,89 @@ import { Constants, parseElementCoords } from './base';
 import IGPS from '../../interface/IGPS';
 
 /**
+ * Helper function that implements the iterative calculation of the
+ * difference in longitude on an auxiliary sphere
+ *
+ * @private
+ * @param   {number} first approximation
+ * @param   {number} WGS84 flattening
+ * @param   {number} reduced latitude from point of origin
+ * @param   {number} reduced latitude from point of destiny
+ * @param   {number} maximum error of approximation
+ * @param   {number} maximum iterations
+ * @returns (Record<string, number>} trigonometric values from notable angles and params from iterative scheme
+ */
+const _iterativeStep = (
+  L: number,
+  f: number,
+  U1: number,
+  U2: number,
+  maxError: number,
+  iterations: number,
+): Record<string, number> => {
+  const { sin, cos } = Math;
+
+  // λ = difference in longitude on an auxiliary sphere
+  let error = 0.0,
+    lambda = L,
+    oldLambda = 0.0;
+  // σ = angular distance P₁ P₂ on the sphere
+  let sigma = 0.0,
+    sinSigma = 0.0,
+    cosSigma = 0.0;
+  // σₘ = angular distance on the sphere from the equator to the midpoint of the line
+  let cos2SigmaM = 0.0;
+  // α = azimuth of the geodesic at the equator
+  let cosSqAlpha = 0.0;
+
+  // beginning of the iterative method
+  let iterationsToGo = iterations;
+
+  do {
+    sinSigma = Math.sqrt(
+      cos(U2) * sin(lambda) * (cos(U2) * sin(lambda)) +
+        (cos(U1) * sin(U2) - sin(U1) * cos(U2) * cos(lambda)) * (cos(U1) * sin(U2) - sin(U1) * cos(U2) * cos(lambda)),
+    );
+
+    if (sinSigma == 0) {
+      // co-incident points
+      return {
+        distance: 0.0,
+        error,
+        iterations,
+      };
+    }
+
+    const sinAlpha = (cos(U1) * cos(U2) * sin(lambda)) / sinSigma;
+
+    cosSigma = sin(U1) * sin(U2) + cos(U1) * cos(U2) * cos(lambda);
+    sigma = Math.atan2(sinSigma, cosSigma);
+    cosSqAlpha = 1 - sinAlpha * sinAlpha;
+    cos2SigmaM = cosSigma - (2 * sin(U1) * sin(U2)) / cosSqAlpha;
+
+    if (isNaN(cos2SigmaM)) cos2SigmaM = 0; // equatorial line: cosSqAlpha=0
+
+    const C = (f / 16) * cosSqAlpha * (4 + f * (4 - 3 * cosSqAlpha));
+
+    oldLambda = lambda;
+
+    lambda =
+      L +
+      (1 - C) *
+        Constants.f *
+        sinAlpha *
+        (sigma + C * sinSigma * (cos2SigmaM + C * cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM)));
+
+    error = Math.abs(lambda - oldLambda);
+  } while (error > maxError && --iterationsToGo > 0);
+
+  return { cosSqAlpha, cosSigma, sinSigma, cos2SigmaM, sigma, error, iterationsToGo };
+};
+
+/**
  * Calculates geodetic distance between two points specified by
  * latitude/longitude using Vincenty inverse formula for ellipsoids.
- * Derivation: https://en.wikipedia.org/wiki/Vincenty%27s_formulae
+ * Derivation: https://www.ngs.noaa.gov/PUBS_LIB/inverse.pdf
  *
  * @param   {IGPS} elementA: First point in decimal degrees
  * @param   {IGPS} elementB: Second point in decimal degrees
@@ -38,72 +118,21 @@ const distanceVincenty = (
     };
   }
 
-  const sinU1 = Math.sin(U1);
-  const cosU1 = Math.cos(U1);
-  const sinU2 = Math.sin(U2);
-  const cosU2 = Math.cos(U2);
+  const { cosSqAlpha, cosSigma, sinSigma, cos2SigmaM, sigma, error, iterationsToGo } = _iterativeStep(
+    L,
+    f,
+    U1,
+    U2,
+    maxError,
+    iterations,
+  );
 
-  // beginning of the iterative method
-  let lambda = L,
-    oldLambda = 0.0,
-    C = 0.0,
-    cosSqAlpha = 0.0,
-    cos2SigmaM = 0.0,
-    cosLambda = 0.0,
-    cosSigma = 0.0,
-    sinAlpha = 0.0,
-    sinLambda = 0.0,
-    sinSigma = 0.0,
-    sigma = 0.0,
-    error = 0.0;
-
-  do {
-    sinLambda = Math.sin(lambda);
-    cosLambda = Math.cos(lambda);
-
-    sinSigma = Math.sqrt(
-      cosU2 * sinLambda * (cosU2 * sinLambda) +
-        (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda) * (cosU1 * sinU2 - sinU1 * cosU2 * cosLambda),
-    );
-
-    if (sinSigma == 0) {
-      // co-incident points
-      return {
-        distance: 0.0,
-        error,
-        iterations,
-      };
-    }
-
-    sinAlpha = (cosU1 * cosU2 * sinLambda) / sinSigma;
-
-    cosSigma = sinU1 * sinU2 + cosU1 * cosU2 * cosLambda;
-    sigma = Math.atan2(sinSigma, cosSigma);
-    cosSqAlpha = 1 - sinAlpha * sinAlpha;
-    cos2SigmaM = cosSigma - (2 * sinU1 * sinU2) / cosSqAlpha;
-
-    if (isNaN(cos2SigmaM)) cos2SigmaM = 0; // equatorial line: cosSqAlpha=0 (§6)
-
-    C = (f / 16) * cosSqAlpha * (4 + f * (4 - 3 * cosSqAlpha));
-
-    oldLambda = lambda;
-
-    lambda =
-      L +
-      (1 - C) *
-        Constants.f *
-        sinAlpha *
-        (sigma + C * sinSigma * (cos2SigmaM + C * cosSigma * (-1 + 2 * cos2SigmaM * cos2SigmaM)));
-
-    error = Math.abs(lambda - oldLambda);
-  } while (error > maxError && --iterations > 0);
-
-  if (iterations == 0) {
+  if (iterationsToGo == 0) {
     // formula failed to converge
     return {
       distance: undefined,
       error,
-      iterations,
+      iterations: iterationsToGo,
     };
   }
 
@@ -124,7 +153,7 @@ const distanceVincenty = (
   return {
     distance,
     error,
-    iterations,
+    iterations: iterationsToGo,
   };
 };
 
