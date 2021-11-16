@@ -58,3 +58,34 @@ describe('Unit tests of the utility module', () => {
     });
   }
 });
+
+describe('Unit tests for the string parsing API', () => {
+  const testCase = {
+    target:
+      'Esta frase, por mais incrível que possa parecer (para algumas pessoas, a.k.a. impressionáveis), serve para testar o método Util.parseString()',
+    withoutSpecialChars:
+      'Esta frase por mais incrível que possa parecer para algumas pessoas aka impressionáveis serve para testar o método UtilparseString',
+    withoutAccentuation:
+      'Esta frase, por mais incrivel que possa parecer (para algumas pessoas, a.k.a. impressionaveis), serve para testar o metodo Util.parseString()',
+    withoutBoth:
+      'Esta frase por mais incrivel que possa parecer para algumas pessoas aka impressionaveis serve para testar o metodo UtilparseString',
+  };
+
+  it('Should remove only special characters from string', () => {
+    const parsedString = Util.parseString(testCase.target).removeSpecialChars().parsed();
+
+    expect(parsedString).toEqual(testCase.withoutSpecialChars);
+  });
+
+  it('Should remove only accentuation from string', () => {
+    const parsedString = Util.parseString(testCase.target).removeAccentuation().parsed();
+
+    expect(parsedString).toEqual(testCase.withoutAccentuation);
+  });
+
+  it('should remove both special chars and accentuation from string', () => {
+    const parsedString = Util.parseString(testCase.target).removeAccentuation().removeSpecialChars().parsed();
+
+    expect(parsedString).toEqual(testCase.withoutBoth);
+  });
+});
