@@ -6,9 +6,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "coverage": "ts-node test --coverage --silent",
+    "husky": "husky",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
-    "coverage": "ts-node test --coverage --silent",
+    "prettier:format": "prettier --config .prettierrc.cjs '**/*.{js,ts,json,md}' --write",
+    "pre-commit": "lint-staged",
     "test": "ts-node test"
   },
   "jest": {
@@ -73,6 +76,8 @@
     "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.0.0",
+    "@rocketseat/commitlint-config": "0.0.3",
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
@@ -80,7 +85,9 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.0",
     "jest": "^27.0.4",
+    "lint-staged": "^12.1.4",
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.0.0",
