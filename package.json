@@ -8,41 +8,11 @@
     "build": "tsc",
     "coverage": "ts-node test --coverage --silent",
     "husky": "husky",
-    "lint": "eslint ./src ./test --ext .ts",
-    "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "prettier:format": "prettier --config .prettierrc.cjs '**/*.{js,ts,json,md}' --write",
     "pre-commit": "lint-staged",
+    "lint": "eslint ./src ./test --ext .cjs,.js,.ts",
+    "lint:fix": "eslint ./src ./test --ext .cjs,.js,.ts --fix",
     "test": "ts-node test"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/lib/**/*.ts",
-      "src/util/Util.ts"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules"
-    ],
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
-    },
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json"
-    ]
   },
   "files": [
     "dist/**/*"
