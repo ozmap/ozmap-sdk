@@ -1,1 +1,1 @@
-import './common.d.ts';
+import './common';
