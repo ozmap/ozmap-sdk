@@ -19,5 +19,6 @@ export default interface IBaseBox extends IModel {
   pole: ObjectID | IPole;
   lat?: number;
   lng?: number;
+  address?: string;
   implanted: boolean;
 }
