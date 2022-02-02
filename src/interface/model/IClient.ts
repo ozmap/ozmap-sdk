@@ -10,5 +10,6 @@ export default interface IClient extends IModel {
   implanted?: boolean;
   kind?: string;
   code?: string;
+  name?: string;
   project?: string;
 }
