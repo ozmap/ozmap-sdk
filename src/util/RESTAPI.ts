@@ -308,7 +308,7 @@ class RESTAPI {
       // in order to extract the Method callable
       const methodCallable = (superagent as unknown as Record<string, Method>)[method.toLowerCase()];
 
-      return await methodCallable(base_url).set({ Authorization: this.key }).timeout(999999).send(data);
+      return await methodCallable(base_url).set(Object.assign({ Authorization: this.key }, this.headers)).timeout(999999).send(data);
     } catch (e) {
       logger.error('Fail to customRequest', { method, data, queryInput });
       throw e;
