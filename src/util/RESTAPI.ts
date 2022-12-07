@@ -30,7 +30,10 @@ class RESTAPI {
     let failToUseAPIKey = false;
 
     try {
-      await superagent.get(`${this.url}/api/v2/authenticated`).set(Object.assign({ Authorization: this.key }, this.headers)).send();
+      await superagent
+        .get(`${this.url}/api/v2/authenticated`)
+        .set(Object.assign({ Authorization: this.key }, this.headers))
+        .send();
       this.connected = true;
 
       return this.key;
@@ -61,7 +64,10 @@ class RESTAPI {
   async create<T>(model: string, data: IModel): Promise<T> {
     const base_url = `${this.url}/api/v2/${model}?`;
     try {
-      const result = await superagent.post(base_url).set(Object.assign({ Authorization: this.key }, this.headers)).send(data);
+      const result = await superagent
+        .post(base_url)
+        .set(Object.assign({ Authorization: this.key }, this.headers))
+        .send(data);
 
       return result.body as T;
     } catch (e) {
@@ -78,7 +84,10 @@ class RESTAPI {
     const base_url = `${this.url}/api/v2/${model}/${model_id}`;
 
     try {
-      await superagent.patch(base_url).set(Object.assign({ Authorization: this.key }, this.headers)).send(data);
+      await superagent
+        .patch(base_url)
+        .set(Object.assign({ Authorization: this.key }, this.headers))
+        .send(data);
     } catch (e) {
       logger.error(
         //@ts-ignore
@@ -93,7 +102,10 @@ class RESTAPI {
   async delete<T>(model: string, model_id: ObjectID): Promise<T> {
     const base_url = `${this.url}/api/v2/${model}/${model_id}`;
     try {
-      const result = await superagent.delete(base_url).set(Object.assign({ Authorization: this.key }, this.headers)).send();
+      const result = await superagent
+        .delete(base_url)
+        .set(Object.assign({ Authorization: this.key }, this.headers))
+        .send();
 
       return result.body as T;
     } catch (e) {
@@ -176,7 +188,10 @@ class RESTAPI {
       base_url = `${base_url}&sort=${JSON.stringify(sort)}`;
     }
     try {
-      const result = await superagent.get(base_url).set(Object.assign({ Authorization: this.key }, this.headers)).send(body);
+      const result = await superagent
+        .get(base_url)
+        .set(Object.assign({ Authorization: this.key }, this.headers))
+        .send(body);
       const ret = result.body as IPagination<T>;
       for (const iModel of ret.rows) {
         iModel.id = new ObjectID(iModel.id as unknown as string);
@@ -188,7 +203,7 @@ class RESTAPI {
     }
   }
 
-  public setHeaders(headers: object): this {
+  public setHeaders(headers: { [key: string]: unknown }): this {
     this.headers = headers;
 
     return this;
@@ -222,7 +237,10 @@ class RESTAPI {
     }
 
     try {
-      const result = await superagent.get(base_url).set(Object.assign({ Authorization: this.key }, this.headers)).send();
+      const result = await superagent
+        .get(base_url)
+        .set(Object.assign({ Authorization: this.key }, this.headers))
+        .send();
 
       return result.body as T;
     } catch (e) {
@@ -308,7 +326,10 @@ class RESTAPI {
       // in order to extract the Method callable
       const methodCallable = (superagent as unknown as Record<string, Method>)[method.toLowerCase()];
 
-      return await methodCallable(base_url).set(Object.assign({ Authorization: this.key }, this.headers)).timeout(999999).send(data);
+      return await methodCallable(base_url)
+        .set(Object.assign({ Authorization: this.key }, this.headers))
+        .timeout(999999)
+        .send(data);
     } catch (e) {
       logger.error('Fail to customRequest', { method, data, queryInput });
       throw e;
