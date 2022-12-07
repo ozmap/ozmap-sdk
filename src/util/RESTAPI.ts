@@ -188,7 +188,7 @@ class RESTAPI {
     }
   }
 
-  public setHeaders(headers: object): RESTAPI {
+  public setHeaders(headers: object): this {
     this.headers = headers;
 
     return this;
