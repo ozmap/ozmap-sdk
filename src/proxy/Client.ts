@@ -58,6 +58,10 @@ class Client extends Base {
   getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IClient>> {
     return this.getAllByQueryHelper<IClient>(readQueryInput);
   }
+
+  getAllPaginatedByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IClient>> {
+    return this.getAllPaginatedByQueryHelper<IClient>(readQueryInput);
+  }
 }
 
 export default Client;

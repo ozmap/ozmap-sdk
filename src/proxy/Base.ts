@@ -87,6 +87,11 @@ abstract class Base {
 
   protected getAllByQueryHelper<T extends IModel>(readQueryInput: IReadQueryInput): Promise<IPagination<T>> {
     readQueryInput.model = this.endpoint;
+    return this.restapi.read<T>(readQueryInput);
+  }
+
+  protected getAllPaginatedByQueryHelper<T extends IModel>(readQueryInput: IReadQueryInput): Promise<IPagination<T>> {
+    readQueryInput.model = this.endpoint;
     return this.restapi.fetchAllWithPagination<T>(readQueryInput);
   }
 

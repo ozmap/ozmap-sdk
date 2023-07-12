@@ -42,6 +42,10 @@ class Property extends Base {
     return this.getAllByQueryHelper<IProperty>(readQueryInput);
   }
 
+  getAllPaginatedByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProperty>> {
+    return this.getAllPaginatedByQueryHelper<IProperty>(readQueryInput);
+  }
+
   getByIds(ids: Array<ObjectID>): Promise<Array<IProperty>> {
     return this.byIdsHelper<IProperty>(ids);
   }
