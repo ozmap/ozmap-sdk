@@ -26,7 +26,7 @@ class RESTAPI {
   }
 
   public async authentication(login?: string, password?: string): Promise<string | undefined | null> {
-    logger.info(`Authentication called. username:${login}`);
+    logger.info('Authenticating using API key');
     let failToUseAPIKey = false;
 
     try {
@@ -44,6 +44,7 @@ class RESTAPI {
 
     if (failToUseAPIKey) {
       try {
+        logger.info(`Failed to authenticate using key, using login: ${login}`);
         const result = await superagent.post(`${this.url}/api/v2/users/login`).send({
           login: login,
           password: password,
@@ -63,6 +64,8 @@ class RESTAPI {
 
   async create<T>(model: string, data: IModel): Promise<T> {
     const base_url = `${this.url}/api/v2/${model}?`;
+    logger.silly(`Creating: ${base_url} --> ${data}`);
+
     try {
       const result = await superagent
         .post(base_url)
@@ -82,6 +85,7 @@ class RESTAPI {
 
   async update(model: string, model_id: ObjectID, data: IModel): Promise<void> {
     const base_url = `${this.url}/api/v2/${model}/${model_id}`;
+    logger.silly(`Updating: ${base_url} --> ${data}`);
 
     try {
       await superagent
@@ -101,6 +105,7 @@ class RESTAPI {
 
   async delete<T>(model: string, model_id: ObjectID): Promise<T> {
     const base_url = `${this.url}/api/v2/${model}/${model_id}`;
+    logger.silly(`Deleting: ${base_url}`);
     try {
       const result = await superagent
         .delete(base_url)
@@ -187,6 +192,7 @@ class RESTAPI {
     if (sort != null) {
       base_url = `${base_url}&sort=${JSON.stringify(sort)}`;
     }
+    logger.silly(`Searching: ${base_url} ${body ? JSON.stringify(body) : ''}`);
     try {
       const result = await superagent
         .get(base_url)
@@ -235,6 +241,7 @@ class RESTAPI {
     if (select) {
       base_url = `${base_url}&select=${select}`;
     }
+    logger.silly(`Searching: ${base_url}`);
 
     try {
       const result = await superagent
@@ -316,7 +323,7 @@ class RESTAPI {
 
     for (const query_name in queryInput) {
       if (queryInput.hasOwnProperty(query_name)) {
-        base_url = `${base_url}${questionMark}&${query_name}=${queryInput[query_name as K1]}`;
+        base_url = `${base_url}${questionMark}&${query_name}=${JSON.stringify(queryInput[query_name as K1])}`;
         questionMark = '';
       }
     }
@@ -325,6 +332,7 @@ class RESTAPI {
       // Here we make the superagent.SuperAgentStatic indexable by string
       // in order to extract the Method callable
       const methodCallable = (superagent as unknown as Record<string, Method>)[method.toLowerCase()];
+      logger.silly(`Calling ${method} on ${base_url} ${data && JSON.stringify(data)}`);
 
       return await methodCallable(base_url)
         .set(Object.assign({ Authorization: this.key }, this.headers))
