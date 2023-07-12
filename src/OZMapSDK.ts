@@ -14,6 +14,7 @@ import NetworkConnectable from './proxy/NetworkConnectable';
 import Region from './proxy/Region';
 import Prospect from './proxy/Prospect';
 import Building from './proxy/Building';
+import winston = require('winston');
 
 class OZMapSDK {
   private restapi: RESTAPI;
@@ -99,6 +100,10 @@ class OZMapSDK {
 
   getBuilding(): Building {
     return this.building;
+  }
+
+  getLogger(): winston.Logger {
+    return logger;
   }
 }
 
