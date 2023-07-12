@@ -10,6 +10,7 @@ import OZMapSDK from '../OZMapSDK';
 import { EnumOperator } from '../interface/EnumOperator';
 import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
+import request = require('superagent');
 
 abstract class Base {
   protected abstract endpoint: string;
@@ -105,6 +106,14 @@ abstract class Base {
       filter: [{ property: 'id', operator: EnumOperator.IN, value: ids }],
     });
     return paginatedModels.rows;
+  }
+
+  protected async batchUpdateHelper(filter: IFilter[], update: IModel): Promise<request.Response> {
+    const update_model = this.endpoint;
+    const v2_route = `${update_model}/batch-update`;
+    const data = { update };
+    const query = { filter };
+    return await this.restapi.customRequest('POST', v2_route, query, data);
   }
 }
 
