@@ -16,11 +16,11 @@ class RESTAPI {
   readonly url: string;
   private key?: string;
 
-  constructor(url: string, key?: string) {
+  constructor(url: string, key?: string, authenticate = true) {
     this.url = url;
     this.key = key;
     this.connected = false;
-    if (key) {
+    if (key && authenticate) {
       this.authentication();
     }
   }

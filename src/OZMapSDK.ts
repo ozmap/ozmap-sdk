@@ -29,9 +29,9 @@ class OZMapSDK {
   private prospect: Prospect;
   private building: Building;
 
-  constructor(url: string, key?: string) {
+  constructor(url: string, key?: string, authenticate = true) {
     logger.debug('OZMapSDK created');
-    this.restapi = new RESTAPI(url, key);
+    this.restapi = new RESTAPI(url, key, authenticate);
     this.box = new Box(this.restapi, this);
     this.project = new Project(this.restapi, this);
     this.user = new User(this.restapi, this);
