@@ -5,6 +5,7 @@ import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
 import { EnumOperator } from '../interface/EnumOperator';
 import IReadQueryInput from '../interface/IReadQueryInput';
+import request = require('superagent');
 
 class Property extends Base {
   protected endpoint = 'properties';
@@ -29,12 +30,20 @@ class Property extends Base {
     return this.updateHelper(model);
   }
 
+  batchUpdate(filter: Array<IFilter>, update: Record<string, unknown>): Promise<request.Response> {
+    return this.batchUpdateHelper(filter, update);
+  }
+
   getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IProperty>> {
     return this.getAllByFilterHelper<IProperty>(filter);
   }
 
   getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProperty>> {
     return this.getAllByQueryHelper<IProperty>(readQueryInput);
+  }
+
+  getAllPaginatedByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProperty>> {
+    return this.getAllPaginatedByQueryHelper<IProperty>(readQueryInput);
   }
 
   getByIds(ids: Array<ObjectID>): Promise<Array<IProperty>> {
