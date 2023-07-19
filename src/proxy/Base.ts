@@ -116,9 +116,8 @@ abstract class Base {
   protected async batchUpdateHelper(filter: IFilter[], update: IModel): Promise<request.Response> {
     const update_model = this.endpoint;
     const v2_route = `${update_model}/batch-update`;
-    const data = { update };
-    const query = { filter };
-    return await this.restapi.customRequest('POST', v2_route, query, data);
+    const data = { update, filter };
+    return await this.restapi.customRequest('POST', v2_route, undefined, data);
   }
 }
 
