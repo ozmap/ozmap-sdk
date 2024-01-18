@@ -15,4 +15,5 @@ export default interface IProject extends IModel {
     box: Record<string, number>;
     cable: Record<string, number>;
   };
+  identifier?: string;
 }
