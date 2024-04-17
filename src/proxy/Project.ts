@@ -1,11 +1,11 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import IProject from '../interface/model/IProject';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
 
-class Project extends Base {
+class Project extends BaseOld {
   protected endpoint = 'projects';
 
   async getById(projectId: ObjectID): Promise<IProject> {

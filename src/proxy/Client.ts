@@ -1,4 +1,4 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import IClient from '../interface/model/IClient';
 import IFilter from '../interface/IFilter';
@@ -7,7 +7,7 @@ import { EnumOperator } from '../interface/EnumOperator';
 import IReadQueryInput from '../interface/IReadQueryInput';
 import request = require('superagent');
 
-class Client extends Base {
+class Client extends BaseOld {
   protected endpoint = 'ftth-clients';
 
   async getById(clientId: ObjectID): Promise<IClient> {

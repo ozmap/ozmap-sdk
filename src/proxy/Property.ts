@@ -1,4 +1,4 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import IProperty from '../interface/model/IProperty';
 import IFilter from '../interface/IFilter';
@@ -7,7 +7,7 @@ import { EnumOperator } from '../interface/EnumOperator';
 import IReadQueryInput from '../interface/IReadQueryInput';
 import request = require('superagent');
 
-class Property extends Base {
+class Property extends BaseOld {
   protected endpoint = 'properties';
 
   async getById(propertyId: ObjectID): Promise<IProperty> {

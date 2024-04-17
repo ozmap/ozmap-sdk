@@ -1,4 +1,4 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IUser from '../interface/model/IUser';
 import IPagination from '../interface/IPagination';
 import IFilter from '../interface/IFilter';
@@ -8,7 +8,7 @@ import ObjectID from 'bson-objectid';
 import IModel from '../interface/model/IModel';
 import IReadQueryInput from '../interface/IReadQueryInput';
 
-class User extends Base {
+class User extends BaseOld {
   protected endpoint = 'users';
 
   create(model: IUser): Promise<IUser> {

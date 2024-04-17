@@ -1,11 +1,11 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
 import IBaseBox from '../interface/model/IBaseBox';
 
-class Building extends Base {
+class Building extends BaseOld {
   protected endpoint = 'buildings';
 
   async getById(buildingId: ObjectID): Promise<IBaseBox> {

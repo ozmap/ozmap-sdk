@@ -1,12 +1,12 @@
 import ObjectID from 'bson-objectid';
 
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import IProspect from '../interface/model/IProspect';
 import IFilter from '../interface/IFilter';
 import IReadQueryInput from '../interface/IReadQueryInput';
 
-class Prospect extends Base {
+class Prospect extends BaseOld {
   protected endpoint = 'prospects';
 
   async getById(prospectId: ObjectID): Promise<IProspect> {
