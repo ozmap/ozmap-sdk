@@ -1,11 +1,11 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import INetworkConnectable from '../interface/model/INetworkConnectable';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
 
-class NetworkConnectable extends Base {
+class NetworkConnectable extends BaseOld {
   protected endpoint = 'network-connectables';
 
   async getById(connectorId: ObjectID): Promise<INetworkConnectable> {

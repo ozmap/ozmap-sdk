@@ -1,11 +1,11 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import IRegion from '../interface/model/IRegion';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
 
-class Region extends Base {
+class Region extends BaseOld {
   protected endpoint = 'regions';
 
   async getById(boxId: ObjectID): Promise<IRegion> {

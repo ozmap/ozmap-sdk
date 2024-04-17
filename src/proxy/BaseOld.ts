@@ -2,7 +2,7 @@ import Logger from '../util/Logger';
 
 const logger = Logger(__filename);
 
-import RESTAPI from '../util/RESTAPI';
+import RESTAPIOld from '../util/RESTAPIOld';
 import IPagination from '../interface/IPagination';
 import IModel from '../interface/model/IModel';
 import IFilter from '../interface/IFilter';
@@ -12,17 +12,17 @@ import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
 import request = require('superagent');
 
-abstract class Base {
+abstract class BaseOld {
   protected abstract endpoint: string;
-  protected restapiObject: RESTAPI;
+  protected restapiObject: RESTAPIOld;
   protected ozmapSdk: OZMapSDK;
 
-  constructor(restapi: RESTAPI, ozmapSdk: OZMapSDK) {
+  constructor(restapi: RESTAPIOld, ozmapSdk: OZMapSDK) {
     this.restapiObject = restapi;
     this.ozmapSdk = ozmapSdk;
   }
 
-  protected get restapi(): RESTAPI {
+  protected get restapi(): RESTAPIOld {
     if (!this.restapiObject.isConnected()) {
       logger.error('OZMap is not connected yet. Call .authentication() with correct params, before use it');
       throw new Error('OZMap is not connected yet. Call .authentication() before use it');
@@ -121,4 +121,4 @@ abstract class Base {
   }
 }
 
-export default Base;
+export default BaseOld;

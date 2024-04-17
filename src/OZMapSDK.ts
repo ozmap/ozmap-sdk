@@ -3,7 +3,7 @@ import Logger from './util/Logger';
 const logger = Logger(__filename);
 
 import Box from './proxy/Box';
-import RESTAPI from './util/RESTAPI';
+import RESTAPIOld from './util/RESTAPIOld';
 import Project from './proxy/Project';
 import User from './proxy/User';
 import Client from './proxy/Client';
@@ -17,7 +17,7 @@ import Building from './proxy/Building';
 import winston = require('winston');
 
 class OZMapSDK {
-  private restapi: RESTAPI;
+  private restapi: RESTAPIOld;
   private box: Box;
   private project: Project;
   private user: User;
@@ -32,7 +32,7 @@ class OZMapSDK {
 
   constructor(url: string, key?: string, authenticate = true) {
     logger.debug('OZMapSDK created');
-    this.restapi = new RESTAPI(url, key, authenticate);
+    this.restapi = new RESTAPIOld(url, key, authenticate);
     this.box = new Box(this.restapi, this);
     this.project = new Project(this.restapi, this);
     this.user = new User(this.restapi, this);
@@ -90,7 +90,7 @@ class OZMapSDK {
     return this.restapi.isConnected();
   }
 
-  getRestApi(): RESTAPI {
+  getRestApi(): RESTAPIOld {
     return this.restapi;
   }
 

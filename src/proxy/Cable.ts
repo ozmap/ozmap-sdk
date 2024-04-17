@@ -1,11 +1,11 @@
-import Base from './Base';
+import BaseOld from './BaseOld';
 import IPagination from '../interface/IPagination';
 import ICable from '../interface/model/ICable';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
 
-class Cable extends Base {
+class Cable extends BaseOld {
   protected endpoint = 'cables';
 
   async getById(connectorId: ObjectID): Promise<ICable> {
