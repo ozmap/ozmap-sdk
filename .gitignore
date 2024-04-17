@@ -6,4 +6,4 @@
 
 # Jest coverage report
 /coverage/
-/.idea
+.idea/

@@ -42,10 +42,11 @@
     "superagent": "^6.1.0",
     "tslog": "^3.2.0",
     "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.5"
+    "winston-daily-rotate-file": "^4.5.5",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.0.0",
+    "@commitlint/cli": "^19.2.2",
     "@rocketseat/commitlint-config": "0.0.3",
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
