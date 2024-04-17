@@ -1,8 +1,9 @@
-import Logger from '../util/Logger';
+import { BaseModel } from '../interface/model';
 
-const logger = Logger(__filename);
+abstract class Base<Model extends BaseModel, CreateDTO, UpdateDTO> {
+  protected abstract get _route(): string;
 
-import RESTAPI from '../util/RESTAPI';
+import RESTAPIOld from '../util/RESTAPIOld';
 import IPagination from '../interface/IPagination';
 import IModel from '../interface/model/IModel';
 import IFilter from '../interface/IFilter';
@@ -11,19 +12,18 @@ import { EnumOperator } from '../interface/EnumOperator';
 import ObjectID from 'bson-objectid';
 import IReadQueryInput from '../interface/IReadQueryInput';
 import request = require('superagent');
-import { BaseModel } from '../interface/model';
 
-abstract class BaseOld<T extends BaseModel> {
+abstract class BaseOld {
   protected abstract endpoint: string;
-  protected restapiObject: RESTAPI;
+  protected restapiObject: RESTAPIOld;
   protected ozmapSdk: OZMapSDK;
 
-  constructor(restapi: RESTAPI, ozmapSdk: OZMapSDK) {
+  constructor(restapi: RESTAPIOld, ozmapSdk: OZMapSDK) {
     this.restapiObject = restapi;
     this.ozmapSdk = ozmapSdk;
   }
 
-  protected get restapi(): RESTAPI {
+  protected get restapi(): RESTAPIOld {
     if (!this.restapiObject.isConnected()) {
       logger.error('OZMap is not connected yet. Call .authentication() with correct params, before use it');
       throw new Error('OZMap is not connected yet. Call .authentication() before use it');
@@ -119,7 +119,6 @@ abstract class BaseOld<T extends BaseModel> {
     const v2_route = `${update_model}/batch-update`;
     const data = { update, filter };
     return await this.restapi.customRequest('POST', v2_route, undefined, data);
-  }
-}
+  }}
 
 export default BaseOld;

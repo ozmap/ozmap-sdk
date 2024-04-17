@@ -10,7 +10,7 @@ import IFilter from '../interface/IFilter';
 import superagent = require('superagent');
 import request = require('superagent');
 
-class RESTAPI {
+class RESTAPIOld {
   private connected = false;
   private headers = {};
   readonly url: string;
@@ -349,4 +349,4 @@ class RESTAPI {
   }
 }
 
-export default RESTAPI;
+export default RESTAPIOld;
