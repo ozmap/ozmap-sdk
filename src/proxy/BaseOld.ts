@@ -1,7 +1,6 @@
-import { BaseModel } from '../interface/model';
+import Logger from '../util/Logger';
 
-abstract class Base<Model extends BaseModel, CreateDTO, UpdateDTO> {
-  protected abstract get _route(): string;
+const logger = Logger(__filename);
 
 import RESTAPIOld from '../util/RESTAPIOld';
 import IPagination from '../interface/IPagination';
@@ -119,6 +118,7 @@ abstract class BaseOld {
     const v2_route = `${update_model}/batch-update`;
     const data = { update, filter };
     return await this.restapi.customRequest('POST', v2_route, undefined, data);
-  }}
+  }
+}
 
 export default BaseOld;
