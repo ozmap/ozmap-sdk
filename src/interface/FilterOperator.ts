@@ -1,0 +1,16 @@
+export const FilterOperator = {
+  EQUAL: '=',
+  LIKE: 'like',
+  NOT_EQUAL: '!=',
+  NEAR: 'near',
+  ALL: 'all',
+  EXISTS: 'exists',
+  LESS: '<',
+  LESS_OR_EQUAL: '<=',
+  GREATER: '>',
+  GREATER_OR_EQUAL: '>=',
+  IN: 'in',
+  NOT_IN: 'notin',
+  WITHIN: 'within',
+  POINT_INTERSECT: 'point-intersect',
+} as const;

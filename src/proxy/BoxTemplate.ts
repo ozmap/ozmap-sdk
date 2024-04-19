@@ -4,6 +4,7 @@ import {
   UpdateBoxTemplateDTO,
   CreateBoxTemplateDTOSchema,
 } from '../interface/model';
+
 import Base from './Base';
 
 class BoxTemplateProxy extends Base<BoxTemplate, CreateBoxTemplateDTO, UpdateBoxTemplateDTO> {
