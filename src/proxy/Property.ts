@@ -1,5 +1,5 @@
 import BaseOld from './BaseOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IProperty from '../interface/model/IProperty';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
@@ -14,7 +14,7 @@ class Property extends BaseOld {
     return this.byIdHelper<IProperty>(propertyId);
   }
 
-  async getAll(): Promise<IPagination<IProperty>> {
+  async getAll(): Promise<Pagination<IProperty>> {
     return this.getAllHelper<IProperty>();
   }
 
@@ -34,15 +34,15 @@ class Property extends BaseOld {
     return this.batchUpdateHelper(filter, update);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IProperty>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<IProperty>> {
     return this.getAllByFilterHelper<IProperty>(filter);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProperty>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IProperty>> {
     return this.getAllByQueryHelper<IProperty>(readQueryInput);
   }
 
-  getAllPaginatedByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProperty>> {
+  getAllPaginatedByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IProperty>> {
     return this.getAllPaginatedByQueryHelper<IProperty>(readQueryInput);
   }
 

@@ -1,5 +1,5 @@
 import BaseOld from './BaseOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IClient from '../interface/model/IClient';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
@@ -14,7 +14,7 @@ class Client extends BaseOld {
     return this.byIdHelper<IClient>(clientId);
   }
 
-  async getAll(): Promise<IPagination<IClient>> {
+  async getAll(): Promise<Pagination<IClient>> {
     return this.getAllHelper<IClient>();
   }
 
@@ -34,7 +34,7 @@ class Client extends BaseOld {
     return this.batchUpdateHelper(filter, update);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IClient>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<IClient>> {
     return this.getAllByFilterHelper<IClient>(filter);
   }
 
@@ -55,11 +55,11 @@ class Client extends BaseOld {
     return this.byIdsHelper<IClient>(ids);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IClient>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IClient>> {
     return this.getAllByQueryHelper<IClient>(readQueryInput);
   }
 
-  getAllPaginatedByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IClient>> {
+  getAllPaginatedByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IClient>> {
     return this.getAllPaginatedByQueryHelper<IClient>(readQueryInput);
   }
 }

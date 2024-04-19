@@ -1,5 +1,5 @@
 import BaseOld from './BaseOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IBaseBox from '../interface/model/IBaseBox';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
@@ -12,7 +12,7 @@ class Box extends BaseOld {
     return this.byIdHelper<IBaseBox>(boxId);
   }
 
-  async getAll(): Promise<IPagination<IBaseBox>> {
+  async getAll(): Promise<Pagination<IBaseBox>> {
     return this.getAllHelper<IBaseBox>();
   }
 
@@ -28,7 +28,7 @@ class Box extends BaseOld {
     return this.updateHelper(model);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IBaseBox>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<IBaseBox>> {
     return this.getAllByFilterHelper<IBaseBox>(filter);
   }
 
@@ -36,7 +36,7 @@ class Box extends BaseOld {
     return this.byIdsHelper<IBaseBox>(ids);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IBaseBox>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IBaseBox>> {
     return this.getAllByQueryHelper<IBaseBox>(readQueryInput);
   }
 }

@@ -1,5 +1,5 @@
 import BaseOld from './BaseOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import INetworkConnectable from '../interface/model/INetworkConnectable';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
@@ -12,7 +12,7 @@ class NetworkConnectable extends BaseOld {
     return this.byIdHelper<INetworkConnectable>(connectorId);
   }
 
-  async getAll(): Promise<IPagination<INetworkConnectable>> {
+  async getAll(): Promise<Pagination<INetworkConnectable>> {
     return this.getAllHelper<INetworkConnectable>();
   }
 
@@ -28,7 +28,7 @@ class NetworkConnectable extends BaseOld {
     return this.updateHelper(model);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<INetworkConnectable>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<INetworkConnectable>> {
     return this.getAllByFilterHelper<INetworkConnectable>(filter);
   }
 
@@ -36,7 +36,7 @@ class NetworkConnectable extends BaseOld {
     return this.byIdsHelper<INetworkConnectable>(ids);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<INetworkConnectable>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<INetworkConnectable>> {
     return this.getAllByQueryHelper<INetworkConnectable>(readQueryInput);
   }
 }

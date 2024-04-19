@@ -3,7 +3,7 @@ import Logger from '../util/Logger';
 const logger = Logger(__filename);
 
 import RESTAPIOld from '../util/RESTAPIOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IModel from '../interface/model/IModel';
 import IFilter from '../interface/IFilter';
 import OZMapSDK from '../OZMapSDK';
@@ -40,11 +40,11 @@ abstract class BaseOld {
 
   abstract getById(id: ObjectID): Promise<IModel>;
 
-  abstract getAll(): Promise<IPagination<IModel>>;
+  abstract getAll(): Promise<Pagination<IModel>>;
 
-  abstract getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IModel>>;
+  abstract getAllByFilter(filter: Array<IFilter>): Promise<Pagination<IModel>>;
 
-  abstract getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IModel>>;
+  abstract getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IModel>>;
 
   //Helpers to get data from proxy.
   protected async createHelper<T>(model: IModel): Promise<T> {
@@ -72,11 +72,11 @@ abstract class BaseOld {
     return this.restapi.update(this.endpoint, model.id, model);
   }
 
-  protected getAllHelper<T extends IModel>(): Promise<IPagination<T>> {
+  protected getAllHelper<T extends IModel>(): Promise<Pagination<T>> {
     return this.restapi.fetchAllWithPagination<T>({ model: this.endpoint });
   }
 
-  protected getAllByFilterHelper<T extends IModel>(filter: Array<IFilter>): Promise<IPagination<T>> {
+  protected getAllByFilterHelper<T extends IModel>(filter: Array<IFilter>): Promise<Pagination<T>> {
     const readFilter: IReadQueryInput = {
       model: this.endpoint,
       filter: filter,
@@ -85,12 +85,12 @@ abstract class BaseOld {
     return this.restapi.read<T>(readFilter);
   }
 
-  protected getAllByQueryHelper<T extends IModel>(readQueryInput: IReadQueryInput): Promise<IPagination<T>> {
+  protected getAllByQueryHelper<T extends IModel>(readQueryInput: IReadQueryInput): Promise<Pagination<T>> {
     readQueryInput.model = this.endpoint;
     return this.restapi.read<T>(readQueryInput);
   }
 
-  protected getAllPaginatedByQueryHelper<T extends IModel>(readQueryInput: IReadQueryInput): Promise<IPagination<T>> {
+  protected getAllPaginatedByQueryHelper<T extends IModel>(readQueryInput: IReadQueryInput): Promise<Pagination<T>> {
     readQueryInput.model = this.endpoint;
     return this.restapi.fetchAllWithPagination<T>(readQueryInput);
   }

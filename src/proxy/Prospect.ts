@@ -1,7 +1,7 @@
 import ObjectID from 'bson-objectid';
 
 import BaseOld from './BaseOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IProspect from '../interface/model/IProspect';
 import IFilter from '../interface/IFilter';
 import IReadQueryInput from '../interface/IReadQueryInput';
@@ -13,7 +13,7 @@ class Prospect extends BaseOld {
     return this.byIdHelper<IProspect>(prospectId);
   }
 
-  async getAll(): Promise<IPagination<IProspect>> {
+  async getAll(): Promise<Pagination<IProspect>> {
     return this.getAllHelper<IProspect>();
   }
 
@@ -29,11 +29,11 @@ class Prospect extends BaseOld {
     return this.updateHelper(model);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IProspect>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<IProspect>> {
     return this.getAllByFilterHelper<IProspect>(filter);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IProspect>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IProspect>> {
     return this.getAllByQueryHelper<IProspect>(readQueryInput);
   }
 

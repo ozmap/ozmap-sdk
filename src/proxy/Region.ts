@@ -1,5 +1,5 @@
 import BaseOld from './BaseOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IRegion from '../interface/model/IRegion';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
@@ -12,7 +12,7 @@ class Region extends BaseOld {
     return this.byIdHelper<IRegion>(boxId);
   }
 
-  async getAll(): Promise<IPagination<IRegion>> {
+  async getAll(): Promise<Pagination<IRegion>> {
     return this.getAllHelper<IRegion>();
   }
 
@@ -28,7 +28,7 @@ class Region extends BaseOld {
     return this.updateHelper(model);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IRegion>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<IRegion>> {
     return this.getAllByFilterHelper<IRegion>(filter);
   }
 
@@ -36,7 +36,7 @@ class Region extends BaseOld {
     return this.byIdsHelper<IRegion>(ids);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IRegion>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IRegion>> {
     return this.getAllByQueryHelper<IRegion>(readQueryInput);
   }
 }

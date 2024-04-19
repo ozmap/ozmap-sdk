@@ -1,5 +1,5 @@
 import BaseOld from './BaseOld';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import ICable from '../interface/model/ICable';
 import IFilter from '../interface/IFilter';
 import ObjectID from 'bson-objectid';
@@ -12,7 +12,7 @@ class Cable extends BaseOld {
     return this.byIdHelper<ICable>(connectorId);
   }
 
-  async getAll(): Promise<IPagination<ICable>> {
+  async getAll(): Promise<Pagination<ICable>> {
     return this.getAllHelper<ICable>();
   }
 
@@ -28,7 +28,7 @@ class Cable extends BaseOld {
     return this.updateHelper(model);
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<ICable>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<ICable>> {
     return this.getAllByFilterHelper<ICable>(filter);
   }
 
@@ -36,7 +36,7 @@ class Cable extends BaseOld {
     return this.byIdsHelper<ICable>(ids);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<ICable>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<ICable>> {
     return this.getAllByQueryHelper<ICable>(readQueryInput);
   }
 }

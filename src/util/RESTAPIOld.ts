@@ -2,7 +2,7 @@ import Logger from '../util/Logger';
 
 const logger = Logger(__filename);
 
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IReadQueryInput from '../interface/IReadQueryInput';
 import IModel from '../interface/model/IModel';
 import ObjectID from 'bson-objectid';
@@ -119,7 +119,7 @@ class RESTAPIOld {
     }
   }
 
-  async read<T extends IModel>(model: IReadQueryInput, query?: Record<string, unknown>): Promise<IPagination<T>> {
+  async read<T extends IModel>(model: IReadQueryInput, query?: Record<string, unknown>): Promise<Pagination<T>> {
     if (model instanceof Object && model.constructor === Object) {
       return this._read(model);
     } else if (typeof model === 'string') {
@@ -154,7 +154,7 @@ class RESTAPIOld {
     select,
     sort,
     populate,
-  }: IReadQueryInput): Promise<IPagination<T>> {
+  }: IReadQueryInput): Promise<Pagination<T>> {
     let body = {};
     let base_url = `${this.url}/api/v2/${model}?`;
 
@@ -198,7 +198,7 @@ class RESTAPIOld {
         .get(base_url)
         .set(Object.assign({ Authorization: this.key }, this.headers))
         .send(body);
-      const ret = result.body as IPagination<T>;
+      const ret = result.body as Pagination<T>;
       for (const iModel of ret.rows) {
         iModel.id = new ObjectID(iModel.id as unknown as string);
       }
@@ -263,7 +263,7 @@ class RESTAPIOld {
     populate,
     select,
     sort,
-  }: IReadQueryInput): Promise<IPagination<T>> {
+  }: IReadQueryInput): Promise<Pagination<T>> {
     let finished = false;
     let ret: Array<T> = [];
     let page = 1;

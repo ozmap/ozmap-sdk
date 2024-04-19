@@ -1,6 +1,6 @@
 import BaseOld from './BaseOld';
 import IUser from '../interface/model/IUser';
-import IPagination from '../interface/IPagination';
+import Pagination from '../interface/Pagination';
 import IFilter from '../interface/IFilter';
 import { EnumOperator } from '../interface/EnumOperator';
 import IProject from '../interface/model/IProject';
@@ -23,11 +23,11 @@ class User extends BaseOld {
     return this.deleteHelper<IUser>(id);
   }
 
-  async getAll(): Promise<IPagination<IUser>> {
+  async getAll(): Promise<Pagination<IUser>> {
     return this.getAllHelper<IUser>();
   }
 
-  getAllByFilter(filter: Array<IFilter>): Promise<IPagination<IUser>> {
+  getAllByFilter(filter: Array<IFilter>): Promise<Pagination<IUser>> {
     return this.getAllByFilterHelper<IUser>(filter);
   }
 
@@ -35,7 +35,7 @@ class User extends BaseOld {
     return this.byIdHelper<IUser>(id);
   }
 
-  getAllByQuery(readQueryInput: IReadQueryInput): Promise<IPagination<IUser>> {
+  getAllByQuery(readQueryInput: IReadQueryInput): Promise<Pagination<IUser>> {
     return this.getAllByQueryHelper<IUser>(readQueryInput);
   }
 
