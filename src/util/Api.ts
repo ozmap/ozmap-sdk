@@ -81,7 +81,7 @@ class Api {
   }: {
     route: string;
     inputData?: INPUT;
-    options: Omit<AxiosRequestConfig, 'url'>;
+    options?: Omit<AxiosRequestConfig, 'url'>;
   }): Promise<OUTPUT> {
     logger.silly(`[POST] api/v2/${route} -> ${JSON.stringify(inputData)}`);
 
@@ -145,8 +145,8 @@ class Api {
     options,
   }: {
     route: string;
-    inputData?: INPUT;
-    options: Omit<AxiosRequestConfig, 'url'>;
+    inputData: INPUT;
+    options?: Omit<AxiosRequestConfig, 'url'>;
   }): Promise<void> {
     logger.silly(`[PATCH] api/v2/${route} -> ${JSON.stringify(inputData)}`);
 
@@ -159,7 +159,7 @@ class Api {
     }
   }
 
-  async delete({ route, options }: { route: string; options: Omit<AxiosRequestConfig, 'url'> }): Promise<void> {
+  async delete({ route, options }: { route: string; options?: Omit<AxiosRequestConfig, 'url'> }): Promise<void> {
     logger.silly(`[DELETE] api/v2/${route}`);
 
     try {

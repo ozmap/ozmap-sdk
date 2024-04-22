@@ -10,7 +10,13 @@ abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
     this.apiInstance = api;
   }
 
-  public async create(data: CreateDTO, options: Parameters<Api['post']>[0]['options']): Promise<Record> {
+  public async create({
+    data,
+    options,
+  }: {
+    data: CreateDTO;
+    options?: Parameters<Api['post']>[0]['options'];
+  }): Promise<Record> {
     return this.apiInstance.post<CreateDTO, Record>({
       route: this._route,
       inputData: data,
@@ -18,7 +24,7 @@ abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
     });
   }
 
-  public async find(options: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Pagination<Record>> {
+  public async find(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Pagination<Record>> {
     return this.apiInstance.get<Pagination<Record>>({
       route: this._route,
       ...options,
@@ -30,7 +36,7 @@ abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
     options,
   }: {
     id: string;
-    options: Parameters<Api['get']>[0]['options'];
+    options?: Parameters<Api['get']>[0]['options'];
   }): Promise<Record> {
     return this.apiInstance.get({
       route: `${this._route}/${id}`,
@@ -45,7 +51,7 @@ abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
   }: {
     id: string;
     data: UpdateDTO;
-    options: Parameters<Api['patch']>[0]['options'];
+    options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
     return this.apiInstance.patch<UpdateDTO>({
       route: `${this._route}/${id}`,
@@ -59,7 +65,7 @@ abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
     options,
   }: {
     id: string;
-    options: Parameters<Api['delete']>[0]['options'];
+    options?: Parameters<Api['delete']>[0]['options'];
   }): Promise<void> {
     return this.apiInstance.delete({
       route: `${this._route}/${id}`,
