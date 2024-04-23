@@ -9,7 +9,6 @@ module.exports = {
     es6: true,
   },
   settings: {
-    'import/extensions': ['.js', '.ts', '.d.ts'],
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts'],
     },
@@ -39,15 +38,6 @@ module.exports = {
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
     '@typescript-eslint/no-empty-function': 'off',
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        ts: 'never',
-        '.d.ts': 'never',
-      },
-    ],
     'max-len': [
       'warn',
       {
