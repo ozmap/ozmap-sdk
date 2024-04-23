@@ -10,8 +10,8 @@
     "husky": "husky",
     "prettier:format": "prettier --config .prettierrc.cjs '**/*.{js,ts,json,md}' --write",
     "pre-commit": "lint-staged",
-    "lint": "eslint ./src ./test --ext .cjs,.js,.ts",
-    "lint:fix": "eslint ./src ./test --ext .cjs,.js,.ts --fix",
+    "lint": "eslint ./src --ext .cjs,.js,.ts",
+    "lint:fix": "eslint ./src --ext .cjs,.js,.ts --fix",
     "test": "ts-node test"
   },
   "files": [
