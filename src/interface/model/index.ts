@@ -3,6 +3,7 @@ export * from './BoxType';
 export * from './BoxTemplate';
 export * from './Color';
 export * from './Point';
+export * from './Pole';
 export * from './PoleType';
 export * from './Project';
 export * from './Tag';
