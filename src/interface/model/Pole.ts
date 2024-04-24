@@ -11,7 +11,7 @@ enum PoleLicensingStatus {
   LICENSED,
 }
 
-const PoleDataSchema = BasePointDataSchema.merge(
+const PoleDataSchema = BasePointDataSchema.omit({ kind: true }).merge(
   z.object({
     name: z.string().trim(),
     usable: z.boolean().default(true),

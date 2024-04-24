@@ -1,8 +1,10 @@
 import { z } from 'zod';
 import { BaseModelSchema } from './BaseModel';
-import { BasePointDataSchema } from './BasePoint';
+import { BasePointDataSchema, BasePointKind } from './BasePoint';
 
-const PointDataSchema = BasePointDataSchema.merge(z.object({}));
+const PointDataSchema = BasePointDataSchema.omit({ kind: true }).merge(
+  z.object({ kind: z.literal(BasePointKind.POINT) }),
+);
 
 const PointSchema = BaseModelSchema.merge(PointDataSchema);
 const CreatePointDTOSchema = PointDataSchema.merge(z.object({}));
