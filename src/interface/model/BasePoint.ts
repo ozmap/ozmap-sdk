@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { BaseModelSchema, stringOrObjectId } from './BaseModel';
 import { TagSchema } from './Tag';
 
-export enum BasePointKind {
+enum BasePointKind {
   POLE = 'pole',
   POINT = 'point',
   JUNCTION_BOX = 'junctionBox',
@@ -22,4 +22,4 @@ const BasePointSchema = BaseModelSchema.merge(BasePointDataSchema);
 
 type BasePoint = z.infer<typeof BasePointSchema>;
 
-export { BasePointSchema, BasePoint };
+export { BasePointDataSchema, BasePointSchema, BasePoint, BasePointKind };
