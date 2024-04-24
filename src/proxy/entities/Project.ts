@@ -4,12 +4,12 @@ import {
   CreateProjectDTOSchema,
   UpdateProjectDTO,
   UpdateProjectDTOSchema,
-} from '../interface';
+} from '../../interface';
 
-import Base from './Base';
-import Api from '../util/Api';
+import WritableProxy from '../WritableProxy';
+import Api from '../../util/Api';
 
-class ProjectProxy extends Base<Project, CreateProjectDTO, UpdateProjectDTO> {
+class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjectDTO> {
   protected get _route(): string {
     return 'projects';
   }

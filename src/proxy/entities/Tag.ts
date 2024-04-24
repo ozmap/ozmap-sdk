@@ -1,9 +1,9 @@
-import { Tag, CreateTagDTO, UpdateTagDTO, CreateTagDTOSchema, UpdateTagDTOSchema } from '../interface';
+import { Tag, CreateTagDTO, UpdateTagDTO, CreateTagDTOSchema, UpdateTagDTOSchema } from '../../interface';
 
-import Base from './Base';
-import Api from '../util/Api';
+import WritableProxy from '../WritableProxy';
+import Api from '../../util/Api';
 
-class TagProxy extends Base<Tag, CreateTagDTO, UpdateTagDTO> {
+class TagProxy extends WritableProxy<Tag, CreateTagDTO, UpdateTagDTO> {
   protected get _route(): string {
     return 'tags';
   }
