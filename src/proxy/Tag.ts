@@ -1,27 +1,21 @@
-import {
-  Project,
-  CreateProjectDTO,
-  CreateProjectDTOSchema,
-  UpdateProjectDTO,
-  UpdateProjectDTOSchema,
-} from '../interface';
+import { Tag, CreateTagDTO, UpdateTagDTO, CreateTagDTOSchema, UpdateTagDTOSchema } from '../interface';
 
 import Base from './Base';
 import Api from '../util/Api';
 
-class ProjectProxy extends Base<Project, CreateProjectDTO, UpdateProjectDTO> {
+class TagProxy extends Base<Tag, CreateTagDTO, UpdateTagDTO> {
   protected get _route(): string {
-    return 'projects';
+    return 'tags';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateProjectDTO;
+    data: CreateTagDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Project> {
-    const parsedData = CreateProjectDTOSchema.parse(data);
+  }): Promise<Tag> {
+    const parsedData = CreateTagDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -32,13 +26,13 @@ class ProjectProxy extends Base<Project, CreateProjectDTO, UpdateProjectDTO> {
     options,
   }: {
     id: string;
-    data: UpdateProjectDTO;
+    data: UpdateTagDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateProjectDTOSchema.parse(data);
+    const parsedData = UpdateTagDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default ProjectProxy;
+export default TagProxy;
