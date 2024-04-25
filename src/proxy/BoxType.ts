@@ -1,15 +1,15 @@
 import {
-  BoxTemplate,
-  CreateBoxTemplateDTO,
-  UpdateBoxTemplateDTO,
-  CreateBoxTemplateDTOSchema,
-  UpdateBoxTemplateDTOSchema,
+  BoxType,
+  CreateBoxTypeDTO,
+  CreateBoxTypeDTOSchema,
+  UpdateBoxTypeDTO,
+  UpdateBoxTypeDTOSchema,
 } from '../interface';
 
 import Base from './Base';
 import Api from '../util/Api';
 
-class BoxTemplateProxy extends Base<BoxTemplate, CreateBoxTemplateDTO, UpdateBoxTemplateDTO> {
+class BoxTypeProxy extends Base<BoxType, CreateBoxTypeDTO, UpdateBoxTypeDTO> {
   protected get _route(): string {
     return 'box-templates';
   }
@@ -18,10 +18,10 @@ class BoxTemplateProxy extends Base<BoxTemplate, CreateBoxTemplateDTO, UpdateBox
     data,
     options,
   }: {
-    data: CreateBoxTemplateDTO;
+    data: CreateBoxTypeDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<BoxTemplate> {
-    const parsedData = CreateBoxTemplateDTOSchema.parse(data);
+  }): Promise<BoxType> {
+    const parsedData = CreateBoxTypeDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -32,13 +32,13 @@ class BoxTemplateProxy extends Base<BoxTemplate, CreateBoxTemplateDTO, UpdateBox
     options,
   }: {
     id: string;
-    data: UpdateBoxTemplateDTO;
+    data: UpdateBoxTypeDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateBoxTemplateDTOSchema.parse(data);
+    const parsedData = UpdateBoxTypeDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default BoxTemplateProxy;
+export default BoxTypeProxy;

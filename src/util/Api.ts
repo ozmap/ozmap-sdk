@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import _ from 'lodash';
 
+import { ApiFilterSchema } from '../interface';
 import Logger from '../util/Logger';
 
 const logger = Logger(__filename);
@@ -73,24 +74,105 @@ class Api {
     });
   }
 
-  async create<INPUT, OUTPUT>(
-    model: string,
-    inputData: INPUT,
-    options: { params: Record<string, any> },
-  ): Promise<OUTPUT> {
-    logger.silly(`Creating: ${model} -> ${JSON.stringify(inputData)}`);
+  async post<INPUT, OUTPUT>({
+    route,
+    inputData,
+    options,
+  }: {
+    route: string;
+    inputData?: INPUT;
+    options?: Omit<AxiosRequestConfig, 'url'>;
+  }): Promise<OUTPUT> {
+    logger.silly(`[POST] api/v2/${route} -> ${JSON.stringify(inputData)}`);
 
     try {
-      const { data } = await this.axiosInstance.post(`/api/v2/${model}`, inputData, {
-        params: options.params,
+      const { data } = await this.axiosInstance.post(`/api/v2/${route}`, inputData, options);
+
+      return data as OUTPUT;
+    } catch (e) {
+      logger.error(`Fail to POST. Error: ${e.message}, StatusCode: ${e.status}`, { model: route, data: inputData });
+
+      throw e;
+    }
+  }
+
+  async get<OUTPUT>({
+    route,
+    select,
+    filter,
+    populate,
+    sorter,
+    options,
+  }: {
+    route: string;
+    // tenho que confirmar o que o populate aceita
+    populate?: any;
+    filter?: string;
+    sorter?: string;
+    select?: string;
+    options?: Omit<AxiosRequestConfig, 'url'>;
+  }): Promise<OUTPUT> {
+    logger.silly(`[GET] api/v2/${route} -> ${JSON.stringify({})}`);
+
+    const filterParsed = ApiFilterSchema.parse(filter);
+    const sorterParsed = ApiFilterSchema.parse(sorter);
+
+    try {
+      const { data } = await this.axiosInstance.get(`/api/v2/${route}`, {
+        ...options,
+        params: {
+          ...(options?.params || {}),
+          select,
+          populate,
+        },
+        data: {
+          filter: filterParsed,
+          sort: sorterParsed,
+        },
       });
 
       return data as OUTPUT;
     } catch (e) {
-      logger.error(`Fail to create: Error: ${e.message}, StatusCode: ${e.status}`, { model, data: inputData });
+      logger.error(`Fail to POST. Error: ${e.message}, StatusCode: ${e.status}`, { model: route, filter, sorter });
 
       throw e;
     }
+  }
+
+  async patch<INPUT>({
+    route,
+    inputData,
+    options,
+  }: {
+    route: string;
+    inputData: INPUT;
+    options?: Omit<AxiosRequestConfig, 'url'>;
+  }): Promise<void> {
+    logger.silly(`[PATCH] api/v2/${route} -> ${JSON.stringify(inputData)}`);
+
+    try {
+      await this.axiosInstance.patch(`/api/v2/${route}`, inputData, options);
+    } catch (e) {
+      logger.error(`Fail to PATCH. Error: ${e.message}, StatusCode: ${e.status}`, { model: route, data: inputData });
+
+      throw e;
+    }
+  }
+
+  async delete({ route, options }: { route: string; options?: Omit<AxiosRequestConfig, 'url'> }): Promise<void> {
+    logger.silly(`[DELETE] api/v2/${route}`);
+
+    try {
+      await this.axiosInstance.delete(`/api/v2/${route}`, options);
+    } catch (e) {
+      logger.error(`Fail to DELETE. Error: ${e.message}, StatusCode: ${e.status}`);
+
+      throw e;
+    }
+  }
+
+  public get client(): Api['axiosInstance'] {
+    return this.axiosInstance;
   }
 }
 
