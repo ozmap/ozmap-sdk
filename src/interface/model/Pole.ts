@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
 import { BaseModelSchema, stringOrObjectId } from './BaseModel';
-import { BasePointDataSchema } from './BasePoint';
+import { BasePointDataSchema, BasePointSchema } from './BasePoint';
 import { PoleTypeSchema } from './PoleType';
 import { ColorSchema } from './Color';
+import { TagSchema } from './Tag';
 
 enum PoleLicensingStatus {
   UNKNOWN,
@@ -17,8 +18,8 @@ const PoleDataSchema = BasePointDataSchema.omit({ kind: true }).merge(
     usable: z.boolean().default(true),
     kind: z.literal('POLE'),
     observation: z.string().trim().default(''),
-    color: stringOrObjectId.or(ColorSchema).optional(),
-    poleType: stringOrObjectId.or(PoleTypeSchema).optional(),
+    color: stringOrObjectId.optional(),
+    poleType: stringOrObjectId,
     address: z.string().trim().optional(),
     licensing: z
       .object({
@@ -32,7 +33,14 @@ const PoleDataSchema = BasePointDataSchema.omit({ kind: true }).merge(
   }),
 );
 
-const PoleSchema = BaseModelSchema.merge(PoleDataSchema);
+const PoleSchema = BaseModelSchema.merge(PoleDataSchema).merge(
+  z.object({
+    adjacents: z.array(stringOrObjectId.or(BasePointSchema)).default([]),
+    tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
+    poleType: stringOrObjectId.or(PoleTypeSchema),
+    color: stringOrObjectId.or(ColorSchema).optional(),
+  }),
+);
 const CreatePoleDTOSchema = PoleDataSchema.omit({ kind: true })
   .merge(z.object({ lat: z.number(), lng: z.number() }))
   .refine((data) => !data.coords && (data.lat == null || data.lng == null), 'Color must be a string or ObjectId');

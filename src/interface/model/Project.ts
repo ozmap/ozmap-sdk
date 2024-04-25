@@ -28,6 +28,8 @@ const ProjectDataSchema = z.object({
   }),
 });
 
+// todo corrigir tipo recursivo
+
 const ProjectSchema = BaseModelSchema.merge(ProjectDataSchema);
 const CreateProjectDTOSchema = ProjectSchema.omit({ hasLogo: true })
   .partial({ drop: true, defaultPonPotency: true })

@@ -10,7 +10,7 @@ enum BasePointKind {
 
 const BasePointDataSchema = z.object({
   adjacents: z.array(stringOrObjectId).default([]),
-  tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
+  tags: z.array(stringOrObjectId).default([]),
   kind: z.nativeEnum(BasePointKind),
   coords: z
     .array(z.number())

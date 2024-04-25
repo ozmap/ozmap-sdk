@@ -1,10 +1,11 @@
-import { z } from 'zod';
+import { string, z } from 'zod';
 
 import { BaseModelSchema, stringOrObjectId } from './BaseModel';
-import { BasePointDataSchema } from './BasePoint';
+import { BasePointDataSchema, BasePointSchema } from './BasePoint';
 import { JunctionBoxTypeSchema } from './JunctionBoxType';
 import { ColorSchema } from './Color';
 import { ProjectSchema } from './Project';
+import { TagSchema } from './Tag';
 
 const JunctionBoxDataSchema = BasePointDataSchema.omit({ kind: true }).merge(
   z.object({
@@ -26,6 +27,8 @@ const JunctionBoxSchema = BaseModelSchema.merge(JunctionBoxDataSchema).merge(
     junctionBoxType: stringOrObjectId.or(JunctionBoxTypeSchema),
     project: stringOrObjectId.or(ProjectSchema),
     color: stringOrObjectId.or(ColorSchema).optional(),
+    tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
+    adjacents: z.array(stringOrObjectId.or(BasePointSchema)).default([]),
   }),
 );
 const CreateJunctionBoxDTOSchema = JunctionBoxDataSchema.omit({ kind: true, typeColor: true });
