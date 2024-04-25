@@ -2,6 +2,7 @@ export * from './BaseModel';
 export * from './BoxType';
 export * from './BoxTemplate';
 export * from './Color';
+export * from './JunctionBox';
 export * from './JunctionBoxType';
 export * from './Point';
 export * from './Pole';
