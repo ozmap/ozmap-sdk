@@ -13,7 +13,8 @@ const BaseBoxDataSchema = z.object({
   project: stringOrObjectId,
   cables: z.array(stringOrObjectId).default([]),
   pole: stringOrObjectId.optional(),
-  towers: z.array(stringOrObjectId).default([]),
+  // // todo quando tiver 5G, mas cuidar com ACL do OZmap
+  // towers: z.array(stringOrObjectId).default([]),
   name: z.string().trim().optional(),
   kind: z.nativeEnum(BaseBoxKind),
   observation: z.string().trim().optional(),

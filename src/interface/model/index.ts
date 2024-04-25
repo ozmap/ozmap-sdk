@@ -1,5 +1,6 @@
 export * from './BaseModel';
 export * from './BaseBox';
+export * from './Box';
 export * from './BoxType';
 export * from './BoxTemplate';
 export * from './Color';
