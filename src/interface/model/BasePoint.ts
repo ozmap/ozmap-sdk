@@ -1,11 +1,10 @@
 import { z } from 'zod';
 import { BaseModelSchema, stringOrObjectId } from './BaseModel';
-import { TagSchema } from './Tag';
 
 enum BasePointKind {
-  POLE = 'pole',
-  POINT = 'point',
-  JUNCTION_BOX = 'junctionBox',
+  POLE = 'Pole',
+  POINT = 'Point',
+  JUNCTION_BOX = 'JunctionBox',
 }
 
 const BasePointDataSchema = z.object({
