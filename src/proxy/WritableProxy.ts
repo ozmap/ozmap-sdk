@@ -1,15 +1,7 @@
 import Api from '../util/Api';
-import Pagination from '../interface/Pagination';
+import ReadableProxy from './ReadableProxy';
 
-abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
-  protected apiInstance: Api;
-
-  protected abstract get _route(): string;
-
-  protected constructor(api: Api) {
-    this.apiInstance = api;
-  }
-
+abstract class WritableProxy<Record, CreateDTO, UpdateDTO> extends ReadableProxy<Record> {
   public async create({
     data,
     options,
@@ -20,26 +12,6 @@ abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
     return this.apiInstance.post<CreateDTO, Record>({
       route: this._route,
       inputData: data,
-      options,
-    });
-  }
-
-  public async find(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Pagination<Record>> {
-    return this.apiInstance.get<Pagination<Record>>({
-      route: this._route,
-      ...options,
-    });
-  }
-
-  public async findById({
-    id,
-    options,
-  }: {
-    id: string;
-    options?: Parameters<Api['get']>[0]['options'];
-  }): Promise<Record> {
-    return this.apiInstance.get({
-      route: `${this._route}/${id}`,
       options,
     });
   }
@@ -74,4 +46,4 @@ abstract class BaseProxy<Record, CreateDTO, UpdateDTO> {
   }
 }
 
-export default BaseProxy;
+export default WritableProxy;

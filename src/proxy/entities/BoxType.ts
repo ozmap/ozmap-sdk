@@ -4,12 +4,12 @@ import {
   CreateBoxTypeDTOSchema,
   UpdateBoxTypeDTO,
   UpdateBoxTypeDTOSchema,
-} from '../interface';
+} from '../../interface';
 
-import Base from './Base';
-import Api from '../util/Api';
+import WritableProxy from '../WritableProxy';
+import Api from '../../util/Api';
 
-class BoxTypeProxy extends Base<BoxType, CreateBoxTypeDTO, UpdateBoxTypeDTO> {
+class BoxTypeProxy extends WritableProxy<BoxType, CreateBoxTypeDTO, UpdateBoxTypeDTO> {
   protected get _route(): string {
     return 'box-templates';
   }

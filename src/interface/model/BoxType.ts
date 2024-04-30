@@ -6,7 +6,7 @@ const BoxTypeDataSchema = z.object({
   code: z.string().trim(),
   brand: z.string().trim().optional(),
   prefix: z.string(),
-  default_template: stringOrObjectId.or(BoxTemplateSchema).optional(),
+  default_template: stringOrObjectId.optional(),
   mold: z.string().trim().optional(),
   default_level: z.number().optional(),
   default_reserve: z.number().default(0),
@@ -27,7 +27,13 @@ const BoxTypeDataSchema = z.object({
   }),
 });
 
-const BoxTypeSchema = BaseModelSchema.merge(BoxTypeDataSchema);
+const BoxTypeSchema = BaseModelSchema.merge(BoxTypeDataSchema)
+  .omit({ default_template: true })
+  .merge(
+    z.object({
+      default_template: stringOrObjectId.or(BoxTemplateSchema).optional(),
+    }),
+  );
 const CreateBoxTypeDTOSchema = BoxTypeDataSchema.merge(z.object({}));
 const UpdateBoxTypeDTOSchema = BoxTypeDataSchema.partial();
 
