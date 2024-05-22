@@ -4,7 +4,7 @@ import { BaseModelSchema, stringOrObjectId } from './BaseModel';
 enum BaseBoxKind {
   BOX = 'Box',
   BUILDING = 'Building',
-  PROPERTY = 'JunctionBox',
+  PROPERTY = 'Property',
   POP = 'Pop',
 }
 

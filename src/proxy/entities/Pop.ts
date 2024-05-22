@@ -1,21 +1,21 @@
-import { Box, CreateBoxDTO, CreateBoxDTOSchema, UpdateBoxDTO, UpdateBoxDTOSchema } from '../../interface';
+import { Pop, CreatePopDTO, CreatePopDTOSchema, UpdatePopDTO, UpdatePopDTOSchema } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
 
-class BoxProxy extends WritableProxy<Box, CreateBoxDTO, UpdateBoxDTO> {
+class PopProxy extends WritableProxy<Pop, CreatePopDTO, UpdatePopDTO> {
   protected get _route(): string {
-    return 'boxes';
+    return 'pops';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateBoxDTO;
+    data: CreatePopDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Box> {
-    const parsedData = CreateBoxDTOSchema.parse(data);
+  }): Promise<Pop> {
+    const parsedData = CreatePopDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -25,14 +25,14 @@ class BoxProxy extends WritableProxy<Box, CreateBoxDTO, UpdateBoxDTO> {
     data,
     options,
   }: {
-    id: Box['id'];
-    data: UpdateBoxDTO;
+    id: Pop['id'];
+    data: UpdatePopDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateBoxDTOSchema.parse(data);
+    const parsedData = UpdatePopDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default BoxProxy;
+export default PopProxy;

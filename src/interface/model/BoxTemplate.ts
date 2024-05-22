@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { BaseModelSchema } from './BaseModel';
 
+const DEFAULT_BOX_TEMPLATE_ID = '589de1d126324a2564a6c4d0';
+
 const BoxTemplateDataSchema = z.object({
   name: z.string().trim(),
   structure: z.object({}),
@@ -24,4 +26,5 @@ export {
   CreateBoxTemplateDTO,
   UpdateBoxTemplateDTOSchema,
   UpdateBoxTemplateDTO,
+  DEFAULT_BOX_TEMPLATE_ID,
 };

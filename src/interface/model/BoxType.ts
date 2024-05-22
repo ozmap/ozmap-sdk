@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { stringOrObjectId, BaseModelSchema } from './BaseModel';
-import { BoxTemplateSchema } from './BoxTemplate';
+import { BoxTemplateSchema, DEFAULT_BOX_TEMPLATE_ID } from './BoxTemplate';
 
 const BoxTypeDataSchema = z.object({
   code: z.string().trim(),
   brand: z.string().trim().optional(),
   prefix: z.string(),
-  default_template: stringOrObjectId.optional(),
+  default_template: stringOrObjectId.default(DEFAULT_BOX_TEMPLATE_ID).optional(),
   mold: z.string().trim().optional(),
   default_level: z.number().optional(),
   default_reserve: z.number().default(0),
@@ -34,8 +34,10 @@ const BoxTypeSchema = BaseModelSchema.merge(BoxTypeDataSchema)
       default_template: stringOrObjectId.or(BoxTemplateSchema).optional(),
     }),
   );
-const CreateBoxTypeDTOSchema = BoxTypeDataSchema.merge(z.object({}));
-const UpdateBoxTypeDTOSchema = BoxTypeDataSchema.partial();
+const CreateBoxTypeDTOSchema = BoxTypeDataSchema.merge(
+  z.object({ external_id: z.any().optional(), prefix: z.string().default('').optional() }),
+);
+const UpdateBoxTypeDTOSchema = BoxTypeDataSchema.merge(z.object({ external_id: z.any().optional() })).partial();
 
 type BoxType = z.infer<typeof BoxTypeSchema>;
 type CreateBoxTypeDTO = z.infer<typeof CreateBoxTypeDTOSchema>;

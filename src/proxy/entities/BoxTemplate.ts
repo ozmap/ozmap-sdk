@@ -31,7 +31,7 @@ class BoxTemplateProxy extends WritableProxy<BoxTemplate, CreateBoxTemplateDTO, 
     data,
     options,
   }: {
-    id: string;
+    id: BoxTemplate['id'];
     data: UpdateBoxTemplateDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
