@@ -11,7 +11,7 @@ import Api from '../../util/Api';
 
 class PoleTypeProxy extends WritableProxy<PoleType, CreatePoleTypeDTO, UpdatePoleTypeDTO> {
   protected get _route(): string {
-    return 'box-templates';
+    return 'pole-types';
   }
 
   public async create({
@@ -31,7 +31,7 @@ class PoleTypeProxy extends WritableProxy<PoleType, CreatePoleTypeDTO, UpdatePol
     data,
     options,
   }: {
-    id: string;
+    id: PoleType['id'];
     data: UpdatePoleTypeDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {

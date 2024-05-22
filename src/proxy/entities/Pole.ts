@@ -5,7 +5,7 @@ import Api from '../../util/Api';
 
 class PoleProxy extends WritableProxy<Pole, CreatePoleDTO, UpdatePoleDTO> {
   protected get _route(): string {
-    return 'box-templates';
+    return 'poles';
   }
 
   public async create({
@@ -25,7 +25,7 @@ class PoleProxy extends WritableProxy<Pole, CreatePoleDTO, UpdatePoleDTO> {
     data,
     options,
   }: {
-    id: string;
+    id: Pole['id'];
     data: UpdatePoleDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
