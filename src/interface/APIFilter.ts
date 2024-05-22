@@ -35,47 +35,44 @@ const PointValueSchema = z.union([
   z.object({ latitude: z.number(), longitude: z.number() }),
 ]);
 
-const ApiFilterSchema = z
-  .union([
-    z.object({
-      property: z.literal('string'),
-      operator: z.nativeEnum(_.omit(FilterOperator, ['WITHIN', 'POINT_INTERSECT', 'NEAR'])),
-      value: DefaultValueSchema,
-    }),
-    z.object({
-      property: z.literal('string'),
-      operator: z.literal(FilterOperator.WITHIN),
-      value: z.union([PolygonModelValueSchema, PolygonValueSchema]),
-    }),
-    z.object({
-      property: z.literal('string'),
-      operator: z.literal(FilterOperator.POINT_INTERSECT),
-      value: PointValueSchema,
-    }),
-    z.object({
-      property: z.literal('string'),
-      operator: z.literal(FilterOperator.NEAR),
-      value: z.intersection(PointValueSchema, z.object({ radius: z.number().optional() })),
-    }),
-  ])
-  .nullish();
+const DefaultEnumOperatorSchema = z.nativeEnum(_.omit(FilterOperator, ['WITHIN', 'POINT_INTERSECT', 'NEAR']));
+
+const SingleApiFilterSchema = z.union([
+  z.object({
+    property: z.string().trim(),
+    operator: DefaultEnumOperatorSchema,
+    value: DefaultValueSchema,
+  }),
+  z.object({
+    property: z.string().trim(),
+    operator: z.literal(FilterOperator.WITHIN),
+    value: z.union([PolygonModelValueSchema, PolygonValueSchema]),
+  }),
+  z.object({
+    property: z.string(),
+    operator: z.literal(FilterOperator.POINT_INTERSECT),
+    value: PointValueSchema,
+  }),
+  z.object({
+    property: z.string().trim(),
+    operator: z.literal(FilterOperator.NEAR),
+    value: z.intersection(PointValueSchema, z.object({ radius: z.number().optional() })),
+  }),
+]);
+
+const ApiFilterSchema = z.array(z.union([SingleApiFilterSchema, z.array(SingleApiFilterSchema)])).nullish();
 
 type DefaultValue = z.infer<typeof DefaultValueSchema>;
 type PolygonValue = z.infer<typeof PolygonValueSchema>;
 type PolygonModelValue = z.infer<typeof PolygonModelValueSchema>;
 type PointValue = z.infer<typeof PointValueSchema>;
 
+type DefaultEnumOperator = z.infer<typeof DefaultEnumOperatorSchema>;
+
 type ApiFilter =
   | {
-      property: 'string';
+      property: string;
     } & (
-      | {
-          operator: Exclude<
-            typeof FilterOperator,
-            typeof FilterOperator.POINT_INTERSECT | typeof FilterOperator.WITHIN | typeof FilterOperator.NEAR
-          >;
-          value: DefaultValue;
-        }
       | {
           operator: typeof FilterOperator.WITHIN;
           value: PolygonModelValue | PolygonValue;
@@ -87,6 +84,10 @@ type ApiFilter =
       | {
           operator: typeof FilterOperator.NEAR;
           value: PointValue & { radius?: number };
+        }
+      | {
+          operator: DefaultEnumOperator;
+          value: DefaultValue;
         }
     );
 
