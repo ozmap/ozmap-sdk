@@ -29,6 +29,7 @@ import {
   DIOTypeProxy,
   RoleProxy,
   ProjectGroupProxy,
+  UserProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -62,6 +63,7 @@ class OZMapSDK {
   public readonly networkConnector: NetworkConnectorProxy;
   public readonly role: RoleProxy;
   public readonly projectGroup: ProjectGroupProxy;
+  public readonly users: UserProxy;
 
   constructor(
     ozmapURL: string,
@@ -100,6 +102,7 @@ class OZMapSDK {
     this.dioType = new DIOTypeProxy(this.apiInstance);
     this.role = new RoleProxy(this.apiInstance);
     this.projectGroup = new ProjectGroupProxy(this.apiInstance);
+    this.users = new UserProxy(this.apiInstance);
   }
 }
 

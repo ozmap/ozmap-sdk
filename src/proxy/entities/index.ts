@@ -26,4 +26,5 @@ export { default as RoleProxy } from './Role';
 export { default as SplitterProxy } from './Splitter';
 export { default as SplitterTypeProxy } from './SplitterType';
 export { default as TagProxy } from './Tag';
+export { default as UserProxy } from './User';
 export { default as SystemConfigProxy } from './SystemConfig';

@@ -23,6 +23,7 @@ export * from './Project';
 export * from './ProjectGroup';
 export * from './Property';
 export * from './Role';
+export * from './User';
 export * from './NetworkConnector';
 export * from './Tag';
 export * from './Splitter';
