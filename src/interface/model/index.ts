@@ -21,6 +21,7 @@ export * from './Pop';
 export * from './PopType';
 export * from './Project';
 export * from './Property';
+export * from './Role';
 export * from './NetworkConnector';
 export * from './Tag';
 export * from './Splitter';

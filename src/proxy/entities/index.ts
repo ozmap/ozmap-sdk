@@ -21,6 +21,7 @@ export { default as PopProxy } from './Pop';
 export { default as PopTypeProxy } from './PopType';
 export { default as ProjectProxy } from './Project';
 export { default as PropertyProxy } from './Property';
+export { default as RoleProxy } from './Role';
 export { default as SplitterProxy } from './Splitter';
 export { default as SplitterTypeProxy } from './SplitterType';
 export { default as TagProxy } from './Tag';
