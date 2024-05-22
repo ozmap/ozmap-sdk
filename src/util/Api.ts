@@ -89,7 +89,7 @@ class Api {
       const { data } = await this.axiosInstance.post(`/api/v2/${route}`, inputData, options);
 
       return data as OUTPUT;
-    } catch (e: any) {
+    } catch (e) {
       logger.error(`Fail to POST. Error: ${e.message}, StatusCode: ${e.status}`, { model: route, data: inputData });
 
       throw e;
@@ -132,7 +132,7 @@ class Api {
       });
 
       return data as OUTPUT;
-    } catch (e: any) {
+    } catch (e) {
       logger.error(`Fail to POST. Error: ${e.message}, StatusCode: ${e.status}`, { model: route, filter, sorter });
 
       throw e;
@@ -152,7 +152,7 @@ class Api {
 
     try {
       await this.axiosInstance.patch(`/api/v2/${route}`, inputData, options);
-    } catch (e: any) {
+    } catch (e) {
       logger.error(`Fail to PATCH. Error: ${e.message}, StatusCode: ${e.status}`, { model: route, data: inputData });
 
       throw e;
@@ -164,7 +164,7 @@ class Api {
 
     try {
       await this.axiosInstance.delete(`/api/v2/${route}`, options);
-    } catch (e: any) {
+    } catch (e) {
       logger.error(`Fail to DELETE. Error: ${e.message}, StatusCode: ${e.status}`);
 
       throw e;
