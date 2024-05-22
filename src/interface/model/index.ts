@@ -20,6 +20,7 @@ export * from './PoleType';
 export * from './Pop';
 export * from './PopType';
 export * from './Project';
+export * from './ProjectGroup';
 export * from './Property';
 export * from './Role';
 export * from './NetworkConnector';
