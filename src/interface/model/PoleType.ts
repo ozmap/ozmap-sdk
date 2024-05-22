@@ -10,8 +10,8 @@ const PoleTypeDataSchema = z.object({
 });
 
 const PoleTypeSchema = BaseModelSchema.merge(PoleTypeDataSchema);
-const CreatePoleTypeDTOSchema = PoleTypeDataSchema.merge(z.object({}));
-const UpdatePoleTypeDTOSchema = PoleTypeDataSchema.partial();
+const CreatePoleTypeDTOSchema = PoleTypeDataSchema.merge(z.object({ external_id: z.any().optional() }));
+const UpdatePoleTypeDTOSchema = PoleTypeDataSchema.merge(z.object({ external_id: z.any().optional() })).partial();
 
 type PoleType = z.infer<typeof PoleTypeSchema>;
 type CreatePoleTypeDTO = z.infer<typeof CreatePoleTypeDTOSchema>;

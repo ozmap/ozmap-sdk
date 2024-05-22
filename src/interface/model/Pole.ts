@@ -6,7 +6,7 @@ import { PoleTypeSchema } from './PoleType';
 import { ColorSchema } from './Color';
 import { TagSchema } from './Tag';
 
-enum PoleLicensingStatus {
+export enum PoleLicensingStatus {
   UNKNOWN,
   PENDING,
   LICENSED,
@@ -42,13 +42,24 @@ const PoleSchema = BaseModelSchema.merge(PoleDataSchema).merge(
   }),
 );
 const CreatePoleDTOSchema = PoleDataSchema.omit({ kind: true })
-  .merge(z.object({ lat: z.number(), lng: z.number() }))
-  .refine((data) => !data.coords && (data.lat == null || data.lng == null), 'Color must be a string or ObjectId');
+  .merge(z.object({ external_id: z.any().optional(), lat: z.number().optional(), lng: z.number().optional() }))
+  .partial({
+    adjacents: true,
+    tags: true,
+    licensing: true,
+    observation: true,
+    usable: true,
+    name: true,
+  })
+  .refine((data) => {
+    return data.coords || (data.lat != null && data.lng != null);
+  }, 'Should provide coords or lat / lng');
 const UpdatePoleDTOSchema = PoleDataSchema.omit({ kind: true })
   .merge(
     z.object({
       lat: z.number(),
       lng: z.number(),
+      external_id: z.any().optional(),
     }),
   )
   .partial();
