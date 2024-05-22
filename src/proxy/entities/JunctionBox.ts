@@ -11,7 +11,7 @@ import Api from '../../util/Api';
 
 class JunctionBoxProxy extends WritableProxy<JunctionBox, CreateJunctionBoxDTO, UpdateJunctionBoxDTO> {
   protected get _route(): string {
-    return 'box-templates';
+    return 'junction-boxes';
   }
 
   public async create({
@@ -31,7 +31,7 @@ class JunctionBoxProxy extends WritableProxy<JunctionBox, CreateJunctionBoxDTO, 
     data,
     options,
   }: {
-    id: string;
+    id: JunctionBox['id'];
     data: UpdateJunctionBoxDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {

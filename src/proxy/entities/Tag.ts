@@ -25,7 +25,7 @@ class TagProxy extends WritableProxy<Tag, CreateTagDTO, UpdateTagDTO> {
     data,
     options,
   }: {
-    id: string;
+    id: Tag['id'];
     data: UpdateTagDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {

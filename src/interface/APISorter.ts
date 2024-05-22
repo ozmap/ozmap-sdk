@@ -5,13 +5,13 @@ enum ApiSortDirection {
   DESC = -1,
 }
 
-const ApiSortSchema = z
-  .object({
-    property: z.string(),
-    direction: z.nativeEnum(ApiSortDirection),
-  })
-  .nullish();
+const ApiSortSchema = z.object({
+  property: z.string(),
+  direction: z.nativeEnum(ApiSortDirection),
+});
+
+const ApiSortListSchema = z.array(ApiSortSchema).nullish();
 
 type ApiSort = z.infer<typeof ApiSortSchema>;
 
-export { ApiSortSchema, ApiSort, ApiSortDirection };
+export { ApiSortListSchema as ApiSortSchema, ApiSort, ApiSortDirection };

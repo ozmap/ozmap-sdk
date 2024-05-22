@@ -31,7 +31,7 @@ class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjec
     data,
     options,
   }: {
-    id: string;
+    id: Project['id'];
     data: UpdateProjectDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
