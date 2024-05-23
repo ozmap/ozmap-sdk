@@ -12,6 +12,7 @@ export * from './Connector';
 export * from './DIO';
 export * from './ConnectorType';
 export * from './DIOType';
+export * from './Fiber';
 export * from './FiberProfile';
 export * from './FTTHClient';
 export * from './Fusion';

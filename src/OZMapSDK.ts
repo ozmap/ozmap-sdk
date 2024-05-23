@@ -35,6 +35,7 @@ import {
   ConnectorProxy,
   FusionProxy,
   NetworkConnectableProxy,
+  FiberProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -74,6 +75,7 @@ class OZMapSDK {
   public readonly connectorType: ConnectorTypeProxy;
   public readonly fusionType: FusionTypeProxy;
   public readonly fusion: FusionProxy;
+  public readonly fiber: FiberProxy;
 
   constructor(
     ozmapURL: string,
@@ -118,6 +120,7 @@ class OZMapSDK {
     this.connector = new ConnectorProxy(this.apiInstance);
     this.fusion = new FusionProxy(this.apiInstance);
     this.networkConnectables = new NetworkConnectableProxy(this.apiInstance);
+    this.fiber = new FiberProxy(this.apiInstance);
   }
 }
 

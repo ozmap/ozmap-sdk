@@ -11,6 +11,7 @@ export { default as DIOProxy } from './DIO';
 export { default as ConnectorProxy } from './Connector';
 export { default as ConnectorTypeProxy } from './ConnectorType';
 export { default as DIOTypeProxy } from './DIOType';
+export { default as FiberProxy } from './Fiber';
 export { default as FiberProfileProxy } from './FiberProfile';
 export { default as FTTHClientProxy } from './FTTHClient';
 export { default as FusionProxy } from './Fusion';

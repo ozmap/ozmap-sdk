@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import { BaseModelSchema, stringOrObjectId } from './BaseModel';
+import { NetworkConnectorSchema } from './NetworkConnector';
+import { ProjectSchema } from './Project';
 
 enum NetworkConnectableKind {
   FIBER = 'Fiber',
@@ -14,7 +16,12 @@ const NetworkConnectableDataSchema = z.object({
   name: z.string().trim(),
 });
 
-const NetworkConnectableSchema = BaseModelSchema.merge(NetworkConnectableDataSchema);
+const NetworkConnectableSchema = BaseModelSchema.merge(NetworkConnectableDataSchema).merge(
+  z.object({
+    connectors: z.union([z.array(stringOrObjectId).max(2), z.array(NetworkConnectorSchema).max(2)]),
+    project: z.union([stringOrObjectId, ProjectSchema]),
+  }),
+);
 
 type NetworkConnectable = z.infer<typeof NetworkConnectableSchema>;
 

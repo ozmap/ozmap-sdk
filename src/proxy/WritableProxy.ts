@@ -1,8 +1,8 @@
 import Api from '../util/Api';
-import ReadableProxy from './ReadableProxy';
+import UpdatableProxy from './UpdatableProxy';
 import { BaseModel } from '../interface';
 
-abstract class WritableProxy<Record, CreateDTO, UpdateDTO> extends ReadableProxy<Record> {
+abstract class WritableProxy<Record, CreateDTO, UpdateDTO> extends UpdatableProxy<Record, UpdateDTO> {
   public async create({
     data,
     options,
@@ -12,25 +12,6 @@ abstract class WritableProxy<Record, CreateDTO, UpdateDTO> extends ReadableProxy
   }): Promise<Record> {
     return this.apiInstance.post<CreateDTO, Record>({
       route: this._route,
-      inputData: data,
-      options,
-    });
-  }
-
-  public async updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: BaseModel['id'];
-    data: UpdateDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
-    // @ts-expect-error enviar o mesmo external_id causa erro, desativando update por enquanto
-    data.external_id = undefined;
-
-    return this.apiInstance.patch<UpdateDTO>({
-      route: `${this._route}/${id}`,
       inputData: data,
       options,
     });
