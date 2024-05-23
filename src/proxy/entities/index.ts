@@ -7,6 +7,7 @@ export { default as BuildingProxy } from './Building';
 export { default as CableProxy } from './Cable';
 export { default as CableTypeProxy } from './CableType';
 export { default as ColorProxy } from './Color';
+export { default as CordProxy } from './Cord';
 export { default as DIOProxy } from './DIO';
 export { default as ConnectorProxy } from './Connector';
 export { default as ConnectorTypeProxy } from './ConnectorType';

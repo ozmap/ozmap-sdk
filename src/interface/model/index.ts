@@ -9,6 +9,7 @@ export * from './Cable';
 export * from './CableType';
 export * from './Color';
 export * from './Connector';
+export * from './Cord';
 export * from './DIO';
 export * from './ConnectorType';
 export * from './DIOType';
