@@ -17,7 +17,6 @@ const DIOTypeDataSchema = z.object({
 
 const DIOTypeSchema = BaseModelSchema.merge(DIOTypeDataSchema);
 const CreateDIOTypeDTOSchema = DIOTypeDataSchema.partial({
-  isBalanced: true,
   prefix: true,
   input_label: true,
   output_label: true,

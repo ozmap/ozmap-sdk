@@ -4,6 +4,8 @@ import { BaseModelSchema, stringOrObjectId } from './BaseModel';
 enum NetworkConnectorKind {
   SPLITTER = 'Splitter',
   DIO = 'DIO',
+  FUSION = 'Fusion',
+  CONNECTOR = 'Connector',
 }
 
 const NetworkConnectorDataSchema = z.object({
