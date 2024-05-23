@@ -11,7 +11,7 @@ import Api from '../../util/Api';
 
 class ConnectorTypeProxy extends WritableProxy<ConnectorType, CreateConnectorTypeDTO, UpdateConnectorTypeDTO> {
   protected get _route(): string {
-    return 'dio-types';
+    return 'connector-types';
   }
 
   public async create({

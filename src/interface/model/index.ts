@@ -13,6 +13,7 @@ export * from './ConnectorType';
 export * from './DIOType';
 export * from './FiberProfile';
 export * from './FTTHClient';
+export * from './FusionType';
 export * from './JunctionBox';
 export * from './JunctionBoxType';
 export * from './Point';

@@ -12,6 +12,7 @@ export { default as ConnectorTypeProxy } from './ConnectorType';
 export { default as DIOTypeProxy } from './DIOType';
 export { default as FiberProfileProxy } from './FiberProfile';
 export { default as FTTHClientProxy } from './FTTHClient';
+export { default as FusionType } from './FusionType';
 export { default as JunctionBoxProxy } from './JunctionBox';
 export { default as JunctionBoxTypeProxy } from './JunctionBoxType';
 export { default as NetworkConnectorProxy } from './NetworkConnector';

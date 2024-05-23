@@ -31,6 +31,7 @@ import {
   ProjectGroupProxy,
   UserProxy,
   ConnectorTypeProxy,
+  FusionType,
 } from './proxy';
 
 class OZMapSDK {
@@ -66,6 +67,7 @@ class OZMapSDK {
   public readonly projectGroup: ProjectGroupProxy;
   public readonly users: UserProxy;
   public readonly connectorType: ConnectorTypeProxy;
+  public readonly fusionType: FusionType;
 
   constructor(
     ozmapURL: string,
@@ -106,6 +108,7 @@ class OZMapSDK {
     this.projectGroup = new ProjectGroupProxy(this.apiInstance);
     this.users = new UserProxy(this.apiInstance);
     this.connectorType = new ConnectorTypeProxy(this.apiInstance);
+    this.fusionType = new FusionType(this.apiInstance);
   }
 }
 
