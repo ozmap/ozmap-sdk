@@ -34,6 +34,7 @@ import {
   FusionTypeProxy,
   ConnectorProxy,
   FusionProxy,
+  NetworkConnectableProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -65,6 +66,7 @@ class OZMapSDK {
   public readonly splitterType: SplitterTypeProxy;
   public readonly splitter: SplitterProxy;
   public readonly networkConnector: NetworkConnectorProxy;
+  public readonly networkConnectables: NetworkConnectableProxy;
   public readonly role: RoleProxy;
   public readonly projectGroup: ProjectGroupProxy;
   public readonly users: UserProxy;
@@ -115,6 +117,7 @@ class OZMapSDK {
     this.fusionType = new FusionTypeProxy(this.apiInstance);
     this.connector = new ConnectorProxy(this.apiInstance);
     this.fusion = new FusionProxy(this.apiInstance);
+    this.networkConnectables = new NetworkConnectableProxy(this.apiInstance);
   }
 }
 

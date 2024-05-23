@@ -28,6 +28,7 @@ export * from './ProjectGroup';
 export * from './Property';
 export * from './Role';
 export * from './User';
+export * from './NetworkConnectable';
 export * from './NetworkConnector';
 export * from './Tag';
 export * from './Splitter';

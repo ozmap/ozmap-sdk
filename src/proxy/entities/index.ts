@@ -17,6 +17,7 @@ export { default as FusionProxy } from './Fusion';
 export { default as FusionTypeProxy } from './FusionType';
 export { default as JunctionBoxProxy } from './JunctionBox';
 export { default as JunctionBoxTypeProxy } from './JunctionBoxType';
+export { default as NetworkConnectableProxy } from './NetworkConnectable';
 export { default as NetworkConnectorProxy } from './NetworkConnector';
 export { default as PointProxy } from './Point';
 export { default as PoleProxy } from './Pole';
