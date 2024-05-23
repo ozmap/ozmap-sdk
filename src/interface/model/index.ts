@@ -9,6 +9,7 @@ export * from './Cable';
 export * from './CableType';
 export * from './Color';
 export * from './DIO';
+export * from './ConnectorType';
 export * from './DIOType';
 export * from './FiberProfile';
 export * from './FTTHClient';

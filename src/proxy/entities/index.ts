@@ -8,6 +8,7 @@ export { default as CableProxy } from './Cable';
 export { default as CableTypeProxy } from './CableType';
 export { default as ColorProxy } from './Color';
 export { default as DIOProxy } from './DIO';
+export { default as ConnectorTypeProxy } from './ConnectorType';
 export { default as DIOTypeProxy } from './DIOType';
 export { default as FiberProfileProxy } from './FiberProfile';
 export { default as FTTHClientProxy } from './FTTHClient';
