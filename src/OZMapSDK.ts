@@ -40,6 +40,7 @@ import {
   NetworkConnectableProxy,
   FiberProxy,
   CordProxy,
+  ShelfTypeProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -84,6 +85,7 @@ class OZMapSDK {
   public readonly switchType: SwitchTypeProxy;
   public readonly fiber: FiberProxy;
   public readonly cord: CordProxy;
+  public readonly shelfType: ShelfTypeProxy;
 
   constructor(
     ozmapURL: string,
@@ -133,6 +135,7 @@ class OZMapSDK {
     this.networkConnectables = new NetworkConnectableProxy(this.apiInstance);
     this.fiber = new FiberProxy(this.apiInstance);
     this.cord = new CordProxy(this.apiInstance);
+    this.shelfType = new ShelfTypeProxy(this.apiInstance);
   }
 }
 

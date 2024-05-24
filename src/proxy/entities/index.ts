@@ -33,6 +33,7 @@ export { default as PropertyProxy } from './Property';
 export { default as RoleProxy } from './Role';
 export { default as SplitterProxy } from './Splitter';
 export { default as SplitterTypeProxy } from './SplitterType';
+export { default as ShelfTypeProxy } from './ShelfType';
 export { default as SwitchProxy } from './Switch';
 export { default as SwitchTypeProxy } from './SwitchType';
 export { default as TagProxy } from './Tag';
