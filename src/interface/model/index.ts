@@ -30,6 +30,7 @@ export * from './Project';
 export * from './ProjectGroup';
 export * from './Property';
 export * from './Role';
+export * from './Shelf';
 export * from './ShelfType';
 export * from './Switch';
 export * from './SwitchType';
