@@ -47,6 +47,8 @@ import {
   PONProxy,
   SlotProxy,
   ProspectProxy,
+  PendencyTypeProxy,
+  PendencyProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -98,6 +100,8 @@ class OZMapSDK {
   public readonly pon: PONProxy;
   public readonly slot: SlotProxy;
   public readonly prospect: ProspectProxy;
+  public readonly pendencyType: PendencyTypeProxy;
+  public readonly pendency: PendencyProxy;
 
   constructor(
     ozmapURL: string,
@@ -154,6 +158,8 @@ class OZMapSDK {
     this.pon = new PONProxy(this.apiInstance);
     this.slot = new SlotProxy(this.apiInstance);
     this.prospect = new ProspectProxy(this.apiInstance);
+    this.pendencyType = new PendencyTypeProxy(this.apiInstance);
+    this.pendency = new PendencyProxy(this.apiInstance);
   }
 }
 

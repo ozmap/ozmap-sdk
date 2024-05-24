@@ -9,7 +9,7 @@
     "coverage": "ts-node test --coverage --silent",
     "husky": "husky",
     "prettier:format": "prettier --config .prettierrc.cjs '**/*.{js,ts,json,md}' --write",
-    "pre-commit": "lint-staged",
+    "pre-commit": "lint-staged && npm run build",
     "lint": "eslint ./src --ext .cjs,.js,.ts",
     "lint:fix": "eslint ./src --ext .cjs,.js,.ts --fix",
     "test": "ts-node test"
