@@ -1,8 +1,6 @@
 import { z } from 'zod';
 import { stringOrObjectId } from './BaseModel';
 import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchema } from './NetworkConnector';
-import { BaseBoxSchema } from './BaseBox';
-import { ProjectSchema } from './Project';
 import { SplitterTypeSchema } from './SplitterType';
 
 const SplitterDataSchema = NetworkConnectorDataSchema.merge(
@@ -20,8 +18,6 @@ const SplitterDataSchema = NetworkConnectorDataSchema.merge(
 
 const SplitterSchema = NetworkConnectorSchema.merge(SplitterDataSchema).merge(
   z.object({
-    parent: z.union([stringOrObjectId, BaseBoxSchema]),
-    project: z.union([stringOrObjectId, ProjectSchema]),
     splitterType: z.union([stringOrObjectId, SplitterTypeSchema]),
     // quando modelar shelf ela entra aqui
     shelf: z.union([stringOrObjectId, NetworkConnectorSchema]).optional(),

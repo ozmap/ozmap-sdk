@@ -34,6 +34,9 @@ import {
   FusionTypeProxy,
   ConnectorProxy,
   FusionProxy,
+  PassingProxy,
+  SwitchProxy,
+  SwitchTypeProxy,
   NetworkConnectableProxy,
   FiberProxy,
   CordProxy,
@@ -76,6 +79,9 @@ class OZMapSDK {
   public readonly connectorType: ConnectorTypeProxy;
   public readonly fusionType: FusionTypeProxy;
   public readonly fusion: FusionProxy;
+  public readonly passing: PassingProxy;
+  public readonly switch: SwitchProxy;
+  public readonly switchType: SwitchTypeProxy;
   public readonly fiber: FiberProxy;
   public readonly cord: CordProxy;
 
@@ -121,6 +127,9 @@ class OZMapSDK {
     this.fusionType = new FusionTypeProxy(this.apiInstance);
     this.connector = new ConnectorProxy(this.apiInstance);
     this.fusion = new FusionProxy(this.apiInstance);
+    this.passing = new PassingProxy(this.apiInstance);
+    this.switch = new SwitchProxy(this.apiInstance);
+    this.switchType = new SwitchTypeProxy(this.apiInstance);
     this.networkConnectables = new NetworkConnectableProxy(this.apiInstance);
     this.fiber = new FiberProxy(this.apiInstance);
     this.cord = new CordProxy(this.apiInstance);

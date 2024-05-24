@@ -26,7 +26,7 @@ class JunctionBoxTypeProxy extends WritableProxy<JunctionBoxType, CreateJunction
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

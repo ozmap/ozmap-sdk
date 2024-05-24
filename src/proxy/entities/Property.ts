@@ -26,7 +26,7 @@ class PropertyProxy extends WritableProxy<Property, CreatePropertyDTO, UpdatePro
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

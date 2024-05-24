@@ -26,7 +26,7 @@ class ConnectorProxy extends WritableProxy<Connector, CreateConnectorDTO, Update
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

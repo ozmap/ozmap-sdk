@@ -20,7 +20,7 @@ class UserProxy extends WritableProxy<User, CreateUserDTO, UpdateUserDTO> {
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

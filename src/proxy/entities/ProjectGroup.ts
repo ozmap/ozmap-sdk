@@ -26,7 +26,7 @@ class ProjectGroupProxy extends WritableProxy<ProjectGroup, CreateProjectGroupDT
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

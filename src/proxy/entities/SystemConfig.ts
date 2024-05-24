@@ -16,7 +16,7 @@ class SystemConfigProxy extends Proxy {
     return this.apiInstance.get<SystemConfig>({ route: this._route });
   }
 
-  public async update({
+  public async updateById({
     id,
     data,
     options,
