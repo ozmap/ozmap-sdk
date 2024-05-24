@@ -30,6 +30,7 @@ export * from './PopType';
 export * from './Project';
 export * from './ProjectGroup';
 export * from './Property';
+export * from './Prospect';
 export * from './Role';
 export * from './Shelf';
 export * from './ShelfType';
