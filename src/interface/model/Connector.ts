@@ -4,6 +4,7 @@ import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchem
 import { BaseBoxSchema } from './BaseBox';
 import { ProjectSchema } from './Project';
 import { ConnectorTypeSchema } from './ConnectorType';
+import { NetworkConnectableSchema } from './NetworkConnectable';
 
 const ConnectorDataSchema = NetworkConnectorDataSchema.merge(
   z.object({
@@ -18,8 +19,7 @@ const ConnectorSchema = NetworkConnectorSchema.merge(ConnectorDataSchema).merge(
     parent: z.union([stringOrObjectId, BaseBoxSchema]),
     project: z.union([stringOrObjectId, ProjectSchema]),
     connectorType: z.union([stringOrObjectId, ConnectorTypeSchema]),
-    // falta modelagem de connectables
-    connectables: z.union([z.array(stringOrObjectId.nullable()), z.array(z.any().nullable())]),
+    connectables: z.union([z.array(stringOrObjectId.nullable()), z.array(NetworkConnectableSchema.nullable())]),
   }),
 );
 
