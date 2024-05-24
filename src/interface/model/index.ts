@@ -18,6 +18,7 @@ export * from './Fusion';
 export * from './FusionType';
 export * from './JunctionBox';
 export * from './JunctionBoxType';
+export * from './Passing';
 export * from './Point';
 export * from './Pole';
 export * from './PoleType';

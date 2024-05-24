@@ -1,8 +1,6 @@
 import { z } from 'zod';
 import { stringOrObjectId } from './BaseModel';
 import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchema } from './NetworkConnector';
-import { BaseBoxSchema } from './BaseBox';
-import { ProjectSchema } from './Project';
 import { DIOTypeSchema } from './DIOType';
 
 const DIODataSchema = NetworkConnectorDataSchema.merge(
@@ -25,8 +23,6 @@ const DIODataSchema = NetworkConnectorDataSchema.merge(
 
 const DIOSchema = NetworkConnectorSchema.merge(DIODataSchema).merge(
   z.object({
-    parent: z.union([stringOrObjectId, BaseBoxSchema]),
-    project: z.union([stringOrObjectId, ProjectSchema]),
     dioType: z.union([stringOrObjectId, DIOTypeSchema]),
     // quando modelar shelf ela entra aqui
     shelf: z.union([stringOrObjectId, NetworkConnectorSchema]).optional(),
