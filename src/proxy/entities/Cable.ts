@@ -20,7 +20,7 @@ class CableProxy extends WritableProxy<Cable, CreateCableDTO, UpdateCableDTO> {
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

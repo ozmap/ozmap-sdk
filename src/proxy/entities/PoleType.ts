@@ -26,7 +26,7 @@ class PoleTypeProxy extends WritableProxy<PoleType, CreatePoleTypeDTO, UpdatePol
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

@@ -26,7 +26,7 @@ class FusionTypeProxy extends WritableProxy<FusionType, CreateFusionTypeDTO, Upd
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

@@ -20,7 +20,7 @@ class PopProxy extends WritableProxy<Pop, CreatePopDTO, UpdatePopDTO> {
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

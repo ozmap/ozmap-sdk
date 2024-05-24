@@ -1,27 +1,27 @@
 import {
-  Fusion,
-  CreateFusionDTO,
-  CreateFusionDTOSchema,
-  UpdateFusionDTO,
-  UpdateFusionDTOSchema,
+  Switch,
+  CreateSwitchDTO,
+  CreateSwitchDTOSchema,
+  UpdateSwitchDTO,
+  UpdateSwitchDTOSchema,
 } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
 
-class FusionProxy extends WritableProxy<Fusion, CreateFusionDTO, UpdateFusionDTO> {
+class SwitchProxy extends WritableProxy<Switch, CreateSwitchDTO, UpdateSwitchDTO> {
   protected get _route(): string {
-    return 'fusions';
+    return 'switches';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateFusionDTO;
+    data: CreateSwitchDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Fusion> {
-    const parsedData = CreateFusionDTOSchema.parse(data);
+  }): Promise<Switch> {
+    const parsedData = CreateSwitchDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -31,14 +31,14 @@ class FusionProxy extends WritableProxy<Fusion, CreateFusionDTO, UpdateFusionDTO
     data,
     options,
   }: {
-    id: Fusion['id'];
-    data: UpdateFusionDTO;
+    id: Switch['id'];
+    data: UpdateSwitchDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateFusionDTOSchema.parse(data);
+    const parsedData = UpdateSwitchDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default FusionProxy;
+export default SwitchProxy;

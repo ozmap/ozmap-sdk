@@ -26,7 +26,7 @@ class BoxTemplateProxy extends WritableProxy<BoxTemplate, CreateBoxTemplateDTO, 
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

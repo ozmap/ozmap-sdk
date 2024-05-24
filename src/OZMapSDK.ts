@@ -34,6 +34,9 @@ import {
   FusionTypeProxy,
   ConnectorProxy,
   FusionProxy,
+  PassingProxy,
+  SwitchProxy,
+  SwitchTypeProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -72,6 +75,9 @@ class OZMapSDK {
   public readonly connectorType: ConnectorTypeProxy;
   public readonly fusionType: FusionTypeProxy;
   public readonly fusion: FusionProxy;
+  public readonly passing: PassingProxy;
+  public readonly switch: SwitchProxy;
+  public readonly switchType: SwitchTypeProxy;
 
   constructor(
     ozmapURL: string,
@@ -115,6 +121,9 @@ class OZMapSDK {
     this.fusionType = new FusionTypeProxy(this.apiInstance);
     this.connector = new ConnectorProxy(this.apiInstance);
     this.fusion = new FusionProxy(this.apiInstance);
+    this.passing = new PassingProxy(this.apiInstance);
+    this.switch = new SwitchProxy(this.apiInstance);
+    this.switchType = new SwitchTypeProxy(this.apiInstance);
   }
 }
 

@@ -26,7 +26,7 @@ class BoxTypeProxy extends WritableProxy<BoxType, CreateBoxTypeDTO, UpdateBoxTyp
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

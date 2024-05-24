@@ -20,7 +20,7 @@ class BoxProxy extends WritableProxy<Box, CreateBoxDTO, UpdateBoxDTO> {
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

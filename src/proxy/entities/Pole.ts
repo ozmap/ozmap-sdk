@@ -20,7 +20,7 @@ class PoleProxy extends WritableProxy<Pole, CreatePoleDTO, UpdatePoleDTO> {
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

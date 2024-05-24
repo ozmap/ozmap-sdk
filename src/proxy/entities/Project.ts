@@ -26,7 +26,7 @@ class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjec
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,
