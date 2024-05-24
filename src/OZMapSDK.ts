@@ -44,6 +44,8 @@ import {
   ShelfProxy,
   OLTProxy,
   OLTTypeProxy,
+  PONProxy,
+  SlotProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -92,6 +94,8 @@ class OZMapSDK {
   public readonly shelf: ShelfProxy;
   public readonly oltType: OLTTypeProxy;
   public readonly olt: OLTProxy;
+  public readonly pon: PONProxy;
+  public readonly slot: SlotProxy;
 
   constructor(
     ozmapURL: string,
@@ -145,6 +149,8 @@ class OZMapSDK {
     this.shelf = new ShelfProxy(this.apiInstance);
     this.olt = new OLTProxy(this.apiInstance);
     this.oltType = new OLTTypeProxy(this.apiInstance);
+    this.pon = new PONProxy(this.apiInstance);
+    this.slot = new SlotProxy(this.apiInstance);
   }
 }
 
