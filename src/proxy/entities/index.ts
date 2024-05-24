@@ -21,6 +21,8 @@ export { default as JunctionBoxProxy } from './JunctionBox';
 export { default as JunctionBoxTypeProxy } from './JunctionBoxType';
 export { default as NetworkConnectableProxy } from './NetworkConnectable';
 export { default as NetworkConnectorProxy } from './NetworkConnector';
+export { default as OLTProxy } from './OLT';
+export { default as OLTTypeProxy } from './OLTType';
 export { default as PassingProxy } from './Passing';
 export { default as PointProxy } from './Point';
 export { default as PoleProxy } from './Pole';

@@ -37,6 +37,8 @@ export * from './SwitchType';
 export * from './User';
 export * from './NetworkConnectable';
 export * from './NetworkConnector';
+export * from './OLT';
+export * from './OLTType';
 export * from './Tag';
 export * from './Splitter';
 export * from './SplitterType';

@@ -42,6 +42,8 @@ import {
   CordProxy,
   ShelfTypeProxy,
   ShelfProxy,
+  OLTProxy,
+  OLTTypeProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -88,6 +90,8 @@ class OZMapSDK {
   public readonly cord: CordProxy;
   public readonly shelfType: ShelfTypeProxy;
   public readonly shelf: ShelfProxy;
+  public readonly oltType: OLTTypeProxy;
+  public readonly olt: OLTProxy;
 
   constructor(
     ozmapURL: string,
@@ -139,6 +143,8 @@ class OZMapSDK {
     this.cord = new CordProxy(this.apiInstance);
     this.shelfType = new ShelfTypeProxy(this.apiInstance);
     this.shelf = new ShelfProxy(this.apiInstance);
+    this.olt = new OLTProxy(this.apiInstance);
+    this.oltType = new OLTTypeProxy(this.apiInstance);
   }
 }
 

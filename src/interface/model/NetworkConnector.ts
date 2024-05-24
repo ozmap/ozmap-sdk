@@ -11,6 +11,7 @@ enum NetworkConnectorKind {
   PASSING = 'Passing',
   SWITCH = 'Switch',
   SHELF = 'Shelf',
+  OLT = 'OLT',
 }
 
 const NetworkConnectorDataSchema = z.object({
