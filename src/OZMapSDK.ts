@@ -52,6 +52,8 @@ import {
   HorizontalCondominiumProxy,
   RegionProxy,
   RegionTypeProxy,
+  DuctProxy,
+  DuctTypeProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -108,6 +110,8 @@ class OZMapSDK {
   public readonly horizontalCondominium: HorizontalCondominiumProxy;
   public readonly region: RegionProxy;
   public readonly regionType: RegionTypeProxy;
+  public readonly duct: DuctProxy;
+  public readonly ductType: DuctTypeProxy;
 
   constructor(
     ozmapURL: string,
@@ -169,6 +173,8 @@ class OZMapSDK {
     this.horizontalCondominium = new HorizontalCondominiumProxy(this.apiInstance);
     this.region = new RegionProxy(this.apiInstance);
     this.regionType = new RegionTypeProxy(this.apiInstance);
+    this.duct = new DuctProxy(this.apiInstance);
+    this.ductType = new DuctTypeProxy(this.apiInstance);
   }
 }
 
