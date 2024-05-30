@@ -20,6 +20,7 @@ export * from './FiberProfile';
 export * from './FTTHClient';
 export * from './Fusion';
 export * from './FusionType';
+export * from './File';
 export * from './HorizontalCondominium';
 export * from './JunctionBox';
 export * from './JunctionBoxType';

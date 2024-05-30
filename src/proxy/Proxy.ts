@@ -1,9 +1,9 @@
 import Api from '../util/Api';
 
-abstract class Proxy {
+class Proxy {
   protected apiInstance: Api;
 
-  protected constructor(api: Api) {
+  public constructor(api: Api) {
     this.apiInstance = api;
   }
 }
