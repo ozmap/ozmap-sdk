@@ -32,6 +32,7 @@ export * from './PoleType';
 export * from './Pop';
 export * from './PON';
 export * from './PopType';
+export * from './Post';
 export * from './Project';
 export * from './ProjectGroup';
 export * from './Property';
