@@ -19,15 +19,13 @@ abstract class ReadableProxy<Record> extends Proxy {
     });
   }
 
-  public async findById({
-    id,
-    ...rest
-  }: {
-    id: BaseModel['id'];
-  } & Omit<Parameters<Api['get']>[0], 'route' | 'page' | 'limit' | 'filter' | 'sorter'>): Promise<Record | null> {
+  public async findById(
+    id: BaseModel['id'],
+    options?: Omit<Parameters<Api['get']>[0], 'route' | 'page' | 'limit' | 'filter' | 'sorter'>,
+  ): Promise<Record | null> {
     try {
       return await this.apiInstance.get<Record>({
-        ...rest,
+        ...options,
         route: `${this._route}/${id}`,
       });
     } catch (error: unknown) {

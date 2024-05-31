@@ -8,30 +8,20 @@ class SlotProxy extends WritableProxy<Slot, CreateSlotDTO, UpdateSlotDTO> {
     return 'slots';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateSlotDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Slot> {
+  public async create(data: CreateSlotDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Slot> {
     const parsedData = CreateSlotDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Slot['id'];
-    data: UpdateSlotDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Slot['id'],
+    data: UpdateSlotDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateSlotDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

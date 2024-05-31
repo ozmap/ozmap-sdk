@@ -8,30 +8,20 @@ class PONProxy extends WritableProxy<PON, CreatePONDTO, UpdatePONDTO> {
     return 'pons';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreatePONDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<PON> {
+  public async create(data: CreatePONDTO, options?: Parameters<Api['post']>[0]['options']): Promise<PON> {
     const parsedData = CreatePONDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: PON['id'];
-    data: UpdatePONDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: PON['id'],
+    data: UpdatePONDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdatePONDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

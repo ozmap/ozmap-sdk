@@ -14,30 +14,20 @@ class BuildingProxy extends WritableProxy<Building, CreateBuildingDTO, UpdateBui
     return 'buildings';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateBuildingDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Building> {
+  public async create(data: CreateBuildingDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Building> {
     const parsedData = CreateBuildingDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Building['id'];
-    data: UpdateBuildingDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Building['id'],
+    data: UpdateBuildingDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateBuildingDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

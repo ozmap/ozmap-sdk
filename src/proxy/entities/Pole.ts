@@ -8,30 +8,20 @@ class PoleProxy extends WritableProxy<Pole, CreatePoleDTO, UpdatePoleDTO> {
     return 'poles';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreatePoleDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Pole> {
+  public async create(data: CreatePoleDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Pole> {
     const parsedData = CreatePoleDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Pole['id'];
-    data: UpdatePoleDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Pole['id'],
+    data: UpdatePoleDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdatePoleDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

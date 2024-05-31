@@ -8,30 +8,20 @@ class CordProxy extends WritableProxy<Cord, CreateCordDTO, UpdateCordDTO> {
     return 'cords';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateCordDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Cord> {
+  public async create(data: CreateCordDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Cord> {
     const parsedData = CreateCordDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  update({
-    id,
-    data,
-    options,
-  }: {
-    id: Cord['id'];
-    data: UpdateCordDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Cord['id'],
+    data: UpdateCordDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateCordDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

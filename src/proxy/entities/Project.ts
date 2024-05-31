@@ -14,30 +14,20 @@ class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjec
     return 'projects';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateProjectDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Project> {
+  public async create(data: CreateProjectDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Project> {
     const parsedData = CreateProjectDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Project['id'];
-    data: UpdateProjectDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Project['id'],
+    data: UpdateProjectDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateProjectDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

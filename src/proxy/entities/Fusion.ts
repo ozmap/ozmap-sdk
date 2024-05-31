@@ -14,30 +14,20 @@ class FusionProxy extends WritableProxy<Fusion, CreateFusionDTO, UpdateFusionDTO
     return 'fusions';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateFusionDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Fusion> {
+  public async create(data: CreateFusionDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Fusion> {
     const parsedData = CreateFusionDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Fusion['id'];
-    data: UpdateFusionDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Fusion['id'],
+    data: UpdateFusionDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateFusionDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

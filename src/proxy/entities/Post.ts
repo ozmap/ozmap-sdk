@@ -7,13 +7,7 @@ class PostProxy extends WritableProxy<Post, CreatePostDTO, UpdatePostDTO> {
     return 'posts';
   }
 
-  async create({
-    data,
-    options,
-  }: {
-    data: CreatePostDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Post> {
+  async create(data: CreatePostDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Post> {
     const parsedData = CreatePostDTOSchema.parse(data);
     const tags = parsedData.tags || [];
 

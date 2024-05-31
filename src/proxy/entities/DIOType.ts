@@ -14,30 +14,20 @@ class DIOTypeProxy extends WritableProxy<DIOType, CreateDIOTypeDTO, UpdateDIOTyp
     return 'dio-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateDIOTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<DIOType> {
+  public async create(data: CreateDIOTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<DIOType> {
     const parsedData = CreateDIOTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: DIOType['id'];
-    data: UpdateDIOTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: DIOType['id'],
+    data: UpdateDIOTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateDIOTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

@@ -8,30 +8,20 @@ class UserProxy extends WritableProxy<User, CreateUserDTO, UpdateUserDTO> {
     return 'users';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateUserDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<User> {
+  public async create(data: CreateUserDTO, options?: Parameters<Api['post']>[0]['options']): Promise<User> {
     const parsedData = CreateUserDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: User['id'];
-    data: UpdateUserDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: User['id'],
+    data: UpdateUserDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateUserDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

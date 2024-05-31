@@ -8,30 +8,20 @@ class ColorProxy extends WritableProxy<Color, CreateColorDTO, UpdateColorDTO> {
     return 'colors';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateColorDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Color> {
+  public async create(data: CreateColorDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Color> {
     const parsedData = CreateColorDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Color['id'];
-    data: UpdateColorDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Color['id'],
+    data: UpdateColorDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateColorDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

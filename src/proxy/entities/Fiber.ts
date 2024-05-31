@@ -8,18 +8,14 @@ class FiberProxy extends UpdatableProxy<Fiber, UpdateFiberDTO> {
     return 'fibers';
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Fiber['id'];
-    data: UpdateFiberDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Fiber['id'],
+    data: UpdateFiberDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateFiberDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

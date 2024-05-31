@@ -14,30 +14,23 @@ class ProjectGroupProxy extends WritableProxy<ProjectGroup, CreateProjectGroupDT
     return 'project-groups';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateProjectGroupDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<ProjectGroup> {
+  public async create(
+    data: CreateProjectGroupDTO,
+    options?: Parameters<Api['post']>[0]['options'],
+  ): Promise<ProjectGroup> {
     const parsedData = CreateProjectGroupDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: ProjectGroup['id'];
-    data: UpdateProjectGroupDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: ProjectGroup['id'],
+    data: UpdateProjectGroupDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateProjectGroupDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

@@ -14,30 +14,20 @@ class ProspectProxy extends WritableProxy<Prospect, CreateProspectDTO, UpdatePro
     return 'prospects';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateProspectDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Prospect> {
+  public async create(data: CreateProspectDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Prospect> {
     const parsedData = CreateProspectDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Prospect['id'];
-    data: UpdateProspectDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Prospect['id'],
+    data: UpdateProspectDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateProspectDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 
