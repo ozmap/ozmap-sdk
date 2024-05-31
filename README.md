@@ -32,12 +32,19 @@ await ozmap.authentication('$OZMAP_USER', '$OZMAP_PASSWORD');
 
 Usage examples:
 
+After ozmap-sdk@1.0.0:
 ```ts
 // Fetching ALL cables
-let cables = await ozmap.getCable().getAll();
+const cables = await ozmap.cable.find();
+```
+
+Before ozmap-sdk@1.0.0:
+```ts
+// Fetching ALL cables
+const cables = await ozmap.getCable().getAll();
 
 // Fetch Cable by ID
-let cable = await ozmap.getCable().getById('$CABLE_ID');
+const cable = await ozmap.getCable().getById('$CABLE_ID');
 
 ...
 ```
