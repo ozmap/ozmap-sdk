@@ -11,7 +11,7 @@ import Api from '../../util/Api';
 
 class CableTypeProxy extends WritableProxy<CableType, CreateCableTypeDTO, UpdateCableTypeDTO> {
   protected get _route(): string {
-    return 'CableType-types';
+    return 'cable-types';
   }
 
   public async create(data: CreateCableTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<CableType> {
