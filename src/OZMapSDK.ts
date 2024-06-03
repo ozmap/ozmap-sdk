@@ -119,7 +119,7 @@ class OZMapSDK {
 
   constructor(
     ozmapURL: string,
-    options: ({ username: string; password: string } | { apiKey: string }) & {
+    options: ({ login: string; password: string } | { apiKey: string }) & {
       defaultHeaders?: Record<string, string>;
     },
   ) {

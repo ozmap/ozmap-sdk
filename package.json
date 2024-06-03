@@ -1,6 +1,6 @@
 {
   "name": "@ozmap/ozmap-sdk",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.5",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,13 +35,11 @@
   },
   "homepage": "https://github.com/ozmap/ozmap-sdk#readme",
   "dependencies": {
+    "@ozmap/logger": "^0.2.3",
     "axios": "^1.6.8",
     "bson-objectid": "^2.0.1",
     "http-status-codes": "^2.3.0",
     "lodash": "^4.17.21",
-    "superagent": "^6.1.0",
-    "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.5.5",
     "zod": "^3.22.4"
   },
   "devDependencies": {
