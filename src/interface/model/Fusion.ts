@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { stringOrObjectId } from './BaseModel';
 import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchema } from './NetworkConnector';
 import { FusionTypeSchema } from './FusionType';
+import { NetworkConnectableSchema } from './NetworkConnectable';
 
 const FusionDataSchema = NetworkConnectorDataSchema.merge(
   z.object({
@@ -14,8 +15,7 @@ const FusionDataSchema = NetworkConnectorDataSchema.merge(
 const FusionSchema = NetworkConnectorSchema.merge(FusionDataSchema).merge(
   z.object({
     fusionType: z.union([stringOrObjectId, FusionTypeSchema]),
-    // falta modelagem de connectables
-    connectables: z.union([z.array(stringOrObjectId.nullable()), z.array(z.any().nullable())]),
+    connectables: z.union([z.array(stringOrObjectId.nullable()), z.array(NetworkConnectableSchema.nullable())]),
   }),
 );
 

@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { stringOrObjectId } from './BaseModel';
 import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchema } from './NetworkConnector';
 import { SwitchTypeSchema } from './SwitchType';
+import { NetworkConnectableSchema } from './NetworkConnectable';
 
 const SwitchDataSchema = NetworkConnectorDataSchema.merge(
   z.object({
@@ -20,8 +21,7 @@ const SwitchSchema = NetworkConnectorSchema.merge(SwitchDataSchema)
       // todo quando modelar shelf ela entra aqui
       shelf: z.union([stringOrObjectId, NetworkConnectorSchema]).optional(),
       switchType: z.union([stringOrObjectId, SwitchTypeSchema]),
-      // todo falta modelagem de connectables
-      connectables: z.union([z.array(stringOrObjectId.nullable()), z.array(z.any().nullable())]),
+      connectables: z.union([z.array(stringOrObjectId.nullable()), z.array(NetworkConnectableSchema.nullable())]),
     }),
   )
   .partial({ manageable: true });

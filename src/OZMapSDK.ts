@@ -37,6 +37,9 @@ import {
   PassingProxy,
   SwitchProxy,
   SwitchTypeProxy,
+  NetworkConnectableProxy,
+  FiberProxy,
+  CordProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -68,6 +71,7 @@ class OZMapSDK {
   public readonly splitterType: SplitterTypeProxy;
   public readonly splitter: SplitterProxy;
   public readonly networkConnector: NetworkConnectorProxy;
+  public readonly networkConnectables: NetworkConnectableProxy;
   public readonly role: RoleProxy;
   public readonly projectGroup: ProjectGroupProxy;
   public readonly users: UserProxy;
@@ -78,6 +82,8 @@ class OZMapSDK {
   public readonly passing: PassingProxy;
   public readonly switch: SwitchProxy;
   public readonly switchType: SwitchTypeProxy;
+  public readonly fiber: FiberProxy;
+  public readonly cord: CordProxy;
 
   constructor(
     ozmapURL: string,
@@ -124,6 +130,9 @@ class OZMapSDK {
     this.passing = new PassingProxy(this.apiInstance);
     this.switch = new SwitchProxy(this.apiInstance);
     this.switchType = new SwitchTypeProxy(this.apiInstance);
+    this.networkConnectables = new NetworkConnectableProxy(this.apiInstance);
+    this.fiber = new FiberProxy(this.apiInstance);
+    this.cord = new CordProxy(this.apiInstance);
   }
 }
 
