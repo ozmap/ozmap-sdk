@@ -46,6 +46,7 @@ import {
   OLTTypeProxy,
   PONProxy,
   SlotProxy,
+  ProspectProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -96,6 +97,7 @@ class OZMapSDK {
   public readonly olt: OLTProxy;
   public readonly pon: PONProxy;
   public readonly slot: SlotProxy;
+  public readonly prospect: ProspectProxy;
 
   constructor(
     ozmapURL: string,
@@ -151,6 +153,7 @@ class OZMapSDK {
     this.oltType = new OLTTypeProxy(this.apiInstance);
     this.pon = new PONProxy(this.apiInstance);
     this.slot = new SlotProxy(this.apiInstance);
+    this.prospect = new ProspectProxy(this.apiInstance);
   }
 }
 
