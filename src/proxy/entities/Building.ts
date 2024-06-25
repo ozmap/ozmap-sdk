@@ -26,7 +26,7 @@ class BuildingProxy extends WritableProxy<Building, CreateBuildingDTO, UpdateBui
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

@@ -1,9 +1,15 @@
 import { z } from 'zod';
 import { BaseModelSchema, stringOrObjectId } from './BaseModel';
+import { BaseBoxSchema } from './BaseBox';
+import { ProjectSchema } from './Project';
 
 enum NetworkConnectorKind {
   SPLITTER = 'Splitter',
   DIO = 'DIO',
+  FUSION = 'Fusion',
+  CONNECTOR = 'Connector',
+  PASSING = 'Passing',
+  SWITCH = 'Switch',
 }
 
 const NetworkConnectorDataSchema = z.object({
@@ -28,7 +34,12 @@ const NetworkConnectorDataSchema = z.object({
   shelf: stringOrObjectId.optional(),
 });
 
-const NetworkConnectorSchema = BaseModelSchema.merge(NetworkConnectorDataSchema);
+const NetworkConnectorSchema = BaseModelSchema.merge(NetworkConnectorDataSchema).merge(
+  z.object({
+    parent: z.union([stringOrObjectId, BaseBoxSchema]),
+    project: z.union([stringOrObjectId, ProjectSchema]),
+  }),
+);
 
 type NetworkConnector = z.infer<typeof NetworkConnectorSchema>;
 

@@ -20,7 +20,7 @@ class DIOProxy extends WritableProxy<DIO, CreateDIODTO, UpdateDIODTO> {
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

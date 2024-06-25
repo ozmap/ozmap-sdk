@@ -30,6 +30,13 @@ import {
   RoleProxy,
   ProjectGroupProxy,
   UserProxy,
+  ConnectorTypeProxy,
+  FusionTypeProxy,
+  ConnectorProxy,
+  FusionProxy,
+  PassingProxy,
+  SwitchProxy,
+  SwitchTypeProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -64,6 +71,13 @@ class OZMapSDK {
   public readonly role: RoleProxy;
   public readonly projectGroup: ProjectGroupProxy;
   public readonly users: UserProxy;
+  public readonly connector: ConnectorProxy;
+  public readonly connectorType: ConnectorTypeProxy;
+  public readonly fusionType: FusionTypeProxy;
+  public readonly fusion: FusionProxy;
+  public readonly passing: PassingProxy;
+  public readonly switch: SwitchProxy;
+  public readonly switchType: SwitchTypeProxy;
 
   constructor(
     ozmapURL: string,
@@ -103,6 +117,13 @@ class OZMapSDK {
     this.role = new RoleProxy(this.apiInstance);
     this.projectGroup = new ProjectGroupProxy(this.apiInstance);
     this.users = new UserProxy(this.apiInstance);
+    this.connectorType = new ConnectorTypeProxy(this.apiInstance);
+    this.fusionType = new FusionTypeProxy(this.apiInstance);
+    this.connector = new ConnectorProxy(this.apiInstance);
+    this.fusion = new FusionProxy(this.apiInstance);
+    this.passing = new PassingProxy(this.apiInstance);
+    this.switch = new SwitchProxy(this.apiInstance);
+    this.switchType = new SwitchTypeProxy(this.apiInstance);
   }
 }
 

@@ -26,7 +26,7 @@ class PopTypeProxy extends WritableProxy<PopType, CreatePopTypeDTO, UpdatePopTyp
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

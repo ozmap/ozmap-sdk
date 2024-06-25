@@ -26,7 +26,7 @@ class SplitterProxy extends WritableProxy<Splitter, CreateSplitterDTO, UpdateSpl
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

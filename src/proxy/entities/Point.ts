@@ -20,7 +20,7 @@ class PointProxy extends WritableProxy<Point, CreatePointDTO, UpdatePointDTO> {
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,

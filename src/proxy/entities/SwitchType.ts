@@ -1,27 +1,27 @@
 import {
-  Project,
-  CreateProjectDTO,
-  CreateProjectDTOSchema,
-  UpdateProjectDTO,
-  UpdateProjectDTOSchema,
+  SwitchType,
+  CreateSwitchTypeDTO,
+  CreateSwitchTypeDTOSchema,
+  UpdateSwitchTypeDTO,
+  UpdateSwitchTypeDTOSchema,
 } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
 
-class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjectDTO> {
+class SwitchTypeProxy extends WritableProxy<SwitchType, CreateSwitchTypeDTO, UpdateSwitchTypeDTO> {
   protected get _route(): string {
-    return 'projects';
+    return 'switch-types';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateProjectDTO;
+    data: CreateSwitchTypeDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Project> {
-    const parsedData = CreateProjectDTOSchema.parse(data);
+  }): Promise<SwitchType> {
+    const parsedData = CreateSwitchTypeDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -31,14 +31,14 @@ class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjec
     data,
     options,
   }: {
-    id: Project['id'];
-    data: UpdateProjectDTO;
+    id: SwitchType['id'];
+    data: UpdateSwitchTypeDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateProjectDTOSchema.parse(data);
+    const parsedData = UpdateSwitchTypeDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default ProjectProxy;
+export default SwitchTypeProxy;

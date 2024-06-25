@@ -1,27 +1,27 @@
 import {
-  Project,
-  CreateProjectDTO,
-  CreateProjectDTOSchema,
-  UpdateProjectDTO,
-  UpdateProjectDTOSchema,
+  Fusion,
+  CreateFusionDTO,
+  CreateFusionDTOSchema,
+  UpdateFusionDTO,
+  UpdateFusionDTOSchema,
 } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
 
-class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjectDTO> {
+class FusionProxy extends WritableProxy<Fusion, CreateFusionDTO, UpdateFusionDTO> {
   protected get _route(): string {
-    return 'projects';
+    return 'fusions';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateProjectDTO;
+    data: CreateFusionDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Project> {
-    const parsedData = CreateProjectDTOSchema.parse(data);
+  }): Promise<Fusion> {
+    const parsedData = CreateFusionDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -31,14 +31,14 @@ class ProjectProxy extends WritableProxy<Project, CreateProjectDTO, UpdateProjec
     data,
     options,
   }: {
-    id: Project['id'];
-    data: UpdateProjectDTO;
+    id: Fusion['id'];
+    data: UpdateFusionDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateProjectDTOSchema.parse(data);
+    const parsedData = UpdateFusionDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default ProjectProxy;
+export default FusionProxy;

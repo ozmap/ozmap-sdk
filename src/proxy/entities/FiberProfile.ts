@@ -26,7 +26,7 @@ class FiberProfileProxy extends WritableProxy<FiberProfile, CreateFiberProfileDT
     return super.create({ data: parsedData, options });
   }
 
-  update({
+  updateById({
     id,
     data,
     options,
