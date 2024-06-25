@@ -5,7 +5,7 @@ import Api from '../../util/Api';
 
 class PointProxy extends WritableProxy<Point, CreatePointDTO, UpdatePointDTO> {
   protected get _route(): string {
-    return 'Points';
+    return 'points';
   }
 
   public async create({
@@ -25,7 +25,7 @@ class PointProxy extends WritableProxy<Point, CreatePointDTO, UpdatePointDTO> {
     data,
     options,
   }: {
-    id: string;
+    id: Point['id'];
     data: UpdatePointDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {

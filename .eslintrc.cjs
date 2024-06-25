@@ -32,6 +32,7 @@ module.exports = {
     'multiline-ternary': 0,
     'no-unused-vars': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     'no-shadow': 0,
     '@typescript-eslint/no-unused-vars': 'error',

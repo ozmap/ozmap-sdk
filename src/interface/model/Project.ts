@@ -31,10 +31,12 @@ const ProjectDataSchema = z.object({
 // todo corrigir tipo recursivo
 
 const ProjectSchema = BaseModelSchema.merge(ProjectDataSchema);
-const CreateProjectDTOSchema = ProjectSchema.omit({ hasLogo: true })
-  .partial({ drop: true, defaultPonPotency: true })
-  .merge(z.object({}));
-const UpdateProjectDTOSchema = ProjectSchema.omit({ defaultDropSize: true, hasLogo: true }).partial();
+const CreateProjectDTOSchema = ProjectDataSchema.omit({ hasLogo: true })
+  .partial({ drop: true, defaultPonPotency: true, area: true, parents: true })
+  .merge(z.object({ external_id: z.any().optional() }));
+const UpdateProjectDTOSchema = ProjectDataSchema.merge(z.object({ external_id: z.any().optional() }))
+  .omit({ defaultDropSize: true, hasLogo: true })
+  .partial();
 
 type Project = z.infer<typeof ProjectSchema>;
 type CreateProjectDTO = z.infer<typeof CreateProjectDTOSchema>;
