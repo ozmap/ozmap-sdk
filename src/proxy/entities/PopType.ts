@@ -1,27 +1,27 @@
 import {
-  BoxType,
-  CreateBoxTypeDTO,
-  CreateBoxTypeDTOSchema,
-  UpdateBoxTypeDTO,
-  UpdateBoxTypeDTOSchema,
+  PopType,
+  CreatePopTypeDTO,
+  CreatePopTypeDTOSchema,
+  UpdatePopTypeDTO,
+  UpdatePopTypeDTOSchema,
 } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
 
-class BoxTypeProxy extends WritableProxy<BoxType, CreateBoxTypeDTO, UpdateBoxTypeDTO> {
+class PopTypeProxy extends WritableProxy<PopType, CreatePopTypeDTO, UpdatePopTypeDTO> {
   protected get _route(): string {
-    return 'box-types';
+    return 'pop-types';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateBoxTypeDTO;
+    data: CreatePopTypeDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<BoxType> {
-    const parsedData = CreateBoxTypeDTOSchema.parse(data);
+  }): Promise<PopType> {
+    const parsedData = CreatePopTypeDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -31,14 +31,14 @@ class BoxTypeProxy extends WritableProxy<BoxType, CreateBoxTypeDTO, UpdateBoxTyp
     data,
     options,
   }: {
-    id: BoxType['id'];
-    data: UpdateBoxTypeDTO;
+    id: PopType['id'];
+    data: UpdatePopTypeDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateBoxTypeDTOSchema.parse(data);
+    const parsedData = UpdatePopTypeDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default BoxTypeProxy;
+export default PopTypeProxy;

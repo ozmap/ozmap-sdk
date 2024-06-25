@@ -41,12 +41,28 @@ const BoxSchema = BaseModelSchema.merge(BoxDataSchema).merge(
 const CreateBoxDTOSchema = BoxDataSchema.partial({
   name: true,
   pole: true,
-}).merge(
-  z.object({
-    max_distance: z.number().optional(),
-  }),
-);
-const UpdateBoxDTOSchema = BoxDataSchema.omit({ project: true, kind: true, cables: true }).partial();
+  kind: true,
+})
+  .omit({ cables: true })
+  .merge(
+    z.object({
+      max_distance: z.number().optional(),
+      external_id: z.any().optional(),
+      template: stringOrObjectId.optional(),
+      tags: z.array(stringOrObjectId).default([]).optional(),
+      shared: z.boolean().default(false).optional(),
+      draft: z.boolean().default(false).optional(),
+      certified: z.boolean().default(false).optional(),
+      default_reserve: z.number().default(0).optional(),
+    }),
+  );
+const UpdateBoxDTOSchema = BoxDataSchema.merge(z.object({ external_id: z.any().optional() }))
+  .omit({
+    project: true,
+    kind: true,
+    cables: true,
+  })
+  .partial();
 
 type Box = z.infer<typeof BoxSchema>;
 type CreateBoxDTO = z.infer<typeof CreateBoxDTOSchema>;

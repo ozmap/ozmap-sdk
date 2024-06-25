@@ -1,27 +1,27 @@
 import {
-  BoxType,
-  CreateBoxTypeDTO,
-  CreateBoxTypeDTOSchema,
-  UpdateBoxTypeDTO,
-  UpdateBoxTypeDTOSchema,
+  Property,
+  CreatePropertyDTO,
+  CreatePropertyDTOSchema,
+  UpdatePropertyDTO,
+  UpdatePropertyDTOSchema,
 } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
 
-class BoxTypeProxy extends WritableProxy<BoxType, CreateBoxTypeDTO, UpdateBoxTypeDTO> {
+class PropertyProxy extends WritableProxy<Property, CreatePropertyDTO, UpdatePropertyDTO> {
   protected get _route(): string {
-    return 'box-types';
+    return 'properties';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateBoxTypeDTO;
+    data: CreatePropertyDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<BoxType> {
-    const parsedData = CreateBoxTypeDTOSchema.parse(data);
+  }): Promise<Property> {
+    const parsedData = CreatePropertyDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -31,14 +31,14 @@ class BoxTypeProxy extends WritableProxy<BoxType, CreateBoxTypeDTO, UpdateBoxTyp
     data,
     options,
   }: {
-    id: BoxType['id'];
-    data: UpdateBoxTypeDTO;
+    id: Property['id'];
+    data: UpdatePropertyDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateBoxTypeDTOSchema.parse(data);
+    const parsedData = UpdatePropertyDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default BoxTypeProxy;
+export default PropertyProxy;
