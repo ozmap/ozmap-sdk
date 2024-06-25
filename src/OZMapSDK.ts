@@ -49,6 +49,9 @@ import {
   ProspectProxy,
   PendencyTypeProxy,
   PendencyProxy,
+  HorizontalCondominiumProxy,
+  RegionProxy,
+  RegionTypeProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -102,6 +105,9 @@ class OZMapSDK {
   public readonly prospect: ProspectProxy;
   public readonly pendencyType: PendencyTypeProxy;
   public readonly pendency: PendencyProxy;
+  public readonly horizontalCondominium: HorizontalCondominiumProxy;
+  public readonly region: RegionProxy;
+  public readonly regionType: RegionTypeProxy;
 
   constructor(
     ozmapURL: string,
@@ -160,6 +166,9 @@ class OZMapSDK {
     this.prospect = new ProspectProxy(this.apiInstance);
     this.pendencyType = new PendencyTypeProxy(this.apiInstance);
     this.pendency = new PendencyProxy(this.apiInstance);
+    this.horizontalCondominium = new HorizontalCondominiumProxy(this.apiInstance);
+    this.region = new RegionProxy(this.apiInstance);
+    this.regionType = new RegionTypeProxy(this.apiInstance);
   }
 }
 
