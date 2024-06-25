@@ -1,21 +1,21 @@
-import { Tag, CreateTagDTO, UpdateTagDTO, CreateTagDTOSchema, UpdateTagDTOSchema } from '../../interface';
+import { User, CreateUserDTO, CreateUserDTOSchema, UpdateUserDTO, UpdateUserDTOSchema } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
 
-class TagProxy extends WritableProxy<Tag, CreateTagDTO, UpdateTagDTO> {
+class UserProxy extends WritableProxy<User, CreateUserDTO, UpdateUserDTO> {
   protected get _route(): string {
-    return 'tags';
+    return 'users';
   }
 
   public async create({
     data,
     options,
   }: {
-    data: CreateTagDTO;
+    data: CreateUserDTO;
     options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Tag> {
-    const parsedData = CreateTagDTOSchema.parse(data);
+  }): Promise<User> {
+    const parsedData = CreateUserDTOSchema.parse(data);
 
     return super.create({ data: parsedData, options });
   }
@@ -25,14 +25,14 @@ class TagProxy extends WritableProxy<Tag, CreateTagDTO, UpdateTagDTO> {
     data,
     options,
   }: {
-    id: Tag['id'];
-    data: UpdateTagDTO;
+    id: User['id'];
+    data: UpdateUserDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {
-    const parsedData = UpdateTagDTOSchema.parse(data);
+    const parsedData = UpdateUserDTOSchema.parse(data);
 
     return super.updateById({ id, data: parsedData, options });
   }
 }
 
-export default TagProxy;
+export default UserProxy;

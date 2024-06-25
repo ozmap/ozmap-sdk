@@ -13,7 +13,9 @@ const PointSchema = BaseModelSchema.merge(PointDataSchema).merge(
     tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
   }),
 );
-const CreatePointDTOSchema = PointDataSchema.merge(z.object({}));
+const CreatePointDTOSchema = PointDataSchema.omit({ kind: true, adjacents: true })
+  .partial({ tags: true })
+  .merge(z.object({}));
 const UpdatePointDTOSchema = z.object({});
 
 type Point = z.infer<typeof PointSchema>;

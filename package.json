@@ -1,11 +1,11 @@
 {
   "name": "@ozmap/ozmap-sdk",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsup src/index.ts --dts",
     "coverage": "ts-node test --coverage --silent",
     "husky": "husky",
     "prettier:format": "prettier --config .prettierrc.cjs '**/*.{js,ts,json,md}' --write",
@@ -37,12 +37,9 @@
   "dependencies": {
     "axios": "^1.6.8",
     "bson-objectid": "^2.0.1",
-    "http-status": "^1.5.0",
     "http-status-codes": "^2.3.0",
-    "loader": "^2.1.1",
     "lodash": "^4.17.21",
     "superagent": "^6.1.0",
-    "tslog": "^3.2.0",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5",
     "zod": "^3.22.4"
@@ -59,11 +56,10 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.0",
-    "jest": "^27.0.4",
     "lint-staged": "^12.1.4",
     "prettier": "^2.4.1",
-    "ts-jest": "^27.0.7",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.4"
+    "tsup": "^8.0.2",
+    "typescript": "^4.9.5"
   }
 }

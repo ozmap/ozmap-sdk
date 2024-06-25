@@ -5,7 +5,7 @@ import Api from '../../util/Api';
 
 class ColorProxy extends WritableProxy<Color, CreateColorDTO, UpdateColorDTO> {
   protected get _route(): string {
-    return 'box-templates';
+    return 'colors';
   }
 
   public async create({
@@ -25,7 +25,7 @@ class ColorProxy extends WritableProxy<Color, CreateColorDTO, UpdateColorDTO> {
     data,
     options,
   }: {
-    id: string;
+    id: Color['id'];
     data: UpdateColorDTO;
     options?: Parameters<Api['patch']>[0]['options'];
   }): Promise<void> {

@@ -1,9 +1,16 @@
 import Pagination from '../interface/Pagination';
 import Proxy from './Proxy';
 import Api from '../util/Api';
+import { StatusCodes } from 'http-status-codes';
+import { AxiosError } from 'axios';
+import { BaseModel } from '../interface';
 
 abstract class ReadableProxy<Record> extends Proxy {
   protected abstract get _route(): string;
+
+  public constructor(api: Api) {
+    super(api);
+  }
 
   public async find(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Pagination<Record>> {
     return this.apiInstance.get<Pagination<Record>>({
@@ -14,15 +21,23 @@ abstract class ReadableProxy<Record> extends Proxy {
 
   public async findById({
     id,
-    options,
+    ...rest
   }: {
-    id: string;
-    options?: Parameters<Api['get']>[0]['options'];
-  }): Promise<Record> {
-    return this.apiInstance.get({
-      route: `${this._route}/${id}`,
-      options,
-    });
+    id: BaseModel['id'];
+  } & Omit<Parameters<Api['get']>[0], 'route' | 'page' | 'limit' | 'filter' | 'sorter'>): Promise<Record | null> {
+    try {
+      return await this.apiInstance.get<Record>({
+        ...rest,
+        route: `${this._route}/${id}`,
+      });
+    } catch (error: unknown) {
+      const axiosError = error as AxiosError;
+      if (axiosError?.status === StatusCodes.NOT_FOUND) {
+        return null;
+      }
+
+      throw error;
+    }
   }
 }
 
