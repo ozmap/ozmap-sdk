@@ -27,6 +27,9 @@ import {
   SplitterProxy,
   DIOProxy,
   DIOTypeProxy,
+  RoleProxy,
+  ProjectGroupProxy,
+  UserProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -58,6 +61,9 @@ class OZMapSDK {
   public readonly splitterType: SplitterTypeProxy;
   public readonly splitter: SplitterProxy;
   public readonly networkConnector: NetworkConnectorProxy;
+  public readonly role: RoleProxy;
+  public readonly projectGroup: ProjectGroupProxy;
+  public readonly users: UserProxy;
 
   constructor(
     ozmapURL: string,
@@ -94,6 +100,9 @@ class OZMapSDK {
     this.networkConnector = new NetworkConnectorProxy(this.apiInstance);
     this.dio = new DIOProxy(this.apiInstance);
     this.dioType = new DIOTypeProxy(this.apiInstance);
+    this.role = new RoleProxy(this.apiInstance);
+    this.projectGroup = new ProjectGroupProxy(this.apiInstance);
+    this.users = new UserProxy(this.apiInstance);
   }
 }
 
