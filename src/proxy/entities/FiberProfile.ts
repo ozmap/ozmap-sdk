@@ -14,30 +14,23 @@ class FiberProfileProxy extends WritableProxy<FiberProfile, CreateFiberProfileDT
     return 'fiber-profiles';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateFiberProfileDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<FiberProfile> {
+  public async create(
+    data: CreateFiberProfileDTO,
+    options?: Parameters<Api['post']>[0]['options'],
+  ): Promise<FiberProfile> {
     const parsedData = CreateFiberProfileDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: FiberProfile['id'];
-    data: UpdateFiberProfileDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: FiberProfile['id'],
+    data: UpdateFiberProfileDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateFiberProfileDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

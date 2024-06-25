@@ -14,30 +14,20 @@ class OLTTypeProxy extends WritableProxy<OLTType, CreateOLTTypeDTO, UpdateOLTTyp
     return 'olt-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateOLTTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<OLTType> {
+  public async create(data: CreateOLTTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<OLTType> {
     const parsedData = CreateOLTTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: OLTType['id'];
-    data: UpdateOLTTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: OLTType['id'],
+    data: UpdateOLTTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateOLTTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

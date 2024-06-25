@@ -8,30 +8,20 @@ class PopProxy extends WritableProxy<Pop, CreatePopDTO, UpdatePopDTO> {
     return 'pops';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreatePopDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Pop> {
+  public async create(data: CreatePopDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Pop> {
     const parsedData = CreatePopDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Pop['id'];
-    data: UpdatePopDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Pop['id'],
+    data: UpdatePopDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdatePopDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

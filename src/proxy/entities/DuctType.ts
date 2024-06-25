@@ -1,6 +1,6 @@
 import {
-  DuctType,
   CreateDuctTypeDTO,
+  DuctType,
   CreateDuctTypeDTOSchema,
   UpdateDuctTypeDTO,
   UpdateDuctTypeDTOSchema,
@@ -14,30 +14,20 @@ class DuctTypeProxy extends WritableProxy<DuctType, CreateDuctTypeDTO, UpdateDuc
     return 'duct-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateDuctTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<DuctType> {
+  public async create(data: CreateDuctTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<DuctType> {
     const parsedData = CreateDuctTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: DuctType['id'];
-    data: UpdateDuctTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: DuctType['id'],
+    data: UpdateDuctTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateDuctTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

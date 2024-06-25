@@ -14,30 +14,20 @@ class SwitchTypeProxy extends WritableProxy<SwitchType, CreateSwitchTypeDTO, Upd
     return 'switch-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateSwitchTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<SwitchType> {
+  public async create(data: CreateSwitchTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<SwitchType> {
     const parsedData = CreateSwitchTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: SwitchType['id'];
-    data: UpdateSwitchTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: SwitchType['id'],
+    data: UpdateSwitchTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateSwitchTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

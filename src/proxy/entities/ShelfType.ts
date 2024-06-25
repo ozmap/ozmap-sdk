@@ -14,30 +14,20 @@ class ShelfTypeProxy extends WritableProxy<ShelfType, CreateShelfTypeDTO, Update
     return 'shelf-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateShelfTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<ShelfType> {
+  public async create(data: CreateShelfTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<ShelfType> {
     const parsedData = CreateShelfTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: ShelfType['id'];
-    data: UpdateShelfTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: ShelfType['id'],
+    data: UpdateShelfTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateShelfTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

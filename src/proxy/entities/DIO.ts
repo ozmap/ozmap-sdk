@@ -1,4 +1,4 @@
-import { DIO, CreateDIODTO, CreateDIODTOSchema, UpdateDIODTO, UpdateDIODTOSchema } from '../../interface';
+import { CreateDIODTO, DIO, CreateDIODTOSchema, UpdateDIODTO, UpdateDIODTOSchema } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
 import Api from '../../util/Api';
@@ -7,31 +7,20 @@ class DIOProxy extends WritableProxy<DIO, CreateDIODTO, UpdateDIODTO> {
   protected get _route(): string {
     return 'dios';
   }
-
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateDIODTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<DIO> {
+  public async create(data: CreateDIODTO, options?: Parameters<Api['post']>[0]['options']): Promise<DIO> {
     const parsedData = CreateDIODTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: DIO['id'];
-    data: UpdateDIODTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: DIO['id'],
+    data: UpdateDIODTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateDIODTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

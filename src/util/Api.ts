@@ -1,11 +1,11 @@
+import createLogger from '@ozmap/logger';
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import _ from 'lodash';
 
 import { ApiFilter, ApiFilterSchema, ApiSort, ApiSortSchema } from '../interface';
-import Logger from '../util/Logger';
 
-const logger = Logger(__filename);
+const logger = createLogger(__filename);
 
 declare module 'axios' {
   interface AxiosRequestConfig {
@@ -13,17 +13,20 @@ declare module 'axios' {
   }
 }
 
+const LOGIN_URL = '/api/v2/users/login?type=API';
+
 class Api {
   protected readonly TIMEOUT_RETRIES = 2;
   protected readonly RESET_RETRIES = 1;
   protected readonly UNAUTHORIZED_RETRIES = 1;
 
+  protected readonly apiOptions: { login: string; password: string } | { apiKey: string };
+
   protected axiosInstance: AxiosInstance;
-  protected authenticated = false;
 
   constructor(
     ozmapURL: string,
-    options: ({ username: string; password: string } | { apiKey: string }) & {
+    options: ({ login: string; password: string } | { apiKey: string }) & {
       defaultHeaders?: Record<string, string>;
     },
   ) {
@@ -31,8 +34,9 @@ class Api {
 
     if ('apiKey' in options) {
       headers.Authorization = options.apiKey;
-      this.authenticated = true;
     }
+
+    this.apiOptions = options;
 
     this.axiosInstance = axios.create({
       baseURL: ozmapURL,
@@ -68,7 +72,7 @@ class Api {
       }
     }
 
-    throw error.response;
+    throw error.response || error;
   }
 
   protected async handleTimeoutError(config: AxiosRequestConfig): Promise<AxiosResponse> {
@@ -90,11 +94,23 @@ class Api {
   }
 
   protected async handleUnauthorizedError(config: AxiosRequestConfig): Promise<AxiosResponse> {
-    // aqui vai fazer login dnvo
+    await this.login();
+
     return this.axiosInstance.request({
       ...config,
       retriesLeft: (config.retriesLeft || this.UNAUTHORIZED_RETRIES) - 1,
     });
+  }
+
+  protected async login(): Promise<void> {
+    const { data } = await this.axiosInstance.post(LOGIN_URL, this.apiOptions, {
+      retriesLeft: 0,
+      headers: {
+        Authorization: 'apiKey' in this.apiOptions,
+      },
+    });
+
+    this.axiosInstance.defaults.headers.common['Authorization'] = data.authorization;
   }
 
   async post<INPUT, OUTPUT>({
@@ -106,7 +122,7 @@ class Api {
     inputData?: INPUT;
     options?: Omit<AxiosRequestConfig, 'url'>;
   }): Promise<OUTPUT> {
-    logger.silly(`[POST] api/v2/${route} -> ${JSON.stringify(inputData)}`);
+    logger.debug(`[POST] api/v2/${route} -> ${JSON.stringify(inputData)}`);
 
     try {
       const { data } = await this.axiosInstance.post(`/api/v2/${route}`, inputData, options);
@@ -117,7 +133,7 @@ class Api {
         throw e;
       }
 
-      logger.debug(`Fail to POST. Error: ${e.message || e.data}, StatusCode: ${e.status}`, {
+      logger.debug(`Fail to POST. Error: ${JSON.stringify(e.message || e.data)}, StatusCode: ${e.status}`, {
         model: route,
         data: inputData,
       });
@@ -146,7 +162,7 @@ class Api {
     select?: string;
     options?: Omit<AxiosRequestConfig, 'url'>;
   }): Promise<OUTPUT> {
-    logger.silly(`[GET] api/v2/${route} -> ${JSON.stringify({})}`);
+    logger.debug(`[GET] api/v2/${route} -> ${JSON.stringify({})}`);
 
     const filterParsed = ApiFilterSchema.parse(filter);
     const sorterParsed = ApiSortSchema.parse(sorter);
@@ -173,7 +189,7 @@ class Api {
         throw e;
       }
 
-      logger.debug(`Fail to GET. Error: ${e.message || e.data}, StatusCode: ${e.status}`, {
+      logger.debug(`Fail to GET. Error: ${JSON.stringify(e.message || e.data)}, StatusCode: ${e.status}`, {
         model: route,
         filter,
         sorter,
@@ -192,7 +208,7 @@ class Api {
     inputData: INPUT;
     options?: Omit<AxiosRequestConfig, 'url'>;
   }): Promise<void> {
-    logger.silly(`[PATCH] api/v2/${route} -> ${JSON.stringify(inputData)}`);
+    logger.debug(`[PATCH] api/v2/${route} -> ${JSON.stringify(inputData)}`);
 
     try {
       await this.axiosInstance.patch(`/api/v2/${route}`, inputData, options);
@@ -201,7 +217,7 @@ class Api {
         throw e;
       }
 
-      logger.debug(`Fail to PATCH. Error: ${e.message || e.data}, StatusCode: ${e.status}`, {
+      logger.debug(`Fail to PATCH. Error: ${JSON.stringify(e.message || e.data)}, StatusCode: ${e.status}`, {
         model: route,
         data: inputData,
       });
@@ -211,7 +227,7 @@ class Api {
   }
 
   async delete({ route, options }: { route: string; options?: Omit<AxiosRequestConfig, 'url'> }): Promise<void> {
-    logger.silly(`[DELETE] api/v2/${route}`);
+    logger.debug(`[DELETE] api/v2/${route}`);
 
     try {
       await this.axiosInstance.delete(`/api/v2/${route}`, options);
@@ -220,7 +236,7 @@ class Api {
         throw e;
       }
 
-      logger.debug(`Fail to DELETE. Error: ${e.message || e.data}, StatusCode: ${e.status}`);
+      logger.debug(`Fail to DELETE. Error: ${JSON.stringify(e.message || e.data)}, StatusCode: ${e.status}`);
 
       throw e;
     }

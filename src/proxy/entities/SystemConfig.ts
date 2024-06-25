@@ -16,15 +16,11 @@ class SystemConfigProxy extends Proxy {
     return this.apiInstance.get<SystemConfig>({ route: this._route });
   }
 
-  public async updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: SystemConfig['id'];
-    data: UpdateSystemConfigDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: SystemConfig['id'],
+    data: UpdateSystemConfigDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateSystemConfigDTOSchema.parse(data);
 
     return this.apiInstance.patch({

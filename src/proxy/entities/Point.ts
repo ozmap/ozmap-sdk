@@ -8,30 +8,20 @@ class PointProxy extends WritableProxy<Point, CreatePointDTO, UpdatePointDTO> {
     return 'points';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreatePointDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Point> {
+  public async create(data: CreatePointDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Point> {
     const parsedData = CreatePointDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: Point['id'];
-    data: UpdatePointDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Point['id'],
+    data: UpdatePointDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdatePointDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

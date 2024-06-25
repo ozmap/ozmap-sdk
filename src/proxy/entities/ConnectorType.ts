@@ -14,30 +14,23 @@ class ConnectorTypeProxy extends WritableProxy<ConnectorType, CreateConnectorTyp
     return 'connector-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateConnectorTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<ConnectorType> {
+  public async create(
+    data: CreateConnectorTypeDTO,
+    options?: Parameters<Api['post']>[0]['options'],
+  ): Promise<ConnectorType> {
     const parsedData = CreateConnectorTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: ConnectorType['id'];
-    data: UpdateConnectorTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: ConnectorType['id'],
+    data: UpdateConnectorTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateConnectorTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

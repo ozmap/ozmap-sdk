@@ -14,30 +14,20 @@ class BoxTypeProxy extends WritableProxy<BoxType, CreateBoxTypeDTO, UpdateBoxTyp
     return 'box-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateBoxTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<BoxType> {
+  public async create(data: CreateBoxTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<BoxType> {
     const parsedData = CreateBoxTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: BoxType['id'];
-    data: UpdateBoxTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  updateById(
+    id: BoxType['id'],
+    data: UpdateBoxTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateBoxTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

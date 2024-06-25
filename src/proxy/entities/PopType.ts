@@ -14,30 +14,20 @@ class PopTypeProxy extends WritableProxy<PopType, CreatePopTypeDTO, UpdatePopTyp
     return 'pop-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreatePopTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<PopType> {
+  public async create(data: CreatePopTypeDTO, options?: Parameters<Api['post']>[0]['options']): Promise<PopType> {
     const parsedData = CreatePopTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: PopType['id'];
-    data: UpdatePopTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: PopType['id'],
+    data: UpdatePopTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdatePopTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

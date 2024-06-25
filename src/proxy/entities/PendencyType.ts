@@ -14,30 +14,23 @@ class PendencyTypeProxy extends WritableProxy<PendencyType, CreatePendencyTypeDT
     return 'pendency-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreatePendencyTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<PendencyType> {
+  public async create(
+    data: CreatePendencyTypeDTO,
+    options?: Parameters<Api['post']>[0]['options'],
+  ): Promise<PendencyType> {
     const parsedData = CreatePendencyTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: PendencyType['id'];
-    data: UpdatePendencyTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: PendencyType['id'],
+    data: UpdatePendencyTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdatePendencyTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 
