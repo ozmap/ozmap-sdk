@@ -35,6 +35,8 @@ export { default as PoleTypeProxy } from './PoleType';
 export { default as PopProxy } from './Pop';
 export { default as PONProxy } from './PON';
 export { default as PopTypeProxy } from './PopType';
+export { default as PostProxy } from './Post';
+export { default as FileProxy } from './File';
 export { default as ProjectProxy } from './Project';
 export { default as ProjectGroupProxy } from './ProjectGroup';
 export { default as PropertyProxy } from './Property';

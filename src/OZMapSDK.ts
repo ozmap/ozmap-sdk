@@ -54,6 +54,8 @@ import {
   RegionTypeProxy,
   DuctProxy,
   DuctTypeProxy,
+  PostProxy,
+  FileProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -112,6 +114,8 @@ class OZMapSDK {
   public readonly regionType: RegionTypeProxy;
   public readonly duct: DuctProxy;
   public readonly ductType: DuctTypeProxy;
+  public readonly post: PostProxy;
+  public readonly file: FileProxy;
 
   constructor(
     ozmapURL: string,
@@ -175,6 +179,8 @@ class OZMapSDK {
     this.regionType = new RegionTypeProxy(this.apiInstance);
     this.duct = new DuctProxy(this.apiInstance);
     this.ductType = new DuctTypeProxy(this.apiInstance);
+    this.post = new PostProxy(this.apiInstance);
+    this.file = new FileProxy(this.apiInstance);
   }
 }
 
