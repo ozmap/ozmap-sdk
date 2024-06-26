@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2019",
+    "module": "ES2022",
+    "target": "es6",
     "strict": true,
     "declaration": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "preserveConstEnums": true,
-    "noImplicitAny": true,
     "outDir": "./dist",
     "sourceMap": true,
-    "lib": ["es2019", "es2020.bigint", "es2020.string", "es2020.symbol.wellknown"],
+    "lib": ["es2019", "es2020.bigint", "es2020.string", "es2020.symbol.wellknown", "webworker"],
     "rootDirs": ["./src", "./test", "./types"],
     "typeRoots": ["./types", "./node_modules/@types"]
   },

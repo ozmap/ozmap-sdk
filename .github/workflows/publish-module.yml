@@ -19,11 +19,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: "cat package.json"
         run: cat ./package.json
-      - name: install node v12
+      - name: install node v20
         uses: actions/setup-node@v2
         with:
           registry-url: 'https://registry.npmjs.org'
-          node-version: 12
+          node-version: 20
       - name: npm install
         run: npm install
       - name: tsc
