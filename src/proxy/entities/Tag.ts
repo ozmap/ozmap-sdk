@@ -8,30 +8,20 @@ class TagProxy extends WritableProxy<Tag, CreateTagDTO, UpdateTagDTO> {
     return 'tags';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateTagDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Tag> {
+  public async create(data: CreateTagDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Tag> {
     const parsedData = CreateTagDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  update({
-    id,
-    data,
-    options,
-  }: {
-    id: string;
-    data: UpdateTagDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Tag['id'],
+    data: UpdateTagDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateTagDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

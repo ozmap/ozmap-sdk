@@ -5,33 +5,23 @@ import Api from '../../util/Api';
 
 class PoleProxy extends WritableProxy<Pole, CreatePoleDTO, UpdatePoleDTO> {
   protected get _route(): string {
-    return 'box-templates';
+    return 'poles';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreatePoleDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Pole> {
+  public async create(data: CreatePoleDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Pole> {
     const parsedData = CreatePoleDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  update({
-    id,
-    data,
-    options,
-  }: {
-    id: string;
-    data: UpdatePoleDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Pole['id'],
+    data: UpdatePoleDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdatePoleDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

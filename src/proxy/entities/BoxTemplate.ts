@@ -14,30 +14,23 @@ class BoxTemplateProxy extends WritableProxy<BoxTemplate, CreateBoxTemplateDTO, 
     return 'box-templates';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateBoxTemplateDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<BoxTemplate> {
+  public async create(
+    data: CreateBoxTemplateDTO,
+    options?: Parameters<Api['post']>[0]['options'],
+  ): Promise<BoxTemplate> {
     const parsedData = CreateBoxTemplateDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  update({
-    id,
-    data,
-    options,
-  }: {
-    id: string;
-    data: UpdateBoxTemplateDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: BoxTemplate['id'],
+    data: UpdateBoxTemplateDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateBoxTemplateDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

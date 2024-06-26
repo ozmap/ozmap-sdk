@@ -5,33 +5,23 @@ import Api from '../../util/Api';
 
 class BoxProxy extends WritableProxy<Box, CreateBoxDTO, UpdateBoxDTO> {
   protected get _route(): string {
-    return 'box-templates';
+    return 'boxes';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateBoxDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Box> {
+  public async create(data: CreateBoxDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Box> {
     const parsedData = CreateBoxDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  update({
-    id,
-    data,
-    options,
-  }: {
-    id: string;
-    data: UpdateBoxDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: Box['id'],
+    data: UpdateBoxDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateBoxDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

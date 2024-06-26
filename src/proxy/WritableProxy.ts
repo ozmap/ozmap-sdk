@@ -1,14 +1,9 @@
 import Api from '../util/Api';
-import ReadableProxy from './ReadableProxy';
+import UpdatableProxy from './UpdatableProxy';
+import { BaseModel } from '../interface';
 
-abstract class WritableProxy<Record, CreateDTO, UpdateDTO> extends ReadableProxy<Record> {
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<Record> {
+abstract class WritableProxy<Record, CreateDTO, UpdateDTO> extends UpdatableProxy<Record, UpdateDTO> {
+  public async create(data: CreateDTO, options?: Parameters<Api['post']>[0]['options']): Promise<Record> {
     return this.apiInstance.post<CreateDTO, Record>({
       route: this._route,
       inputData: data,
@@ -16,29 +11,7 @@ abstract class WritableProxy<Record, CreateDTO, UpdateDTO> extends ReadableProxy
     });
   }
 
-  public async updateById({
-    id,
-    data,
-    options,
-  }: {
-    id: string;
-    data: UpdateDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
-    return this.apiInstance.patch<UpdateDTO>({
-      route: `${this._route}/${id}`,
-      inputData: data,
-      options,
-    });
-  }
-
-  public async deleteById({
-    id,
-    options,
-  }: {
-    id: string;
-    options?: Parameters<Api['delete']>[0]['options'];
-  }): Promise<void> {
+  public async deleteById(id: BaseModel['id'], options?: Parameters<Api['delete']>[0]['options']): Promise<void> {
     return this.apiInstance.delete({
       route: `${this._route}/${id}`,
       options,

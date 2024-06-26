@@ -11,33 +11,26 @@ import Api from '../../util/Api';
 
 class JunctionBoxTypeProxy extends WritableProxy<JunctionBoxType, CreateJunctionBoxTypeDTO, UpdateJunctionBoxTypeDTO> {
   protected get _route(): string {
-    return 'box-templates';
+    return 'junction-box-types';
   }
 
-  public async create({
-    data,
-    options,
-  }: {
-    data: CreateJunctionBoxTypeDTO;
-    options?: Parameters<Api['post']>[0]['options'];
-  }): Promise<JunctionBoxType> {
+  public async create(
+    data: CreateJunctionBoxTypeDTO,
+    options?: Parameters<Api['post']>[0]['options'],
+  ): Promise<JunctionBoxType> {
     const parsedData = CreateJunctionBoxTypeDTOSchema.parse(data);
 
-    return super.create({ data: parsedData, options });
+    return super.create(parsedData, options);
   }
 
-  update({
-    id,
-    data,
-    options,
-  }: {
-    id: string;
-    data: UpdateJunctionBoxTypeDTO;
-    options?: Parameters<Api['patch']>[0]['options'];
-  }): Promise<void> {
+  public async updateById(
+    id: JunctionBoxType['id'],
+    data: UpdateJunctionBoxTypeDTO,
+    options?: Parameters<Api['patch']>[0]['options'],
+  ): Promise<void> {
     const parsedData = UpdateJunctionBoxTypeDTOSchema.parse(data);
 
-    return super.updateById({ id, data: parsedData, options });
+    return super.updateById(id, parsedData, options);
   }
 }
 

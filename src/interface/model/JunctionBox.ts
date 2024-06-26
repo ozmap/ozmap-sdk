@@ -1,5 +1,4 @@
-import { string, z } from 'zod';
-
+import { z } from 'zod';
 import { BaseModelSchema, stringOrObjectId } from './BaseModel';
 import { BasePointDataSchema, BasePointSchema } from './BasePoint';
 import { JunctionBoxTypeSchema } from './JunctionBoxType';
