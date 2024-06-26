@@ -11,14 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: "cat package.json"
         run: cat ./package.json
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: "cat package.json"
-        run: cat ./package.json
       - name: install node v20
         uses: actions/setup-node@v2
         with:
