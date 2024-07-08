@@ -1,6 +1,6 @@
 {
   "name": "@ozmap/ozmap-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,8 @@
     "pre-commit": "lint-staged && npm run build",
     "lint": "eslint ./src --ext .cjs,.js,.ts",
     "lint:fix": "eslint ./src --ext .cjs,.js,.ts --fix",
-    "test": "ts-node test"
+    "test": "ts-node test",
+    "publish-alpha": "npm publish --tag alpha"
   },
   "files": [
     "dist/**/*"

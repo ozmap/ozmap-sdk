@@ -19,6 +19,31 @@ abstract class ReadableProxy<Record> extends Proxy {
     });
   }
 
+  public async findAll(
+    options?: Omit<Parameters<Api['get']>[0], 'route' | 'limit' | 'page'> & { batchSize?: number },
+  ): Promise<Record[]> {
+    const limit = options?.batchSize || 100;
+    const allData = [];
+    let page = 1;
+    let currentData: Record[] = [];
+
+    do {
+      const fetchResult = await this.apiInstance.get<Pagination<Record>>({
+        route: this._route,
+        ...options,
+        page,
+        limit,
+      });
+
+      currentData = fetchResult.rows;
+      allData.push(...currentData);
+
+      page++;
+    } while (currentData.length);
+
+    return allData;
+  }
+
   public async findById(
     id: BaseModel['id'],
     options?: Omit<Parameters<Api['get']>[0], 'route' | 'page' | 'limit' | 'filter' | 'sorter'>,
