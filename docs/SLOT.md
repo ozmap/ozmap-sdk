@@ -97,3 +97,27 @@ sdk.slot.deleteById('slotId').then(() => {
   console.log('Slot deleted');
 });
 ```
+
+### Fetching slots
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.slot.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('slot:', pagination);
+});
+```
+
+### Fetching a slot by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.slot.findById('slotId').then((slot) => {
+  console.log('slot:', slot);
+});
+```

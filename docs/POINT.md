@@ -84,3 +84,38 @@ sdk.point.updateById('pointId', updatePointData).then(() => {
   console.log('Point updated');
 });
 ```
+### Fetching points
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.point.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('point:', pagination);
+});
+```
+
+### Fetching a point by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.point.findById('pointId').then((point) => {
+  console.log('point:', point);
+});
+```
+
+### Deleting a point
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.point.deleteById('pointId').then(() => {
+  console.log('point deleted');
+});
+```

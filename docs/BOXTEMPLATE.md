@@ -80,3 +80,38 @@ sdk.boxTemplate.updateById('boxTemplateId', updateBoxTemplateData).then(() => {
 });
 ```
 
+### Fetching BoxTemplates
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.BoxTemplate.find().then((pagination) => {
+  console.log('BoxTemplatees:', pagination);
+});
+```
+
+### Fetching a BoxTemplate by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.BoxTemplate.findById('BoxTemplateId').then((BoxTemplate) => {
+  console.log('BoxTemplate:', BoxTemplate);
+});
+```
+
+### Deleting a BoxTemplate
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.BoxTemplate.deleteById('BoxTemplateId').then(() => {
+  console.log('BoxTemplate deleted');
+});
+```

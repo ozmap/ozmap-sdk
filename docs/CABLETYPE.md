@@ -113,3 +113,38 @@ sdk.cableType.updateById('cableTypeId', updateCableTypeData).then(() => {
   console.log('CableType updated');
 });
 ```
+### Fetching cableTypes
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.cableType.find().then((pagination) => {
+  console.log('cableType:', pagination);
+});
+```
+
+### Fetching a cableType by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.cableType.findById('cableTypeId').then((cableType) => {
+  console.log('cableType:', cableType);
+});
+```
+
+### Deleting a cableType
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.cableType.deleteById('cableTypeId').then(() => {
+  console.log('cableType deleted');
+});
+```

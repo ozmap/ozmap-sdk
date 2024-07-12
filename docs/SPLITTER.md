@@ -108,3 +108,27 @@ sdk.splitter.deleteById('splitterId').then(() => {
   console.log('Splitter deleted');
 });
 ```
+
+### Fetching splitters
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.splitter.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('splitter:', pagination);
+});
+```
+
+### Fetching a splitter by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.splitter.findById('splitterId').then((splitter) => {
+  console.log('splitter:', splitter);
+});
+```

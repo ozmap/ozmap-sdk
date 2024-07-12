@@ -6,7 +6,7 @@ This document provides a concise guide to the Box module, focusing on the Box mo
 
 ### Box
 
-Defines the structure for boxes.
+Defines the structure for box.
 
 ```typescript
 type Box = {
@@ -123,7 +123,7 @@ sdk.box.updateById('boxId', updateBoxData).then(() => {
 });
 ```
 
-### Fetching Boxes
+### Fetching box
 
 ```typescript
 import OZMapSDK from 'ozmapsdk';
@@ -131,7 +131,7 @@ import OZMapSDK from 'ozmapsdk';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 sdk.box.find({ page: 1, limit: 10 }).then((pagination) => {
-  console.log('Boxes:', pagination);
+  console.log('box:', pagination);
 });
 ```
 

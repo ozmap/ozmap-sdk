@@ -136,3 +136,27 @@ sdk.splitterType.deleteById('splitterTypeId').then(() => {
   console.log('SplitterType deleted');
 });
 ```
+
+### Fetching SplitterTypes
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.SplitterType.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('SplitterType:', pagination);
+});
+```
+
+### Fetching a SplitterType by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.SplitterType.findById('SplitterTypeId').then((SplitterType) => {
+  console.log('SplitterType:', SplitterType);
+});
+```

@@ -13,7 +13,7 @@ type Connector = {
   kind: NetworkConnectorKind.CONNECTOR;
   connectables: Array<string | null>;
   connectorType: string;
-  parent: string | BaseBoxSchema;
+  parent: string | BaseConnectorSchema;
   project: string | ProjectSchema;
   connectorType: string | ConnectorTypeSchema;
   connectables: Array<string | NetworkConnectableSchema | null>;
@@ -52,9 +52,7 @@ import { CreateConnectorDTO } from './Connector';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const newConnectorData: CreateConnectorDTO = {
-  // fill in required fields for connector creation
-  connectorType: 'someConnectorTypeId',
-  // other fields as necessary
+  connectorType: 'ConnectorTypeId',
 };
 
 sdk.connector.create(newConnectorData).then((connector) => {
@@ -71,12 +69,45 @@ import { UpdateConnectorDTO } from './Connector';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const updateConnectorData: UpdateConnectorDTO = {
-  // fill in the fields you want to update
   connectorType: 'updatedConnectorTypeId',
-  // other fields as necessary
 };
 
 sdk.connector.updateById('connectorId', updateConnectorData).then(() => {
   console.log('Connector updated');
+});
+```
+### Fetching Connectors
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.Connector.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('Connector:', pagination);
+});
+```
+
+### Fetching a Connector by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.Connector.findById('ConnectorId').then((Connector) => {
+  console.log('Connector:', Connector);
+});
+```
+
+### Deleting a Connector
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.Connector.deleteById('ConnectorId').then(() => {
+  console.log('Connector deleted');
 });
 ```

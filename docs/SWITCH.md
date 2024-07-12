@@ -71,8 +71,8 @@ const newSwitchData: CreateSwitchDTO = {
   port_labels: ['Port 1', 'Port 2'],
   manageable: true,
 };
-sdk.switch.create(newBoxData).then((sw) => {
-  console.log('Box created:', sw);
+sdk.switch.create(newswitchData).then((sw) => {
+  console.log('switch created:', sw);
 });
 ```
 
@@ -101,5 +101,29 @@ const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 sdk.switch.deleteById('switchId').then(() => {
   console.log('Switch deleted');
+});
+```
+
+### Fetching switches
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.switch.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('switch:', pagination);
+});
+```
+
+### Fetching a switch by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.switch.findById('switchId').then((sw) => {
+  console.log('switch:', sw);
 });
 ```

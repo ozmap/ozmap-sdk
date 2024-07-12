@@ -114,3 +114,27 @@ sdk.switchType.deleteById('switchTypeId').then(() => {
   console.log('SwitchType deleted');
 });
 ```
+
+### Fetching SwitchTypes
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.switchType.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('SwitchType:', pagination);
+});
+```
+
+### Fetching a SwitchType by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.switchType.findById('SwitchTypeId').then((SwitchType) => {
+  console.log('SwitchType:', SwitchType);
+});
+```

@@ -70,3 +70,39 @@ sdk.color.updateById('colorId', updateColorData).then(() => {
   console.log('Color updated');
 });
 ```
+
+### Fetching colors
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.color.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('color:', pagination);
+});
+```
+
+### Fetching a color by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.color.findById('colorId').then((color) => {
+  console.log('color:', color);
+});
+```
+
+### Deleting a color
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.color.deleteById('colorId').then(() => {
+  console.log('color deleted');
+});
+```

@@ -118,3 +118,38 @@ sdk.boxType.updateById('boxTypeId', updateBoxTypeData).then(() => {
   console.log('BoxType updated');
 });
 ```
+### Fetching boxTypes
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.boxType.find().then((pagination) => {
+  console.log('boxTypees:', pagination);
+});
+```
+
+### Fetching a boxType by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.boxType.findById('boxTypeId').then((boxType) => {
+  console.log('boxType:', boxType);
+});
+```
+
+### Deleting a boxType
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.boxType.deleteById('boxTypeId').then(() => {
+  console.log('boxType deleted');
+});
+```

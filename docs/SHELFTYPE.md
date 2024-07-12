@@ -94,3 +94,39 @@ sdk.shelfType.updateById('shelfTypeId', updateShelfTypeData).then(() => {
   console.log('ShelfType updated');
 });
 ```
+
+### Fetching shelfTypes
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.shelfType.find({ page: 1, limit: 10 }).then((pagination) => {
+  console.log('shelfType:', pagination);
+});
+```
+
+### Fetching a shelfType by ID
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.shelfType.findById('shelfTypeId').then((shelfType) => {
+  console.log('shelfType:', shelfType);
+});
+```
+
+### Deleting a shelfType
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.shelfType.deleteById('shelfTypeId').then(() => {
+  console.log('shelfType deleted');
+});
+```
