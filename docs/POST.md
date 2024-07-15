@@ -88,7 +88,22 @@ sdk.post.create(newPostData).then((post) => {
   console.log('Post created:', post);
 });
 ```
-
+```json
+{
+  "title": "New post",
+  "observation": "This is a new post",
+  "element": {
+    "id": "5da752be11450e0006947fb7",
+    "kind": "box"
+  },
+  "tags": [
+    "5fcf55a0200a240a98f18e2b"
+  ],
+  "createdAt": "2020-12-08T11:27:48.235Z",
+  "updatedAt": "2020-12-08T11:27:48.235Z",
+  "id": "5fcf6334200a240a98f18f25"
+}
+```
 ### Updating a Post
 
 ```typescript
@@ -117,7 +132,39 @@ sdk.post.find({ page: 1, limit: 10 }).then((pagination) => {
   console.log('Posts:', pagination);
 });
 ```
+Response example
 
+```json
+{
+  "total": 1,
+  "count": 1,
+  "rows": [
+    {
+      "tags": [],
+      "files": [
+        "6368fe46c22ef800142f134d"
+      ],
+      "title": "Teste",
+      "observation": "",
+      "element": {
+        "id": "5da779a211450e00069491ba",
+        "kind": "property"
+      },
+      "owner": "5d9f3fb8200141000647f768",
+      "creatorData": {
+        "id": "5d9f3fb8200141000647f768",
+        "name": "Support OZmap",
+        "username": "devoz"
+      },
+      "createdAt": "2022-11-07T12:47:01.162Z",
+      "updatedAt": "2022-11-07T12:47:02.665Z",
+      "id": "6368fe455f40a200200bb7d8"
+    }
+  ],
+  "start": 0,
+  "limit": 1
+}
+```
 ### Fetching a Post by ID
 
 ```typescript
@@ -129,7 +176,30 @@ sdk.post.findById('postId').then((post) => {
   console.log('Post:', post);
 });
 ```
-
+Response example
+```
+{
+  "tags": [],
+  "files": [
+    "6368fe46c22ef800142f134d"
+  ],
+  "title": "Teste",
+  "observation": "",
+  "element": {
+    "id": "5da779a211450e00069491ba",
+    "kind": "property"
+  },
+  "owner": "5d9f3fb8200141000647f768",
+  "creatorData": {
+    "id": "5d9f3fb8200141000647f768",
+    "name": "Support OZmap",
+    "username": "devoz"
+  },
+  "createdAt": "2022-11-07T12:47:01.162Z",
+  "updatedAt": "2022-11-07T12:47:02.665Z",
+  "id": "6368fe455f40a200200bb7d8"
+}
+```
 ### Deleting a Post
 
 ```typescript
@@ -141,3 +211,4 @@ sdk.post.deleteById('postId').then(() => {
   console.log('Post deleted');
 });
 ```
+

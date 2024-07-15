@@ -106,7 +106,39 @@ sdk.box.create(newBoxData).then((box) => {
   console.log('Box created:', box);
 });
 ```
-
+```json
+{
+  "shared": false,
+  "draft": false,
+  "default_reserve": 0,
+  "certified": false,
+  "_id": "63614ffe5f40a200200b9db7",
+  "tags": [],
+  "coords": [
+    -48.527442812919624,
+    -27.586604372247944
+  ],
+  "cables": [],
+  "kind": "Box",
+  "project": "5d9f3ff9200141000647f814",
+  "implanted": false,
+  "hierarchyLevel": 2,
+  "boxType": "589ddcf07dfe452f10d7c274",
+  "name": "teste",
+  "creatorData": {
+    "id": "635c31fe8ea52700137428a3",
+    "name": "api",
+    "username": "api"
+  },
+  "pole": "63614ffe5f40a200200b9db8",
+  "createdAt": "2022-11-01T16:57:34.815Z",
+  "updatedAt": "2022-11-01T16:57:34.815Z",
+  "__v": 0,
+  "id": "63614ffe5f40a200200b9db7",
+  "lng": -48.527442812919624,
+  "lat": -27.586604372247944
+}
+```
 ### Updating a Box
 
 ```typescript
@@ -134,7 +166,50 @@ sdk.box.find({ page: 1, limit: 10 }).then((pagination) => {
   console.log('box:', pagination);
 });
 ```
-
+Response example
+```json
+{
+   "total":138,
+   "count":1,
+   "rows":[
+      {
+         "shared":false,
+         "draft":false,
+         "default_reserve":0,
+         "certified":false,
+         "tags":[
+            
+         ],
+         "coords":[
+            -48.527222871780396,
+            -27.576655030562492
+         ],
+         "cables":[
+            "5da61dd9493d9c0006665433",
+            "5da61dfb493d9c000666544d"
+         ],
+         "kind":"Box",
+         "project":"5d9f3ff9200141000647f814",
+         "name":"POP - 1",
+         "boxType":null,
+         "hierarchyLevel":1,
+         "implanted":true,
+         "observation":"",
+         "pole":"5da61d35493d9c0006665406",
+         "history":[
+            
+         ],
+         "createdAt":"2019-10-15T19:25:41.877Z",
+         "updatedAt":"2022-08-04T19:42:07.427Z",
+         "id":"5da61d35493d9c0006665404",
+         "lng":-48.527222871780396,
+         "lat":-27.576655030562492
+      }
+   ],
+   "start":0,
+   "limit":1
+}
+```
 ### Fetching a Box by ID
 
 ```typescript

@@ -125,7 +125,93 @@ sdk.pole.find().then((pagination) => {
   console.log('Poles:', pagination);
 });
 ```
+Response Example
 
+```json
+{
+  "total": 314,
+  "count": 3,
+  "rows": [
+    {
+      "poleType": "5d7d2b3fdbc425449801709e",
+      "licensing": {
+        "status": 0,
+        "protocol": ""
+      },
+      "usable": true,
+      "observation": "",
+      "tags": [],
+      "coords": [
+        -48.52695733308792,
+        -27.576735865170544
+      ],
+      "adjacents": [
+        "5da61d67493d9c0006665409",
+        "5da61d8e493d9c0006665418"
+      ],
+      "kind": "Pole",
+      "name": "P_1",
+      "createdAt": "2019-10-15T19:26:31.449Z",
+      "updatedAt": "2022-11-28T20:12:33.758Z",
+      "id": "5da61d67493d9c0006665408",
+      "lng": -48.52695733308792,
+      "lat": -27.576735865170544
+    },
+    {
+      "poleType": "5d7d2b3fdbc425449801709e",
+      "licensing": {
+        "status": 0,
+        "protocol": ""
+      },
+      "usable": true,
+      "observation": "",
+      "tags": [],
+      "coords": [
+        -48.526823222637184,
+        -27.576609858255573
+      ],
+      "adjacents": [
+        "5da61d67493d9c0006665408",
+        "5da61d67493d9c000666540a"
+      ],
+      "kind": "Pole",
+      "name": "P_2",
+      "createdAt": "2019-10-15T19:26:31.505Z",
+      "updatedAt": "2022-11-28T20:12:33.758Z",
+      "id": "5da61d67493d9c0006665409",
+      "lng": -48.526823222637184,
+      "lat": -27.576609858255573
+    },
+    {
+      "poleType": "5d7d2b3fdbc425449801709e",
+      "licensing": {
+        "status": 0,
+        "protocol": ""
+      },
+      "usable": true,
+      "observation": "",
+      "tags": [],
+      "coords": [
+        -48.52665692567826,
+        -27.57648147370279
+      ],
+      "adjacents": [
+        "5da61d67493d9c0006665409",
+        "5da61d67493d9c000666540b"
+      ],
+      "kind": "Pole",
+      "name": "P_3",
+      "createdAt": "2019-10-15T19:26:31.530Z",
+      "updatedAt": "2022-11-28T20:12:33.758Z",
+      "id": "5da61d67493d9c000666540a",
+      "lng": -48.52665692567826,
+      "lat": -27.57648147370279
+    }
+  ],
+  "start": 0,
+  "limit": 3
+}
+```
 ### Fetching a Pole by ID
 
 ```typescript

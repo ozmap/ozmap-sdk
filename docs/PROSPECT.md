@@ -91,7 +91,33 @@ sdk.prospect.create(newProspectData).then((prospect) => {
   console.log('Prospect created:', prospect);
 });
 ```
-
+Response example
+```json
+{
+  "tags": [
+    "638a088b25360200206c0750",
+    "638a089825360200206c0757"
+  ],
+  "_id": "638a09aee0e378001461eb90",
+  "name": "Maria",
+  "coords": [
+    -48.527222871780396,
+    -27.576655030562492
+  ],
+  "code": "150",
+  "address": "Rua Das Rosas",
+  "observation": "Proximo ao mercado",
+  "creatorData": {
+    "id": "638657f1e0e378001461c35c",
+    "name": "api",
+    "username": "api"
+  },
+  "createdAt": "2022-12-02T14:20:30.381Z",
+  "updatedAt": "2022-12-02T14:20:30.381Z",
+  "__v": 0,
+  "id": "638a09aee0e378001461eb90"
+}
+```
 ### Updating a Prospect
 
 ```typescript
@@ -120,7 +146,34 @@ sdk.prospect.find({ page: 1, limit: 10 }).then((pagination) => {
   console.log('Prospects:', pagination);
 });
 ```
-
+Response example
+```json
+{
+  "total": 0,
+  "count": 0,
+  "rows": [
+    {
+      "tags": [
+        "5da61e20493d9c0006665479"
+      ],
+      "name": "Carlos",
+      "code": "011456",
+      "address": "Rua Avelar 135",
+      "observation": "350 mega",
+      "creatorData": {
+        "id": "5da61e20493d9c0006665479",
+        "name": "Admin",
+        "username": "Admin"
+      },
+      "createdAt": "2021-01-01T12:00:00.000Z",
+      "updatedAt": "2021-01-01T12:00:00.000Z",
+      "id": "5da61e20493d9c0006665479"
+    }
+  ],
+  "start": 0,
+  "limit": 0
+}
+```
 ### Fetching a Prospect by ID
 
 ```typescript
@@ -132,7 +185,21 @@ sdk.prospect.findById('prospectId').then((prospect) => {
   console.log('Prospect:', prospect);
 });
 ```
-
+Response example
+```json
+{
+  "tags": [],
+  "name": "rafael",
+  "creatorData": {
+    "id": "638657f1e0e378001461c35c",
+    "name": "api",
+    "username": "api"
+  },
+  "createdAt": "2022-12-02T13:02:25.017Z",
+  "updatedAt": "2022-12-02T13:02:25.017Z",
+  "id": "6389f76125360200206c063e"
+}
+```
 ### Deleting a Prospect
 
 ```typescript

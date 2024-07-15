@@ -89,7 +89,38 @@ sdk.pendency.create(newPendencyData).then((pendency) => {
   console.log('Pendency created:', pendency);
 });
 ```
-
+Response Example
+```json
+{
+  "solved": true,
+  "name": "teste-59",
+  "description": "teste",
+  "pendencyType": "60b7d3373dbf377d14cd4544",
+  "tags": [],
+  "responsibles": [
+    "5c3173ee4fe3a70016d05bcd"
+  ],
+  "coords": [
+    -48.527222871780396,
+    -27.576655030562492
+  ],
+  "_id": "639cae468d002c0020599e5b",
+  "owner": "5d9f3fb8200141000647f768",
+  "project": "5d9f3ff9200141000647f814",
+  "color": "5fc7a6b6f6128100133f45f2",
+  "creatorData": {
+    "id": "638657f1e0e378001461c35c",
+    "name": "api",
+    "username": "api"
+  },
+  "createdAt": "2022-12-16T17:43:34.605Z",
+  "updatedAt": "2022-12-16T17:43:34.605Z",
+  "__v": 0,
+  "id": "639cae468d002c0020599e5b",
+  "lng": -48.527222871780396,
+  "lat": -27.576655030562492
+}
+```
 ### Updating a Pendency
 
 ```typescript
@@ -129,6 +160,30 @@ const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 sdk.pendency.findById('pendencyId').then((pendency) => {
   console.log('Pendency:', pendency);
 });
+```
+Response example
+```json
+{
+  "solved": false,
+  "name": "UPDATE ODF POP TABOAO",
+  "description": "",
+  "pendencyType": "60b7d3373dbf377d14cd4544",
+  "tags": [],
+  "responsibles": [
+    "5ebf09c59342ae000c8225d0"
+  ],
+  "coords": [
+    -46.76937818559964,
+    -23.623601640533938
+  ],
+  "owner": "5ebf09c59342ae000c8225d0",
+  "project": "5f343ecf4390400013b0915f",
+  "createdAt": "2021-11-05T15:29:19.689Z",
+  "updatedAt": "2022-11-21T11:13:03.108Z",
+  "id": "61854dcf61cad9001318e7b4",
+  "lng": -46.76937818559964,
+  "lat": -23.623601640533938
+}
 ```
 
 ### Deleting a Pendency

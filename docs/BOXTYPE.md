@@ -129,6 +129,44 @@ sdk.boxType.find().then((pagination) => {
   console.log('boxTypees:', pagination);
 });
 ```
+Response example
+```json
+{
+  "total": 0,
+  "count": 0,
+  "rows": [
+    {
+      "config": {
+        "base": {
+          "color": "#3388FFFF"
+        },
+        "regular": {
+          "fillColor": "#3388FFFF"
+        },
+        "not_implanted": {
+          "fillColor": "#FFA500A6"
+        },
+        "draft": {
+          "fillColor": "#FF00FF"
+        }
+      },
+      "default_reserve": 10,
+      "code": "CTX",
+      "brand": "CTX650A",
+      "mold": "650A",
+      "description": "Poste",
+      "prefix": "CTX",
+      "default_level": 2,
+      "default_template": "5da6146f493d9c00066653f7",
+      "createdAt": "2023-01-18T14:04:50.938Z",
+      "updatedAt": "2023-01-18T14:04:50.938Z",
+      "id": "63c7fc82ea930c0014f7fcbc"
+    }
+  ],
+  "start": 0,
+  "limit": 0
+}
+```
 
 ### Fetching a boxType by ID
 

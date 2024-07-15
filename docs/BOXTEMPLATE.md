@@ -91,6 +91,205 @@ sdk.BoxTemplate.find().then((pagination) => {
   console.log('BoxTemplatees:', pagination);
 });
 ```
+Response example
+```json
+{
+  "total": 2,
+  "count": 2,
+  "rows": [
+    {
+      "name": "Vazio",
+      "description": "",
+      "positions": {
+        "cables": {},
+        "children": [],
+        "splitters": {},
+        "fusions": {},
+        "connectors": {},
+        "passings": {},
+        "cords": {},
+        "drops": {},
+        "greydrops": {},
+        "clients": {},
+        "fibers": {},
+        "switches": {},
+        "dios": {},
+        "postits": []
+      },
+      "topology": {
+        "cables": {},
+        "splitters": {},
+        "fusions": {},
+        "connectors": {},
+        "passings": {},
+        "cords": {},
+        "drops": {},
+        "switches": {},
+        "dios": {}
+      },
+      "structure": {
+        "topology": {
+          "cables": {},
+          "splitters": {},
+          "fusions": {},
+          "connectors": {},
+          "passings": {},
+          "cords": {},
+          "drops": {},
+          "switches": {},
+          "dios": {}
+        },
+        "positions": {
+          "cables": {},
+          "children": [],
+          "splitters": {},
+          "fusions": {},
+          "connectors": {},
+          "passings": {},
+          "cords": {},
+          "drops": {},
+          "greydrops": {},
+          "clients": {},
+          "fibers": {},
+          "switches": {},
+          "dios": {},
+          "postits": []
+        }
+      },
+      "createdAt": "2019-10-10T14:27:05.458Z",
+      "updatedAt": "2020-03-25T14:31:17.376Z",
+      "id": "589de1d126324a2564a6c4d0"
+    },
+    {
+      "name": "SPL 01x08 AC",
+      "description": "",
+      "positions": {
+        "cables": {},
+        "children": [],
+        "splitters": {
+          "5da77a3ff003e84ed900001d": {
+            "x": 215,
+            "y": 95
+          }
+        },
+        "fusions": {},
+        "connectors": {},
+        "passings": {},
+        "cords": {},
+        "drops": {},
+        "greydrops": {},
+        "clients": {},
+        "fibers": {},
+        "switches": {},
+        "dios": {},
+        "postits": []
+      },
+      "topology": {
+        "cables": {},
+        "splitters": {
+          "5da77a3ff003e84ed900001d": {
+            "connectorType": "5da61085493d9c00066653f5",
+            "connectables": {
+              "input": [
+                null
+              ],
+              "output": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            },
+            "inputConnectionType": 0,
+            "outputConnectionType": 1,
+            "implanted": true,
+            "isBalanced": true,
+            "code": "01x08 AC",
+            "isDrop": true,
+            "name": "Splitter 1"
+          }
+        },
+        "fusions": {},
+        "connectors": {},
+        "passings": {},
+        "cords": {},
+        "drops": {},
+        "switches": {},
+        "dios": {}
+      },
+      "structure": {
+        "topology": {
+          "cables": {},
+          "splitters": {
+            "5da77a3ff003e84ed900001d": {
+              "connectorType": "5da61085493d9c00066653f5",
+              "connectables": {
+                "input": [
+                  null
+                ],
+                "output": [
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              },
+              "inputConnectionType": 0,
+              "outputConnectionType": 1,
+              "implanted": true,
+              "isBalanced": true,
+              "code": "01x08 AC",
+              "isDrop": true,
+              "name": "Splitter 1"
+            }
+          },
+          "fusions": {},
+          "connectors": {},
+          "passings": {},
+          "cords": {},
+          "drops": {},
+          "switches": {},
+          "dios": {}
+        },
+        "positions": {
+          "cables": {},
+          "children": [],
+          "splitters": {
+            "5da77a3ff003e84ed900001d": {
+              "x": 215,
+              "y": 95
+            }
+          },
+          "fusions": {},
+          "connectors": {},
+          "passings": {},
+          "cords": {},
+          "drops": {},
+          "greydrops": {},
+          "clients": {},
+          "fibers": {},
+          "switches": {},
+          "dios": {},
+          "postits": []
+        }
+      },
+      "createdAt": "2019-10-15T18:48:15.521Z",
+      "updatedAt": "2020-03-25T14:31:17.377Z",
+      "id": "5da6146f493d9c00066653f7"
+    }
+  ],
+  "start": 0,
+  "limit": 2
+}
+```
 
 ### Fetching a BoxTemplate by ID
 
