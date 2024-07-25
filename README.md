@@ -121,115 +121,148 @@ sdk.pop.deleteById('popId').then(() => {
 
 ### Boxes
 
-[Base Box](./docs/BASEBOX.md)<br>
-[Box](./docs/BOX.md)<br>
-[Box Template](./docs/BOXTEMPLATE.md)<br>
-[Box Type](./docs/BOXTYPE.md)<br>
+- [Base Box](./docs/BASEBOX.md)
+- [Box](./docs/BOX.md)
+- [Box Template](./docs/BOXTEMPLATE.md)
+- [Box Type](./docs/BOXTYPE.md)
 
 ### Building
 
-[Building](./docs/BUILDING.md)<br>
+- [Building](./docs/BUILDING.md)
 
 ### Cables
 
-[Cable](./docs/CABLE.md)<br>
-[Cable Type](./docs/CABLETYPE.md)<br>
+- [Cable](./docs/CABLE.md)
+- [Cable Type](./docs/CABLETYPE.md)
+
+### Clients
+
+- [FTTH Client](./docs/FTTHCLIENT.md)
 
 ### Colors
 
-[Color](./docs/COLOR.md)<br>
+- [Color](./docs/COLOR.md)
 
 ### Connectors
 
-[Connector](./docs/CONNECTOR.md)<br>
-[Connector Type](./docs/CONNECTORTYPE.md)<br>
+- [Connector](./docs/CONNECTOR.md)
+- [Connector Type](./docs/CONNECTORTYPE.md)
+- [Network Connectable](./docs/NETWORKCONNECTABLE.md)
+- [Network Connector](./docs/NETWORKCONNECTOR.md)
 
 ### Cords
 
-[Cord](./docs/CORD.md)<br>
+- [Cord](./docs/CORD.md)
 
 ### Devices
 
-[DIO](./docs/DIO.md)<br>
-[DIO Type](./docs/DIOTYPE.md)<br>
+- [DIO](./docs/DIO.md)
+- [DIO Type](./docs/DIOTYPE.md)
 
 ### Ducts
 
-[Duct](./docs/DUCT.md)<br>
-[Duct Type](./docs/DUCTTYPE.md)<br>
+- [Duct](./docs/DUCT.md)
+- [Duct Type](./docs/DUCTTYPE.md)
 
 ### Fibers
 
-[Fiber](./docs/FIBER.md)<br>
-[Fiber Profile](./docs/FIBERPROFILE.md)<br>
+- [Fiber](./docs/FIBER.md)
+- [Fiber Profile](./docs/FIBERPROFILE.md)
 
 ### Files
 
-[File](./docs/FILE.md)<br>
+- [File](./docs/FILE.md)
 
 ### Fusion
 
-[Fusion](./docs/FUSION.md)<br>
-[Fusion Type](./docs/FUSIONTYPE.md)<br>
+- [Fusion](./docs/FUSION.md)
+- [Fusion Type](./docs/FUSIONTYPE.md)
 
-### Infrastructure
+### Horizontal Condominium
 
-[Horizontal Condominium](./docs/HORIZONTALCONDOMINIUM.md)<br>
-[Junction Box](./docs/JUNCTIONBOX.md)<br>
-[Junction Box Type](./docs/JUNCTIONBOXTYPE.md)<br>
-[OLT](./docs/OLT.md)<br>
-[OLT Type](./docs/OLTTYPE.md)<br>
-[Pendency](./docs/PENDENCY.md)<br>
-[Pendency Type](./docs/PENDENCYTYPE.md)<br>
-[Point](./docs/POINT.md)<br>
-[Pole](./docs/POLE.md)<br>
-[Pole Type](./docs/POLETYPE.md)<br>
-[PON](./docs/PON.md)<br>
-[POP](./docs/POP.md)<br>
-[POP Type](./docs/POPTYPE.md)<br>
-[Post](./docs/POST.md)<br>
+- [Horizontal Condominium](./docs/HORIZONTALCONDOMINIUM.md)
+
+### Junction Boxes
+
+- [Junction Box](./docs/JUNCTIONBOX.md)
+- [Junction Box Type](./docs/JUNCTIONBOXTYPE.md)
+
+### OLT
+
+- [OLT](./docs/OLT.md)
+- [OLT Type](./docs/OLTTYPE.md)
+
+### Pendencies
+
+- [Pendency](./docs/PENDENCY.md)
+- [Pendency Type](./docs/PENDENCYTYPE.md)
+
+### Points
+
+- [Base Point](./docs/BASEPOINT.md)
+- [Point](./docs/POINT.md)
+
+
+### Poles
+- [Pole](./docs/POLE.md)
+- [Pole Type](./docs/POLETYPE.md)
+
+### PON
+
+- [PON](./docs/PON.md)
+
+### POP
+- [POP](./docs/POP.md)
+- [POP Type](./docs/POPTYPE.md)
+
+### POST
+- [Post](./docs/POST.md)
+- 
+### Passing
+
+- [Passing](./docs/PASSING.md)
 
 ### Projects
 
-[Project](./docs/PROJECT.md)<br>
-[Project Group](./docs/PROJECTGROUP.md)<br>
+- [Project](./docs/PROJECT.md)
+- [Project Group](./docs/PROJECTGROUP.md)
 
 ### Properties
 
-[Property](./docs/PROPERTY.md)<br>
-[Prospect](./docs/PROSPECT.md)<br>
+- [Property](./docs/PROPERTY.md)
+- [Prospect](./docs/PROSPECT.md)
 
 ### Regions
 
-[Region](./docs/REGION.md)<br>
-[Region Type](./docs/REGIONTYPE.md)<br>
+- [Region](./docs/REGION.md)
+- [Region Type](./docs/REGIONTYPE.md)
 
 ### Roles
 
-[Role](./docs/ROLE.md)<br>
+- [Role](./docs/ROLE.md)
 
 ### Shelves
 
-[Shelf](./docs/SHELF.md)<br>
-[Shelf Type](./docs/SHELFTYPE.md)<br>
+- [Shelf](./docs/SHELF.md)
+- [Shelf Type](./docs/SHELFTYPE.md)
 
 ### Slots
 
-[Slot](./docs/SLOT.md)<br>
+- [Slot](./docs/SLOT.md)
 
 ### Splitters
 
-[Splitter](./docs/SPLITTER.md)<br>
-[Splitter Type](./docs/SPLITTERTYPE.md)<br>
+- [Splitter](./docs/SPLITTER.md)
+- [Splitter Type](./docs/SPLITTERTYPE.md)
 
 ### Switches
 
-[Switch](./docs/SWITCH.md)<br>
-[Switch Type](./docs/SWITCHTYPE.md)<br>
+- [Switch](./docs/SWITCH.md)
+- [Switch Type](./docs/SWITCHTYPE.md)
 
 ### System
 
-[System Configuration](./docs/SYSTEMCONFIG.md)<br>
+- [System Configuration](./docs/SYSTEMCONFIG.md)
 
 ## API
 
