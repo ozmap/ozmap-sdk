@@ -46,7 +46,7 @@ export { default as RegionTypeProxy } from './RegionType';
 export { default as RoleProxy } from './Role';
 export { default as SplitterProxy } from './Splitter';
 export { default as SplitterTypeProxy } from './SplitterType';
-export { default as ShelfProxy } from './ShelfType';
+export { default as ShelfProxy } from './Shelf';
 export { default as ShelfTypeProxy } from './ShelfType';
 export { default as SlotProxy } from './Slot';
 export { default as SwitchProxy } from './Switch';
