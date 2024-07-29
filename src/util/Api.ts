@@ -67,7 +67,8 @@ class Api {
       case 'ECONNRESET': {
         return this.handleResetError(error.config as AxiosRequestConfig);
       }
-      case 'ECONNTIMEOUT': {
+      case 'ECONNTIMEOUT':
+      case 'ETIMEOUT': {
         return this.handleTimeoutError(error.config as AxiosRequestConfig);
       }
     }
