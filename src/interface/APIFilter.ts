@@ -29,10 +29,10 @@ const DefaultValueSchema = z.union([
 ]);
 
 const PointValueSchema = z.union([
-  z.object({ lat: z.number(), lng: z.number() }),
-  z.object({ coords: z.tuple([z.number(), z.number()]) }),
-  z.object({ coordinates: z.tuple([z.number(), z.number()]) }),
-  z.object({ latitude: z.number(), longitude: z.number() }),
+  z.object({ lat: z.coerce.number(), lng: z.coerce.number() }),
+  z.object({ coords: z.tuple([z.coerce.number(), z.coerce.number()]) }),
+  z.object({ coordinates: z.tuple([z.coerce.number(), z.coerce.number()]) }),
+  z.object({ latitude: z.coerce.number(), longitude: z.coerce.number() }),
 ]);
 
 const DefaultEnumOperatorSchema = z.nativeEnum(_.omit(FilterOperator, ['WITHIN', 'POINT_INTERSECT', 'NEAR']));
