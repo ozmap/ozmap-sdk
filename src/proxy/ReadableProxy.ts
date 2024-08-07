@@ -16,7 +16,19 @@ abstract class ReadableProxy<Record> extends Proxy {
     return this.apiInstance.get<Pagination<Record>>({
       route: this._route,
       ...options,
+      limit: 1,
     });
+  }
+
+  public async findOne(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Record | null> {
+    const {
+      rows: [record],
+    } = await this.apiInstance.get<Pagination<Record>>({
+      route: this._route,
+      ...options,
+    });
+
+    return record || null;
   }
 
   public async findAll(
