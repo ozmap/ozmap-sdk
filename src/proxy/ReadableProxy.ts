@@ -16,7 +16,6 @@ abstract class ReadableProxy<Record> extends Proxy {
     return this.apiInstance.get<Pagination<Record>>({
       route: this._route,
       ...options,
-      limit: 1,
     });
   }
 
@@ -26,6 +25,7 @@ abstract class ReadableProxy<Record> extends Proxy {
     } = await this.apiInstance.get<Pagination<Record>>({
       route: this._route,
       ...options,
+      limit: 1,
     });
 
     return record || null;
