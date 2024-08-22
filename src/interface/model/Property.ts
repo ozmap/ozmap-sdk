@@ -49,6 +49,8 @@ const CreatePropertyDTOSchema = PropertyDataSchema.partial({
     z.object({
       external_id: z.any().optional(),
       client: z.union([CreateFTTHClientDTOSchema, stringOrObjectId]).optional(),
+      auto_connect: z.boolean().optional(),
+      force: z.boolean().optional(),
     }),
   );
 
@@ -63,6 +65,8 @@ const UpdatePropertyDTOSchema = PropertyDataSchema.merge(z.object({ external_id:
   .merge(
     z.object({
       client: z.union([CreateFTTHClientDTOSchema, stringOrObjectId]).nullish(),
+      auto_connect: z.boolean().optional(),
+      force: z.boolean().optional(),
     }),
   )
   .partial();
