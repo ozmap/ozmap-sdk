@@ -42,6 +42,7 @@ const CreatePropertyDTOSchema = PropertyDataSchema.partial({
   pole: true,
   kind: true,
   tags: true,
+  coords: true,
 })
   .omit({ parent: true, drop: true, cables: true })
   .merge(
