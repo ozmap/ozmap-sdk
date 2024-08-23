@@ -16,9 +16,9 @@ declare module 'axios' {
 const LOGIN_URL = '/api/v2/users/login?type=API';
 
 class Api {
-  protected readonly TIMEOUT_RETRIES = 2;
-  protected readonly RESET_RETRIES = 1;
-  protected readonly UNAUTHORIZED_RETRIES = 1;
+  protected readonly TIMEOUT_RETRIES: number = 2;
+  protected readonly RESET_RETRIES: number = 1;
+  protected readonly UNAUTHORIZED_RETRIES: number = 1;
 
   protected readonly apiOptions: { login: string; password: string } | { apiKey: string };
 
@@ -28,8 +28,13 @@ class Api {
     ozmapURL: string,
     options: ({ login: string; password: string } | { apiKey: string }) & {
       defaultHeaders?: Record<string, string>;
+      timeoutRetries?: number;
+      resetRetries?: number;
     },
   ) {
+    this.TIMEOUT_RETRIES = options.timeoutRetries || this.TIMEOUT_RETRIES;
+    this.RESET_RETRIES = options.resetRetries || this.RESET_RETRIES;
+
     const headers: Record<string, string> = options.defaultHeaders || {};
 
     if ('apiKey' in options) {
