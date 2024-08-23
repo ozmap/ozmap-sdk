@@ -117,12 +117,7 @@ class OZMapSDK {
   public readonly post: PostProxy;
   public readonly file: FileProxy;
 
-  constructor(
-    ozmapURL: string,
-    options: ({ login: string; password: string } | { apiKey: string }) & {
-      defaultHeaders?: Record<string, string>;
-    },
-  ) {
+  constructor(ozmapURL: string, options: ConstructorParameters<typeof Api>[1]) {
     this.apiInstance = new Api(ozmapURL, options);
 
     this.boxTemplate = new BoxTemplateProxy(this.apiInstance);
