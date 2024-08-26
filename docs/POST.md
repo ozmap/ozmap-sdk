@@ -88,6 +88,7 @@ sdk.post.create(newPostData).then((post) => {
   console.log('Post created:', post);
 });
 ```
+Response example
 ```json
 {
   "title": "New post",

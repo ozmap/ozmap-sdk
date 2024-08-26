@@ -35,7 +35,7 @@ sdk.fileProxy.create(postId, filesToUpload).then((file) => {
   console.error('Failed to upload file:', error);
 });
 ```
-## Response example
+Response example
 ```json
 {
   "_id": "639778ad8d002c0020595ab8",

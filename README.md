@@ -86,7 +86,13 @@ import OZMapSDK from 'ozmapsdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
-sdk.pop.find({ page: 1, limit: 10 }).then((pagination) => {
+sdk.pop.find({ page: 1, limit: 10, filter: [
+    {
+      property: "name",
+      operator: FilterOperator.EQUAL,
+      value: "Popname",
+    }]
+}).then((pagination) => {
   console.log('Pops:', pagination);
 });
 ```
@@ -192,6 +198,10 @@ sdk.pop.deleteById('popId').then(() => {
 - [OLT](./docs/OLT.md)
 - [OLT Type](./docs/OLTTYPE.md)
 
+### Passing
+
+- [Passing](./docs/PASSING.md)
+
 ### Pendencies
 
 - [Pendency](./docs/PENDENCY.md)
@@ -217,11 +227,6 @@ sdk.pop.deleteById('popId').then(() => {
 
 ### POST
 - [Post](./docs/POST.md)
-- 
-### Passing
-
-- [Passing](./docs/PASSING.md)
-
 ### Projects
 
 - [Project](./docs/PROJECT.md)
@@ -263,6 +268,8 @@ sdk.pop.deleteById('popId').then(() => {
 ### System
 
 - [System Configuration](./docs/SYSTEMCONFIG.md)
+- [Tags](./docs/TAG.md)
+- [Users](./docs/USER.md)
 
 ## API
 

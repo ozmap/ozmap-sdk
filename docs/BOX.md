@@ -106,6 +106,7 @@ sdk.box.create(newBoxData).then((box) => {
   console.log('Box created:', box);
 });
 ```
+Response example
 ```json
 {
   "shared": false,

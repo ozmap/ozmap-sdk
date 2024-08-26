@@ -151,8 +151,8 @@ sdk.user.find({ page: 1, limit: 10 }).then((pagination) => {
 Response example
 ```json
 {
-  "total": 6,
-  "count": 6,
+  "total": 2,
+  "count": 2,
   "rows": [
     {
       "allProjects": false,
@@ -231,142 +231,6 @@ Response example
       "updatedAt": "2022-12-15T16:52:04.866Z",
       "__v": 0,
       "id": "638657f1e0e378001461c35c"
-    },
-    {
-      "allProjects": true,
-      "resources": [
-        "OZmap",
-        "OZmob",
-        "Loki",
-        "API"
-      ],
-      "email_confirmed": false,
-      "username": "qa",
-      "email": "qa@ozmap.com",
-      "name": "qa",
-      "phone": "",
-      "role": "5accf8ee0ff2c819a4ffd38e",
-      "observation": "",
-      "projects": [
-        {
-          "fromGroup": false,
-          "project": "5d9f3ff9200141000647f814",
-          "role": "5accf8ee0ff2c819a4ffd38e"
-        },
-        {
-          "fromGroup": false,
-          "project": "638f574c25360200206c1f44",
-          "role": "5accf8ee0ff2c819a4ffd38e"
-        }
-      ],
-      "projectGroups": [
-        {
-          "group": "6660714f32285300201d59e7"
-        }
-      ],
-      "creatorData": {
-        "id": "5c3173ee4fe3a70016d05bcd",
-        "name": "Admin",
-        "username": "admin"
-      },
-      "locale": "pt_BR",
-      "createdAt": "2022-12-06T13:42:17.706Z",
-      "updatedAt": "2022-12-15T16:51:41.686Z",
-      "__v": 0,
-      "id": "638f46b925360200206c1e54"
-    },
-    {
-      "allProjects": false,
-      "resources": [
-        "OZmap"
-      ],
-      "email_confirmed": false,
-      "username": "teste",
-      "email": "teste@teste.com",
-      "name": "teste",
-      "phone": "",
-      "role": "5accf8f60ff2c819a4ffd38f",
-      "observation": "",
-      "projects": [],
-      "creatorData": {
-        "id": "638f46b925360200206c1e54",
-        "name": "qa",
-        "username": "qa"
-      },
-      "projectGroups": [],
-      "locale": "en_US",
-      "createdAt": "2022-12-14T12:47:50.324Z",
-      "updatedAt": "2022-12-14T12:47:50.709Z",
-      "__v": 0,
-      "recover_password_data": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM5OWM1ZjY4ZDAwMmMwMDIwNTk2YzdjIiwidGltZXN0YW1wIjoxNjcxMDIyMDcwNjkxLCJpYXQiOjE2NzEwMjIwNzAsImV4cCI6MTY3MTEwODQ3MH0.eoGprEK7_1K75FNN6lsJLT6oVZoAeHw5UqygUmGDJlM",
-        "active": true
-      },
-      "id": "6399c5f68d002c0020596c7c"
-    },
-    {
-      "allProjects": true,
-      "resources": [
-        "OZmap",
-        "OZmob",
-        "Loki",
-        "API"
-      ],
-      "email_confirmed": false,
-      "username": "reis",
-      "email": "vinicius.souza@ozmap.com.br",
-      "name": "reis",
-      "phone": "",
-      "role": "5accf8ee0ff2c819a4ffd38e",
-      "observation": "",
-      "projects": [
-        {
-          "fromGroup": false,
-          "project": "5d9f3ff9200141000647f814",
-          "role": "5accf8ee0ff2c819a4ffd38e"
-        },
-        {
-          "fromGroup": false,
-          "project": "638f574c25360200206c1f44",
-          "role": "5accf8ee0ff2c819a4ffd38e"
-        }
-      ],
-      "projectGroups": [],
-      "creatorData": {
-        "id": "5d9f3fb8200141000647f768",
-        "name": "Support OZmap",
-        "username": "devoz"
-      },
-      "locale": "pt_BR",
-      "createdAt": "2022-12-14T17:17:00.831Z",
-      "updatedAt": "2022-12-14T17:17:00.831Z",
-      "__v": 0,
-      "id": "639a050c8d002c0020597134"
-    },
-    {
-      "allProjects": false,
-      "resources": [
-        "OZmap"
-      ],
-      "email_confirmed": false,
-      "username": "example",
-      "email": "apagar@gmail.com",
-      "name": "example",
-      "phone": "",
-      "role": "5accf8ee0ff2c819a4ffd38e",
-      "observation": "",
-      "projects": [],
-      "creatorData": {
-        "id": "638657f1e0e378001461c35c",
-        "name": "api",
-        "username": "api"
-      },
-      "projectGroups": [],
-      "locale": "pt_BR",
-      "createdAt": "2022-12-15T11:41:57.450Z",
-      "updatedAt": "2022-12-15T11:41:57.450Z",
-      "__v": 0,
-      "id": "639b08058d002c002059761c"
     }
   ],
   "start": 0,
