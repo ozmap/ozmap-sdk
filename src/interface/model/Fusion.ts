@@ -29,7 +29,7 @@ const CreateFusionDTOSchema = FusionDataSchema.partial({ attenuation: true })
   .merge(z.object({ external_id: z.any().optional() }));
 const UpdateFusionDTOSchema = FusionDataSchema.omit({ kind: true, project: true, connectables: true })
   .merge(z.object({ external_id: z.any() }))
-  .partial();
+  .partial({ name: true });
 
 type Fusion = z.infer<typeof FusionSchema>;
 type CreateFusionDTO = z.infer<typeof CreateFusionDTOSchema>;

@@ -43,7 +43,7 @@ const OLTSchema = NetworkConnectorSchema.merge(OLTDataSchema).merge(
   }),
 );
 
-const CreateOLTDTOSchema = OLTDataSchema.partial({ attenuation: true })
+const CreateOLTDTOSchema = OLTDataSchema.partial({ attenuation: true, name: true })
   .omit({
     project: true,
     kind: true,

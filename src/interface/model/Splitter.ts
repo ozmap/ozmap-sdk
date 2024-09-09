@@ -12,7 +12,6 @@ const SplitterDataSchema = NetworkConnectorDataSchema.merge(
     }),
     splitterType: stringOrObjectId,
     observation: z.string().optional(),
-    name: z.string(),
   }),
 );
 
@@ -24,7 +23,7 @@ const SplitterSchema = NetworkConnectorSchema.merge(SplitterDataSchema).merge(
   }),
 );
 
-const CreateSplitterDTOSchema = SplitterDataSchema.partial({ attenuation: true })
+const CreateSplitterDTOSchema = SplitterDataSchema.partial({ attenuation: true, name: true })
   .omit({ project: true, kind: true, connectables: true })
   .merge(z.object({ external_id: z.any().optional() }));
 const UpdateSplitterDTOSchema = SplitterDataSchema.omit({ kind: true, project: true })

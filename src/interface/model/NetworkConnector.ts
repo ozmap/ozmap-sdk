@@ -33,7 +33,7 @@ const NetworkConnectorDataSchema = z.object({
   parent: stringOrObjectId,
   project: stringOrObjectId,
   observation: z.string().optional(),
-  name: z.string().optional(),
+  name: z.string(),
   size: z.number().optional(),
   shelf: stringOrObjectId.optional(),
 });

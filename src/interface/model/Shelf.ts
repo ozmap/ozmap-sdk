@@ -22,7 +22,7 @@ const ShelfSchema = NetworkConnectorSchema.merge(ShelfDataSchema).merge(
   }),
 );
 
-const CreateShelfDTOSchema = ShelfDataSchema.partial({ attenuation: true })
+const CreateShelfDTOSchema = ShelfDataSchema.partial({ attenuation: true, name: true })
   .omit({
     project: true,
     kind: true,

@@ -23,7 +23,7 @@ const ConnectorSchema = NetworkConnectorSchema.merge(ConnectorDataSchema).merge(
   }),
 );
 
-const CreateConnectorDTOSchema = ConnectorDataSchema.partial({ attenuation: true })
+const CreateConnectorDTOSchema = ConnectorDataSchema.partial({ attenuation: true, name: true })
   .omit({
     project: true,
     kind: true,

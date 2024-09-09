@@ -18,7 +18,7 @@ const SlotSchema = NetworkConnectorSchema.merge(SlotDataSchema).merge(
   }),
 );
 
-const CreateSlotDTOSchema = SlotDataSchema.partial({ attenuation: true })
+const CreateSlotDTOSchema = SlotDataSchema.partial({ attenuation: true, name: true })
   .omit({
     project: true,
     kind: true,

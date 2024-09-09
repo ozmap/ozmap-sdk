@@ -7,6 +7,7 @@ const PassingDataSchema = NetworkConnectorDataSchema.merge(
   z.object({
     kind: z.literal(NetworkConnectorKind.PASSING),
     connectables: z.array(stringOrObjectId.nullable()),
+    name: z.string().optional(),
   }),
 );
 

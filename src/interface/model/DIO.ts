@@ -12,7 +12,6 @@ const DIODataSchema = NetworkConnectorDataSchema.merge(
     }),
     dioType: stringOrObjectId,
     observation: z.string().optional(),
-    name: z.string(),
     tray_number: z.number(),
     port_labels: z.array(z.string()),
     tray_labels: z.array(z.string()),
@@ -29,7 +28,7 @@ const DIOSchema = NetworkConnectorSchema.merge(DIODataSchema).merge(
   }),
 );
 
-const CreateDIODTOSchema = DIODataSchema.partial({ attenuation: true })
+const CreateDIODTOSchema = DIODataSchema.partial({ attenuation: true, name: true })
   .omit({
     tray_number: true,
     project: true,

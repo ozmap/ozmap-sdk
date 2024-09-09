@@ -24,6 +24,7 @@ const CableDataSchema = z.object({
       into: stringOrObjectId.optional(),
     }),
   ),
+  kind: z.union([z.literal('Cable'), z.literal('Drop')]),
   index: z.number().optional(),
   hierarchyLevel: z.number(),
   name: z.string().trim().optional(),
