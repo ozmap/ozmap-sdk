@@ -35,7 +35,7 @@ const UserSchema = BaseModelSchema.merge(UserDataSchema).merge(
   }),
 );
 
-const CreateUserDTOSchema = UserDataSchema.merge(z.object({ external_id: z.any().optional() }));
+const CreateUserDTOSchema = UserDataSchema.merge(z.object({ password: z.string(), external_id: z.any().optional() }));
 const UpdateUserDTOSchema = UserDataSchema.merge(z.object({ external_id: z.any().optional() })).partial();
 
 type User = z.infer<typeof UserSchema>;
