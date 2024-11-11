@@ -1,6 +1,8 @@
+export * from './Antenna';
 export * from './BaseModel';
 export * from './BaseBox';
 export * from './BasePoint';
+export * from './Battery';
 export * from './Box';
 export * from './BoxType';
 export * from './BoxTemplate';
@@ -52,6 +54,7 @@ export * from './NetworkConnector';
 export * from './OLT';
 export * from './OLTType';
 export * from './Tag';
+export * from './Radio';
 export * from './Splitter';
 export * from './SplitterType';
 export * from './SystemConfig';

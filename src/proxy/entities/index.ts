@@ -54,3 +54,6 @@ export { default as SwitchTypeProxy } from './SwitchType';
 export { default as TagProxy } from './Tag';
 export { default as UserProxy } from './User';
 export { default as SystemConfigProxy } from './SystemConfig';
+export { default as AntennaProxy } from './Antenna';
+export { default as BatteryProxy } from './Battery';
+export { default as RadioProxy } from './Radio';

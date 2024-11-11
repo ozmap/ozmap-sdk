@@ -50,10 +50,10 @@ import OZMapSDK from 'ozmapsdk';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const newPopData: CreatePopDTO = {
-  name: "New Pop",
+  name: 'New Pop',
   hierarchyLevel: 1,
-  popType: "popTypeId",
-  pole: "poleId",
+  popType: 'popTypeId',
+  pole: 'poleId',
   implanted: true,
 };
 
@@ -70,7 +70,7 @@ import OZMapSDK from 'ozmapsdk';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const updatePopData: UpdatePopDTO = {
-  name: "Updated Pop",
+  name: 'Updated Pop',
   hierarchyLevel: 2,
 };
 
@@ -86,15 +86,21 @@ import OZMapSDK from 'ozmapsdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
-sdk.pop.find({ page: 1, limit: 10, filter: [
-    {
-      property: "name",
-      operator: FilterOperator.EQUAL,
-      value: "Popname",
-    }]
-}).then((pagination) => {
-  console.log('Pops:', pagination);
-});
+sdk.pop
+  .find({
+    page: 1,
+    limit: 10,
+    filter: [
+      {
+        property: 'name',
+        operator: FilterOperator.EQUAL,
+        value: 'Popname',
+      },
+    ],
+  })
+  .then((pagination) => {
+    console.log('Pops:', pagination);
+  });
 ```
 
 ### Fetch by id
@@ -124,6 +130,14 @@ sdk.pop.deleteById('popId').then(() => {
 ## Documentation
 
 ## Models
+
+### Antenna
+
+- [Antenna](./docs/ANTENNA.md)
+
+### Battery
+
+- [Battery](./docs/BATTERY.md)
 
 ### Boxes
 
@@ -212,8 +226,8 @@ sdk.pop.deleteById('popId').then(() => {
 - [Base Point](./docs/BASEPOINT.md)
 - [Point](./docs/POINT.md)
 
-
 ### Poles
+
 - [Pole](./docs/POLE.md)
 - [Pole Type](./docs/POLETYPE.md)
 
@@ -222,11 +236,14 @@ sdk.pop.deleteById('popId').then(() => {
 - [PON](./docs/PON.md)
 
 ### POP
+
 - [POP](./docs/POP.md)
 - [POP Type](./docs/POPTYPE.md)
 
 ### POST
+
 - [Post](./docs/POST.md)
+
 ### Projects
 
 - [Project](./docs/PROJECT.md)
@@ -236,6 +253,10 @@ sdk.pop.deleteById('popId').then(() => {
 
 - [Property](./docs/PROPERTY.md)
 - [Prospect](./docs/PROSPECT.md)
+
+### Radio
+
+- [Radio](./docs/RADIO.md)
 
 ### Regions
 

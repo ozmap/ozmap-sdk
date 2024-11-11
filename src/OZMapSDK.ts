@@ -56,6 +56,9 @@ import {
   DuctTypeProxy,
   PostProxy,
   FileProxy,
+  AntennaProxy,
+  RadioProxy,
+  BatteryProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -116,6 +119,9 @@ class OZMapSDK {
   public readonly ductType: DuctTypeProxy;
   public readonly post: PostProxy;
   public readonly file: FileProxy;
+  public readonly antenna: AntennaProxy;
+  public readonly battery: BatteryProxy;
+  public readonly radio: RadioProxy;
 
   constructor(ozmapURL: string, options: ConstructorParameters<typeof Api>[1]) {
     this.apiInstance = new Api(ozmapURL, options);
@@ -176,6 +182,9 @@ class OZMapSDK {
     this.ductType = new DuctTypeProxy(this.apiInstance);
     this.post = new PostProxy(this.apiInstance);
     this.file = new FileProxy(this.apiInstance);
+    this.antenna = new AntennaProxy(this.apiInstance);
+    this.battery = new BaseBoxProxy(this.apiInstance);
+    this.radio = new RadioProxy(this.apiInstance);
   }
 }
 
