@@ -16,6 +16,7 @@ const OLTTypeDataSchema = z.object({
       pons: z.number().int().positive(),
     }),
   ),
+  prefix: z.string().optional(),
 });
 
 const OLTTypeSchema = BaseModelSchema.merge(OLTTypeDataSchema);

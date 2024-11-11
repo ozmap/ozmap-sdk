@@ -22,6 +22,7 @@ type OLTType = {
     starting_pon_number: number;
     pons: number;
   }>;
+  prefix?: string;
 };
 ```
 
@@ -30,21 +31,9 @@ type OLTType = {
 Defines the structure for creating an OLT type.
 
 ```typescript
-type CreateOLTTypeDTO = Partial<{
-  code: string;
-  brand: string;
-  mold: string;
-  defaultPotency: number;
-  defaultClients?: number;
-  description: string;
-  size: number;
-  slots: Array<{
-    name: number;
-    starting_pon_number: number;
-    pons: number;
-  }>;
+type CreateOLTTypeDTO = Partial<OLTType> & {
   external_id?: any;
-}>;
+};
 ```
 
 ### UpdateOLTTypeDTO
@@ -52,21 +41,9 @@ type CreateOLTTypeDTO = Partial<{
 Defines the structure for updating an OLT type.
 
 ```typescript
-type UpdateOLTTypeDTO = Partial<{
-  code: string;
-  brand: string;
-  mold: string;
-  defaultPotency: number;
-  defaultClients?: number;
-  description: string;
-  size: number;
-  slots: Array<{
-    name: number;
-    starting_pon_number: number;
-    pons: number;
-  }>;
+type UpdateOLTTypeDTO = Partial<OLTType> & {
   external_id?: any;
-}>;
+};
 ```
 
 ## Example Usage
@@ -79,15 +56,13 @@ import OZMapSDK from 'ozmapsdk';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const newOLTTypeData: CreateOLTTypeDTO = {
-  code: "OLT-001",
-  brand: "BrandX",
-  mold: "MoldY",
+  code: 'OLT-001',
+  brand: 'BrandX',
+  mold: 'MoldY',
   defaultPotency: 10,
-  description: "High performance OLT",
+  description: 'High performance OLT',
   size: 1,
-  slots: [
-    { name: 1, starting_pon_number: 1, pons: 4 },
-  ],
+  slots: [{ name: 1, starting_pon_number: 1, pons: 4 }],
 };
 
 sdk.oltType.create(newOLTTypeData).then((oltType) => {
@@ -103,7 +78,7 @@ import OZMapSDK from 'ozmapsdk';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const updateOLTTypeData: UpdateOLTTypeDTO = {
-  description: "Updated description",
+  description: 'Updated description',
   defaultPotency: 15,
 };
 

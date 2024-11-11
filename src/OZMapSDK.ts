@@ -183,7 +183,7 @@ class OZMapSDK {
     this.post = new PostProxy(this.apiInstance);
     this.file = new FileProxy(this.apiInstance);
     this.antenna = new AntennaProxy(this.apiInstance);
-    this.battery = new BaseBoxProxy(this.apiInstance);
+    this.battery = new BatteryProxy(this.apiInstance);
     this.radio = new RadioProxy(this.apiInstance);
   }
 }
