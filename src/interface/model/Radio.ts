@@ -25,7 +25,16 @@ const RadioDataSchema = z.object({
 
 const RadioSchema = BaseModelSchema.merge(RadioDataSchema);
 const CreateRadioDTOSchema = RadioDataSchema.merge(z.object({ external_id: z.any().optional() }));
-const UpdateRadioDTOSchema = RadioDataSchema.merge(z.object({ external_id: z.any().optional() })).partial();
+const UpdateRadioDTOSchema = RadioDataSchema.merge(z.object({ external_id: z.any().optional() }))
+  .omit({
+    parent: true,
+    radioType: true,
+    project: true,
+    kind: true,
+    isDrop: true,
+    connectables: true,
+  })
+  .partial();
 
 type Radio = z.infer<typeof RadioSchema>;
 type CreateRadioDTO = z.infer<typeof CreateRadioDTOSchema>;

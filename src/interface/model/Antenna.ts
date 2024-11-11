@@ -20,7 +20,12 @@ const AntennaDataSchema = z.object({
 
 const AntennaSchema = BaseModelSchema.merge(AntennaDataSchema);
 const CreateAntennaDTOSchema = AntennaDataSchema.merge(z.object({ external_id: z.any().optional() }));
-const UpdateAntennaDTOSchema = AntennaDataSchema.merge(z.object({ external_id: z.any().optional() })).partial();
+const UpdateAntennaDTOSchema = AntennaDataSchema.merge(z.object({ external_id: z.any().optional() }))
+  .omit({
+    parent: true,
+    tower: true,
+  })
+  .optional();
 
 type Antenna = z.infer<typeof AntennaSchema>;
 type CreateAntennaDTO = z.infer<typeof CreateAntennaDTOSchema>;

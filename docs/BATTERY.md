@@ -23,6 +23,7 @@ type Battery = {
   autonomy?: string;
   fabricationDate: Date;
   serialNumber?: string;
+  syze?: number;
   project?: string;
 };
 ```
