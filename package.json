@@ -1,6 +1,6 @@
 {
   "name": "@ozmap/ozmap-sdk",
-  "version": "1.0.15-alpha.3",
+  "version": "1.0.15-alpha.5",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "lint": "eslint ./src --ext .cjs,.js,.ts",
     "lint:fix": "eslint ./src --ext .cjs,.js,.ts --fix",
     "test": "ts-node test",
-    "publish:alpha": "npm publish --tag alpha"
+    "publish:alpha": "npm run build && npm publish --tag alpha"
   },
   "files": [
     "dist/**/*"
@@ -37,6 +37,7 @@
   "homepage": "https://github.com/ozmap/ozmap-sdk#readme",
   "dependencies": {
     "@ozmap/logger": "^0.2.3",
+    "@ozmap/ozmap-sdk": "^1.0.15-alpha.4",
     "axios": "^1.7.7",
     "bson-objectid": "^2.0.1",
     "http-status-codes": "^2.3.0",
