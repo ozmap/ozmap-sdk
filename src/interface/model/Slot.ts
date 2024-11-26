@@ -8,7 +8,7 @@ const SlotDataSchema = NetworkConnectorDataSchema.merge(
     kind: z.literal(NetworkConnectorKind.SLOT),
     connectables: z.array(stringOrObjectId.nullable()),
     label: z.string().default('').nullish(),
-    starting_pon_numbere: z.number().min(1),
+    starting_pon_number: z.number().min(1),
   }),
 );
 
@@ -23,6 +23,8 @@ const CreateSlotDTOSchema = SlotDataSchema.partial({ attenuation: true, name: tr
     project: true,
     kind: true,
     connectables: true,
+    isDrop: true,
+    implanted: true,
   })
   .merge(z.object({ olt: stringOrObjectId, external_id: z.any().optional() }));
 const UpdateSlotDTOSchema = SlotDataSchema.omit({ kind: true, project: true, connectables: true })
