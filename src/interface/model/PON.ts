@@ -20,6 +20,8 @@ const PONSchema = NetworkConnectorSchema.merge(PONDataSchema).merge(
 
 const CreatePONDTOSchema = PONDataSchema.partial({ attenuation: true })
   .omit({
+    implanted: true,
+    isDrop: true,
     project: true,
     kind: true,
     connectables: true,

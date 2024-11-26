@@ -35,25 +35,25 @@ const FTTHClientSchema = BaseModelSchema.merge(FTTHClientDataSchema).merge(
     tags: z.union([z.array(stringOrObjectId), z.array(TagSchema)]),
   }),
 );
-// const CreateFTTHClientDTOSchema = FTTHClientDataSchema.partial({
-//   tags: true,
-//   certified: true,
-//   onu: true,
-//   status: true,
-//   cpe: true,
-// }).merge(z.object({ external_id: z.any().optional() }));
+const CreateFTTHClientDTOSchema = FTTHClientDataSchema.partial({
+  tags: true,
+  certified: true,
+  onu: true,
+  status: true,
+  cpe: true,
+}).merge(z.object({ external_id: z.any().optional() }));
 const UpdateFTTHClientDTOSchema = FTTHClientDataSchema.merge(z.object({ external_id: z.any().optional() })).partial();
 
 type FTTHClient = z.infer<typeof FTTHClientSchema>;
-// type CreateFTTHClientDTO = z.infer<typeof CreateFTTHClientDTOSchema>;
+type CreateFTTHClientDTO = z.infer<typeof CreateFTTHClientDTOSchema>;
 type UpdateFTTHClientDTO = z.infer<typeof UpdateFTTHClientDTOSchema>;
 
 export {
   FTTHClientStatus,
   FTTHClientSchema,
   FTTHClient,
-  // CreateFTTHClientDTOSchema,
-  // CreateFTTHClientDTO,
+  CreateFTTHClientDTOSchema,
+  CreateFTTHClientDTO,
   UpdateFTTHClientDTOSchema,
   UpdateFTTHClientDTO,
 };
