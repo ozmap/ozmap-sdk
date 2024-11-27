@@ -8,7 +8,7 @@ const SlotDataSchema = NetworkConnectorDataSchema.merge(
     kind: z.literal(NetworkConnectorKind.SLOT),
     connectables: z.array(stringOrObjectId.nullable()),
     label: z.string().default('').nullish(),
-    starting_pon_number: z.number().min(1),
+    starting_pon_number: z.number().min(0),
   }),
 );
 

@@ -8,7 +8,7 @@ const PONDataSchema = NetworkConnectorDataSchema.merge(
     kind: z.literal(NetworkConnectorKind.PON),
     connectables: z.array(stringOrObjectId.nullable()),
     potency: z.number().default(0),
-    maximumClients: z.number().positive().default(Infinity),
+    maximumClients: z.number().min(0).default(Infinity),
   }),
 );
 
@@ -22,9 +22,9 @@ const CreatePONDTOSchema = PONDataSchema.partial({ attenuation: true })
   .omit({
     implanted: true,
     isDrop: true,
-    project: true,
     kind: true,
     connectables: true,
+    maximumClients: true,
   })
   .merge(z.object({ slot: stringOrObjectId, external_id: z.any().optional() }));
 const UpdatePONDTOSchema = PONDataSchema.omit({ kind: true, project: true, connectables: true })

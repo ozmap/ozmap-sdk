@@ -14,6 +14,7 @@ const NetworkConnectableDataSchema = z.object({
   parent: stringOrObjectId,
   project: stringOrObjectId,
   name: z.string().trim(),
+  observation: z.string().trim(),
 });
 
 const NetworkConnectableSchema = BaseModelSchema.merge(NetworkConnectableDataSchema).merge(
