@@ -34,6 +34,18 @@ const PropertySchema = BaseModelSchema.merge(PropertyDataSchema)
       box: stringOrObjectId.or(BoxSchema).optional(),
       pole: stringOrObjectId.or(BasePointSchema).optional(),
       drop: stringOrObjectId.or(CableSchema).optional(),
+      connections: z
+        .array(
+          z.object({
+            id: stringOrObjectId,
+            name: z.string(),
+            kind: z.string(),
+            port: z.number().int().positive(),
+            implanted: z.boolean().default(true),
+            fiber: stringOrObjectId,
+          }),
+        )
+        .default([]),
     }),
   );
 

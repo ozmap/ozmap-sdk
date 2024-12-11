@@ -16,6 +16,13 @@ class FTTHClientProxy extends UpdatableProxy<FTTHClient, UpdateFTTHClientDTO> {
 
     return super.updateById(id, parsedData, options);
   }
+
+  public async deleteById(id: FTTHClient['id'], options?: Parameters<Api['delete']>[0]['options']): Promise<void> {
+    return this.apiInstance.delete({
+      route: `${this._route}/${id}`,
+      options,
+    });
+  }
 }
 
 export default FTTHClientProxy;
