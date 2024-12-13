@@ -9,7 +9,7 @@ enum FTTHClientStatus {
 
 const FTTHClientDataSchema = z.object({
   tags: z.array(stringOrObjectId).default([]),
-  code: z.string().trim().optional(),
+  code: z.string().trim(),
   name: z.string().trim().optional(),
   observation: z.string().trim().optional(),
   implanted: z.boolean().default(false),
@@ -37,6 +37,7 @@ const FTTHClientSchema = BaseModelSchema.merge(FTTHClientDataSchema).merge(
 );
 const CreateFTTHClientDTOSchema = FTTHClientDataSchema.partial({
   tags: true,
+  code: true,
   certified: true,
   onu: true,
   status: true,
