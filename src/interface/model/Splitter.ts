@@ -34,7 +34,7 @@ const SplitterSchema = NetworkConnectorSchema.merge(SplitterDataSchema).merge(
   }),
 );
 
-const CreateSplitterDTOSchema = SplitterDataSchema.partial({ attenuation: true, name: true })
+const CreateSplitterDTOSchema = SplitterDataSchema.partial({ attenuation: true, name: true, ports: true })
   .omit({ project: true, kind: true, connectables: true })
   .merge(z.object({ external_id: z.any().optional() }));
 const UpdateSplitterDTOSchema = SplitterDataSchema.omit({ kind: true, project: true })
