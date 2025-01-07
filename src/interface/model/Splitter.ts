@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { stringOrObjectId } from './BaseModel';
 import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchema } from './NetworkConnector';
 import { SplitterTypeSchema } from './SplitterType';
+import { TagSchema } from './Tag';
 
 const SplitterDataSchema = NetworkConnectorDataSchema.merge(
   z.object({
@@ -12,6 +13,14 @@ const SplitterDataSchema = NetworkConnectorDataSchema.merge(
     }),
     splitterType: stringOrObjectId,
     observation: z.string().optional(),
+    ports: z.array(
+      z.object({
+        index: z.number(),
+        blocked: z.boolean(),
+        tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
+        observation: z.string().optional(),
+      }),
+    ),
   }),
 );
 
