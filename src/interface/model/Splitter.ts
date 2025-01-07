@@ -13,16 +13,14 @@ const SplitterDataSchema = NetworkConnectorDataSchema.merge(
     }),
     splitterType: stringOrObjectId,
     observation: z.string().optional(),
-    ports: z
-      .array(
-        z.object({
-          index: z.number(),
-          blocked: z.boolean(),
-          tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
-          observation: z.string().optional(),
-        }),
-      )
-      .optional(),
+    ports: z.array(
+      z.object({
+        index: z.number(),
+        blocked: z.boolean(),
+        tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
+        observation: z.string().optional(),
+      }),
+    ),
   }),
 );
 
