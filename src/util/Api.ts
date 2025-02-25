@@ -163,7 +163,7 @@ class Api {
     limit?: number;
     // tenho que confirmar o que o populate aceita
     populate?: any;
-    filter?: ApiFilter[] | ApiFilter[][];
+    filter?: ApiFilter[] | ApiFilter[][] | Array<ApiFilter | ApiFilter[]>;
     sorter?: ApiSort[];
     select?: string;
     options?: Omit<AxiosRequestConfig, 'url'>;

@@ -121,6 +121,74 @@ sdk.pop.deleteById('popId').then(() => {
 });
 ```
 
+## API instance methods
+
+For making non-CRUD operations, such as viability or any other that isn't included in an element route, you can use the `apiInstance` of the SDK.
+
+### Get
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.apiInstance.get<OUTPUT>({
+    route: 'ftth-viability/radius',
+    options: { params: { lat, lng } },
+}).then((response) => {
+    console.log('Response:', response);
+});
+```
+
+
+### Post
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.apiInstance.post<INPUT, OUTPUT>({
+  route: 'custom/route',
+  inputData: { key: 'value' },
+  options: { headers: { 'Custom-Header': 'value' } },
+}).then((response) => {
+  console.log('Response:', response);
+});
+```
+
+### Patch
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.apiInstance.patch<INPUT>({
+    route: 'custom/route',
+    inputData: { key: 'newValue' },
+    options: { headers: { 'Custom-Header': 'value' } },
+}).then(() => {
+    console.log('Data updated');
+});
+```
+
+### Delete
+
+```typescript
+import OZMapSDK from 'ozmapsdk';
+
+const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
+
+sdk.apiInstance.delete({
+    route: 'custom/route',
+    options: { headers: { 'Custom-Header': 'value' } },
+}).then(() => {
+    console.log('Data deleted');
+});
+```
+
+
 ## Documentation
 
 ## Models

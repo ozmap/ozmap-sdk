@@ -1,6 +1,6 @@
 {
   "name": "@ozmap/ozmap-sdk",
-  "version": "1.0.17",
+  "version": "1.0.23",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
