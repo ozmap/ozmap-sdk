@@ -12,8 +12,8 @@ const BoxTemplateDataSchema = z.object({
 });
 
 const BoxTemplateSchema = BaseModelSchema.merge(BoxTemplateDataSchema);
-const CreateBoxTemplateDTOSchema = BoxTemplateDataSchema.merge(z.object({}));
-const UpdateBoxTemplateDTOSchema = BoxTemplateDataSchema.partial();
+const CreateBoxTemplateDTOSchema = BoxTemplateDataSchema.merge(z.object({ external_id: z.string().optional() }));
+const UpdateBoxTemplateDTOSchema = BoxTemplateDataSchema.merge(z.object({ external_id: z.string() })).partial();
 
 type BoxTemplate = z.infer<typeof BoxTemplateSchema>;
 type CreateBoxTemplateDTO = z.infer<typeof CreateBoxTemplateDTOSchema>;
