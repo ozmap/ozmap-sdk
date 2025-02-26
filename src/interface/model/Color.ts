@@ -7,7 +7,7 @@ const ColorDataSchema = z.object({
 });
 
 const ColorSchema = BaseModelSchema.merge(ColorDataSchema);
-const CreateColorDTOSchema = ColorDataSchema.merge(z.object({}));
+const CreateColorDTOSchema = ColorDataSchema.merge(z.object({ external_id: z.any().optional() }));
 const UpdateColorDTOSchema = ColorDataSchema.partial();
 
 type Color = z.infer<typeof ColorSchema>;

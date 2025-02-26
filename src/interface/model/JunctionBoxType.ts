@@ -12,7 +12,9 @@ const JunctionBoxTypeDataSchema = z.object({
 });
 
 const JunctionBoxTypeSchema = BaseModelSchema.merge(JunctionBoxTypeDataSchema);
-const CreateJunctionBoxTypeDTOSchema = JunctionBoxTypeDataSchema.omit({ systemDefault: true });
+const CreateJunctionBoxTypeDTOSchema = JunctionBoxTypeDataSchema.merge(
+  z.object({ external_id: z.any().optional() }),
+).omit({ systemDefault: true });
 const UpdateJunctionBoxTypeDTOSchema = JunctionBoxTypeDataSchema.omit({ systemDefault: true }).partial();
 
 type JunctionBoxType = z.infer<typeof JunctionBoxTypeSchema>;

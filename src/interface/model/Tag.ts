@@ -31,7 +31,7 @@ const TagDataSchema = z.object({
 });
 
 const TagSchema = BaseModelSchema.merge(TagDataSchema);
-const CreateTagDTOSchema = TagDataSchema.merge(z.object({}));
+const CreateTagDTOSchema = TagDataSchema.merge(z.object({ external_id: z.any().optional() }));
 const UpdateTagDTOSchema = TagDataSchema.partial();
 
 type Tag = z.infer<typeof TagSchema>;
