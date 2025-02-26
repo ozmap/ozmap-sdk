@@ -1,7 +1,7 @@
-import ReadableProxy from '../ReadableProxy';
-import { Role } from '../../interface';
+import { CreateRoleDTO, Role, UpdateRoleDTO } from '../../interface';
+import WritableProxy from '../WritableProxy';
 
-class RoleProxy extends ReadableProxy<Role> {
+class RoleProxy extends WritableProxy<Role, CreateRoleDTO, UpdateRoleDTO> {
   protected get _route(): string {
     return 'roles';
   }
