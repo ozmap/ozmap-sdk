@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { stringOrObjectId } from './BaseModel';
 import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchema } from './NetworkConnector';
 import { DIOTypeSchema } from './DIOType';
+import { TagSchema } from './Tag';
 
 const DIODataSchema = NetworkConnectorDataSchema.merge(
   z.object({
@@ -25,13 +26,13 @@ const DIOSchema = NetworkConnectorSchema.merge(DIODataSchema).merge(
     dioType: z.union([stringOrObjectId, DIOTypeSchema]),
     // quando modelar shelf ela entra aqui
     shelf: z.union([stringOrObjectId, NetworkConnectorSchema]).optional(),
+    tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
   }),
 );
 
 const CreateDIODTOSchema = DIODataSchema.partial({ attenuation: true, name: true })
   .omit({
     tray_number: true,
-    project: true,
     kind: true,
     connectables: true,
     isDrop: true,
@@ -40,7 +41,7 @@ const CreateDIODTOSchema = DIODataSchema.partial({ attenuation: true, name: true
     port_labels: true,
     tray_labels: true,
   })
-  .merge(z.object({ external_id: z.any().optional() }));
+  .merge(z.object({ external_id: z.any().optional(), tags: z.array(stringOrObjectId).default([]).optional() }));
 const UpdateDIODTOSchema = DIODataSchema.omit({ kind: true, project: true })
   .merge(z.object({ external_id: z.any() }))
   .partial();
