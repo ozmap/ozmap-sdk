@@ -24,7 +24,7 @@ const ProjectDataSchema = z.object({
   }),
   area: z.object({
     type: z.literal('Polygon'),
-    coordinates: z.array(z.array(z.array(z.number()))),
+    coordinates: z.array(z.array(z.tuple([z.number(), z.number()]))),
   }),
 });
 

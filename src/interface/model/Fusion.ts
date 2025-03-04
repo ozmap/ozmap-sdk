@@ -3,6 +3,7 @@ import { stringOrObjectId } from './BaseModel';
 import { NetworkConnectorDataSchema, NetworkConnectorKind, NetworkConnectorSchema } from './NetworkConnector';
 import { FusionTypeSchema } from './FusionType';
 import { NetworkConnectableSchema } from './NetworkConnectable';
+import { TagSchema } from './Tag';
 
 const FusionDataSchema = NetworkConnectorDataSchema.merge(
   z.object({
@@ -16,17 +17,17 @@ const FusionSchema = NetworkConnectorSchema.merge(FusionDataSchema).merge(
   z.object({
     fusionType: z.union([stringOrObjectId, FusionTypeSchema]),
     connectables: z.union([z.array(stringOrObjectId.nullable()), z.array(NetworkConnectableSchema.nullable())]),
+    tags: z.array(stringOrObjectId.or(TagSchema)).default([]),
   }),
 );
 
 const CreateFusionDTOSchema = FusionDataSchema.partial({ attenuation: true })
   .omit({
-    project: true,
     kind: true,
     connectables: true,
     isDrop: true,
   })
-  .merge(z.object({ external_id: z.any().optional() }));
+  .merge(z.object({ external_id: z.any().optional(), tags: z.array(stringOrObjectId).default([]).optional() }));
 const UpdateFusionDTOSchema = FusionDataSchema.omit({ kind: true, project: true, connectables: true })
   .merge(z.object({ external_id: z.any() }))
   .partial({ name: true });

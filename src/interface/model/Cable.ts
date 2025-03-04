@@ -71,6 +71,7 @@ const CreateCableDTOSchema = CableDataSchema.omit({
   index: true,
   fiberNumber: true,
   looseNumber: true,
+  kind: true,
 })
   .merge(
     z.object({
