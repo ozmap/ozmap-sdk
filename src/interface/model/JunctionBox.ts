@@ -30,7 +30,9 @@ const JunctionBoxSchema = BaseModelSchema.merge(JunctionBoxDataSchema).merge(
     adjacents: z.array(stringOrObjectId.or(BasePointSchema)).default([]),
   }),
 );
-const CreateJunctionBoxDTOSchema = JunctionBoxDataSchema.omit({ kind: true, typeColor: true });
+const CreateJunctionBoxDTOSchema = JunctionBoxDataSchema.omit({ kind: true, typeColor: true }).merge(
+  z.object({ external_id: z.any().optional() }),
+);
 const UpdateJunctionBoxDTOSchema = JunctionBoxDataSchema.omit({ kind: true, typeColor: true, project: true }).partial();
 
 type JunctionBox = z.infer<typeof JunctionBoxSchema>;
