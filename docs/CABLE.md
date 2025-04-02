@@ -14,14 +14,14 @@ type Cable = {
   project: string | Project;
   color?: string | Color;
   cableType: string | CableType;
-  boxA: string | BaseBox;
-  boxB: string | BaseBox;
-  ducts?: { duct: string, parent: string }[]; // default: []
-  poles: { 
-    id: string | BasePoint; 
-    reserve: number; 
-    from?: string; 
-    into?: string 
+  boxA?: string | BaseBox;
+  boxB?: string | BaseBox;
+  ducts?: { duct: string; parent: string }[]; // default: []
+  poles: {
+    id: string | BasePoint;
+    reserve: number;
+    from?: string;
+    into?: string;
   }[];
   index?: number;
   hierarchyLevel: number;
@@ -49,8 +49,8 @@ type CreateCableDTO = {
   project: string;
   color?: string;
   cableType: string;
-  boxA: string | CreateBoxDTO;
-  boxB: string | CreateBoxDTO;
+  boxA?: string | CreateBoxDTO;
+  boxB?: string | CreateBoxDTO;
   poles: (
     | {
         id: string;
@@ -78,6 +78,8 @@ type UpdateCableDTO = {
   tags?: string[];
   color?: string;
   cableType?: string;
+  boxA?: string | null;
+  boxB?: string | null;
   poles?: (
     | {
         id: string;
@@ -107,13 +109,11 @@ import { CreateCableDTO } from './Cable';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const newCableData: CreateCableDTO = {
-  project: "projectId",
-  cableType: "cableTypeId",
-  boxA: "boxAId",
-  boxB: "boxBId",
+  project: 'projectId',
+  cableType: 'cableTypeId',
   poles: [
-    { id: "poleId1", reserve: 5 },
-    { lat: 34.0522, lng: -118.2437 }
+    { id: 'poleId1', reserve: 5 },
+    { lat: 34.0522, lng: -118.2437 },
   ],
 };
 
@@ -131,9 +131,11 @@ import { UpdateCableDTO } from './Cable';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const updateCableData: UpdateCableDTO = {
-  color: "newColorId",
-  orientationA: "newOrientationA",
-  orientationB: "newOrientationB",
+  color: 'newColorId',
+  orientationA: 'newOrientationA',
+  orientationB: 'newOrientationB',
+    boxA: 'newBaseBoxAId',
+    boxb: 'newBaseBoxBId',
 };
 
 sdk.cable.updateById('cableId', updateCableData).then(() => {
