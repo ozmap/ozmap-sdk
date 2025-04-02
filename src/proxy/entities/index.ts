@@ -4,6 +4,7 @@ export { default as BoxProxy } from './Box';
 export { default as BoxTemplateProxy } from './BoxTemplate';
 export { default as BoxTypeProxy } from './BoxType';
 export { default as BuildingProxy } from './Building';
+export { default as BuildingTypeProxy } from './BuildingType';
 export { default as CableProxy } from './Cable';
 export { default as CableTypeProxy } from './CableType';
 export { default as ColorProxy } from './Color';

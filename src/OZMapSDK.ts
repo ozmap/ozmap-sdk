@@ -20,6 +20,7 @@ import {
   PopProxy,
   PopTypeProxy,
   BuildingProxy,
+  BuildingTypeProxy,
   FTTHClientProxy,
   PropertyProxy,
   SplitterTypeProxy,
@@ -69,6 +70,7 @@ class OZMapSDK {
   public readonly point: PointProxy;
   public readonly box: BoxProxy;
   public readonly building: BuildingProxy;
+  public readonly buildingType: BuildingTypeProxy;
   public readonly pole: PoleProxy;
   public readonly ftthClient: FTTHClientProxy;
   public readonly junctionBox: JunctionBoxProxy;
@@ -140,6 +142,7 @@ class OZMapSDK {
     this.pop = new PopProxy(this.apiInstance);
     this.popType = new PopTypeProxy(this.apiInstance);
     this.building = new BuildingProxy(this.apiInstance);
+    this.buildingType = new BuildingTypeProxy(this.apiInstance);
     this.ftthClient = new FTTHClientProxy(this.apiInstance);
     this.property = new PropertyProxy(this.apiInstance);
     this.splitterType = new SplitterTypeProxy(this.apiInstance);

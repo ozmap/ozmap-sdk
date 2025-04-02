@@ -126,7 +126,7 @@ import OZMapSDK from 'ozmapsdk';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 sdk.boxType.find().then((pagination) => {
-  console.log('boxTypees:', pagination);
+  console.log('boxTypes:', pagination);
 });
 ```
 Response example

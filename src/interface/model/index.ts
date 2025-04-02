@@ -5,6 +5,7 @@ export * from './Box';
 export * from './BoxType';
 export * from './BoxTemplate';
 export * from './Building';
+export * from './BuildingType';
 export * from './Cable';
 export * from './CableType';
 export * from './Color';
