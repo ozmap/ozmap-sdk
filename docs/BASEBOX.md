@@ -6,6 +6,7 @@ BaseBox is a parent class. For more information, visit its children documentatio
 - [Building](./BUILDING.md)<br>
 - [Property](./PROPERTY.md)<br>
 - [POP](./POP.md)<br>
+- [CableStub](./CABLESTUB.md)<br>
 
 ## Models
 

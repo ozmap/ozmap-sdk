@@ -20,7 +20,7 @@ type Building = {
   tags?: (string | Tag)[]; // default: []
   project: string | Project;
   cables?: string[]; // default: []
-  BuildingType: string | BuildingType;
+  buildingType: string | BuildingType;
   color?: string;
 };
 ```

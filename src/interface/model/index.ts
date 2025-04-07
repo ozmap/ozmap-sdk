@@ -8,6 +8,7 @@ export * from './Building';
 export * from './BuildingType';
 export * from './Cable';
 export * from './CableType';
+export * from './CableStub';
 export * from './Color';
 export * from './Connector';
 export * from './Cord';

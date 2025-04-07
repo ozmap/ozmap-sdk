@@ -17,6 +17,7 @@ import {
   FiberProfileProxy,
   CableTypeProxy,
   CableProxy,
+  CableStubProxy,
   PopProxy,
   PopTypeProxy,
   BuildingProxy,
@@ -81,6 +82,7 @@ class OZMapSDK {
   public readonly fiberProfile: FiberProfileProxy;
   public readonly cableType: CableTypeProxy;
   public readonly cable: CableProxy;
+  public readonly cableStub: CableStubProxy;
   public readonly dio: DIOProxy;
   public readonly dioType: DIOTypeProxy;
   public readonly pop: PopProxy;
@@ -125,6 +127,7 @@ class OZMapSDK {
     this.boxTemplate = new BoxTemplateProxy(this.apiInstance);
     this.boxType = new BoxTypeProxy(this.apiInstance);
     this.cableType = new CableTypeProxy(this.apiInstance);
+    this.cableStub = new CableStubProxy(this.apiInstance);
     this.project = new ProjectProxy(this.apiInstance);
     this.tag = new TagProxy(this.apiInstance);
     this.baseBox = new BaseBoxProxy(this.apiInstance);
