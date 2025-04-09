@@ -9,8 +9,10 @@ This document provides a concise guide to the Building module, focusing on the B
 Defines the structure for buildings.
 
 ```typescript
+import { BuildingType } from './BuildingType';
+
 type Building = {
-  kind: "Building";
+  kind: 'Building';
   name: string;
   address?: string;
   implanted?: boolean; // default: true
@@ -18,6 +20,8 @@ type Building = {
   tags?: (string | Tag)[]; // default: []
   project: string | Project;
   cables?: string[]; // default: []
+  buildingType: string | BuildingType;
+  color?: string;
 };
 ```
 
@@ -27,12 +31,15 @@ Defines the structure for creating a building.
 
 ```typescript
 type CreateBuildingDTO = {
-  kind?: "Building";
+  kind?: 'Building';
   name?: string;
   address?: string;
   implanted?: boolean; // default: true
   tags?: string[]; // default: []
   external_id?: any;
+  template?: string;
+  buildingType?: string;
+  color?: string;
 };
 ```
 
@@ -42,12 +49,14 @@ Defines the structure for updating a building.
 
 ```typescript
 type UpdateBuildingDTO = {
-  kind?: "Building";
+  kind?: 'Building';
   name?: string;
   address?: string;
   implanted?: boolean; // default: true
   tags?: string[]; // default: []
   external_id?: any;
+  buildingType?: string;
+  color?: string;
 };
 ```
 
@@ -62,9 +71,10 @@ import { CreateBuildingDTO } from './Building';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const newBuildingData: CreateBuildingDTO = {
-  name: "New Building",
-  kind: "Building",
+  name: 'New Building',
+  kind: 'Building',
   implanted: true,
+  buildingType: 'buildingTypeId',
 };
 
 sdk.building.create(newBuildingData).then((building) => {
@@ -81,8 +91,8 @@ import { UpdateBuildingDTO } from './Building';
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
 const updateBuildingData: UpdateBuildingDTO = {
-  name: "Updated Building",
-  address: "123 Main St",
+  name: 'Updated Building',
+  address: '123 Main St',
 };
 
 sdk.building.updateById('buildingId', updateBuildingData).then(() => {

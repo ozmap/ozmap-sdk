@@ -76,8 +76,8 @@ const CreateCableDTOSchema = CableDataSchema.omit({
   .merge(
     z.object({
       external_id: z.any().optional(),
-      boxA: z.union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })]),
-      boxB: z.union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })]),
+      boxA: z.union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })]).nullish(),
+      boxB: z.union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })]).nullish(),
       poles: z.array(
         z.union([
           z.object({
@@ -99,7 +99,7 @@ const CreateCableDTOSchema = CableDataSchema.omit({
     orientationB: true,
     tags: true,
   });
-const UpdateCableDTOSchema = CreateCableDTOSchema.omit({ boxA: true, boxB: true, project: true }).partial();
+const UpdateCableDTOSchema = CreateCableDTOSchema.omit({ project: true }).partial();
 
 type Cable = z.infer<typeof CableSchema>;
 type CreateCableDTO = z.infer<typeof CreateCableDTOSchema>;

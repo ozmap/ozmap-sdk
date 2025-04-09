@@ -17,9 +17,11 @@ import {
   FiberProfileProxy,
   CableTypeProxy,
   CableProxy,
+  CableStubProxy,
   PopProxy,
   PopTypeProxy,
   BuildingProxy,
+  BuildingTypeProxy,
   FTTHClientProxy,
   PropertyProxy,
   SplitterTypeProxy,
@@ -69,6 +71,7 @@ class OZMapSDK {
   public readonly point: PointProxy;
   public readonly box: BoxProxy;
   public readonly building: BuildingProxy;
+  public readonly buildingType: BuildingTypeProxy;
   public readonly pole: PoleProxy;
   public readonly ftthClient: FTTHClientProxy;
   public readonly junctionBox: JunctionBoxProxy;
@@ -79,6 +82,7 @@ class OZMapSDK {
   public readonly fiberProfile: FiberProfileProxy;
   public readonly cableType: CableTypeProxy;
   public readonly cable: CableProxy;
+  public readonly cableStub: CableStubProxy;
   public readonly dio: DIOProxy;
   public readonly dioType: DIOTypeProxy;
   public readonly pop: PopProxy;
@@ -123,6 +127,7 @@ class OZMapSDK {
     this.boxTemplate = new BoxTemplateProxy(this.apiInstance);
     this.boxType = new BoxTypeProxy(this.apiInstance);
     this.cableType = new CableTypeProxy(this.apiInstance);
+    this.cableStub = new CableStubProxy(this.apiInstance);
     this.project = new ProjectProxy(this.apiInstance);
     this.tag = new TagProxy(this.apiInstance);
     this.baseBox = new BaseBoxProxy(this.apiInstance);
@@ -140,6 +145,7 @@ class OZMapSDK {
     this.pop = new PopProxy(this.apiInstance);
     this.popType = new PopTypeProxy(this.apiInstance);
     this.building = new BuildingProxy(this.apiInstance);
+    this.buildingType = new BuildingTypeProxy(this.apiInstance);
     this.ftthClient = new FTTHClientProxy(this.apiInstance);
     this.property = new PropertyProxy(this.apiInstance);
     this.splitterType = new SplitterTypeProxy(this.apiInstance);

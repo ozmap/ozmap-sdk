@@ -6,6 +6,7 @@ enum BaseBoxKind {
   BUILDING = 'Building',
   PROPERTY = 'Property',
   POP = 'Pop',
+  CABLE_STUB = 'CableStub',
 }
 
 const BaseBoxDataSchema = z.object({
