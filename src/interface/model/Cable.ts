@@ -13,8 +13,8 @@ const CableDataSchema = z.object({
   project: stringOrObjectId,
   color: stringOrObjectId.optional(),
   cableType: stringOrObjectId,
-  boxA: stringOrObjectId.optional(),
-  boxB: stringOrObjectId.optional(),
+  boxA: stringOrObjectId,
+  boxB: stringOrObjectId,
   ducts: z.array(z.object({ duct: stringOrObjectId, parent: stringOrObjectId })).default([]),
   poles: z.array(
     z.object({
@@ -46,8 +46,8 @@ const CableSchema = BaseModelSchema.merge(CableDataSchema).merge(
     project: stringOrObjectId.or(ProjectSchema),
     color: stringOrObjectId.or(ColorSchema).optional(),
     cableType: stringOrObjectId.or(CableTypeSchema),
-    boxA: stringOrObjectId.or(BaseBoxSchema).optional(),
-    boxB: stringOrObjectId.or(BaseBoxSchema).optional(),
+    boxA: stringOrObjectId.or(BaseBoxSchema),
+    boxB: stringOrObjectId.or(BaseBoxSchema),
     // todo fix type once we have duct schema
     // ducts: z.array(z.object({ duct: stringOrObjectId, parent: stringOrObjectId })),
     poles: z.array(
@@ -76,12 +76,8 @@ const CreateCableDTOSchema = CableDataSchema.omit({
   .merge(
     z.object({
       external_id: z.any().optional(),
-      boxA: z
-        .union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })])
-        .optional(),
-      boxB: z
-        .union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })])
-        .optional(),
+      boxA: z.union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })]).nullish(),
+      boxB: z.union([stringOrObjectId, CreateBoxDTOSchema.omit({ coords: true, project: true, pole: true })]).nullish(),
       poles: z.array(
         z.union([
           z.object({

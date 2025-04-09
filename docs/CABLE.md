@@ -14,8 +14,8 @@ type Cable = {
   project: string | Project;
   color?: string | Color;
   cableType: string | CableType;
-  boxA?: string | BaseBox;
-  boxB?: string | BaseBox;
+  boxA: string | BaseBox;
+  boxB: string | BaseBox;
   ducts?: { duct: string; parent: string }[]; // default: []
   poles: {
     id: string | BasePoint;
