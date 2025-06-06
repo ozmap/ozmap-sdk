@@ -81,6 +81,7 @@ const UpdatePropertyDTOSchema = PropertyDataSchema.merge(z.object({ external_id:
       auto_connect: z.boolean().optional(),
       force: z.boolean().optional(),
       connector: stringOrObjectId.nullish(),
+      port: z.number().optional()
     }),
   )
   .partial();
