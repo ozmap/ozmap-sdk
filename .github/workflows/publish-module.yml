@@ -18,6 +18,8 @@ jobs:
           node-version: 20
       - name: npm install
         run: npm install
+      - name: run tests
+        run: npm run test
       - name: tsc
         run: npm run build
       - name: publish
