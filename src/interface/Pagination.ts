@@ -4,4 +4,6 @@ export default interface Pagination<T> {
   start: number;
   limit: number;
   rows: Array<T>;
+  hasNextPage: boolean;
+  nextUrl?: string;
 }

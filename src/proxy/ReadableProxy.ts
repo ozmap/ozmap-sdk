@@ -5,53 +5,75 @@ import { StatusCodes } from 'http-status-codes';
 import { AxiosError } from 'axios';
 import { BaseModel } from '../interface';
 
-abstract class ReadableProxy<Record> extends Proxy {
+abstract class ReadableProxy<ProxyRecord> extends Proxy {
   protected abstract get _route(): string;
 
   public constructor(api: Api) {
     super(api);
   }
 
-  public async find(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Pagination<Record>> {
-    return this.apiInstance.get<Pagination<Record>>({
+  public async find(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Pagination<ProxyRecord>> {
+    return this.apiInstance.get<Pagination<ProxyRecord>>({
       route: this._route,
       ...options,
     });
   }
 
-  public async findOne(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<Record | null> {
+  public async findOne(options?: Omit<Parameters<Api['get']>[0], 'route'>): Promise<ProxyRecord | null> {
     const {
-      rows: [record],
-    } = await this.apiInstance.get<Pagination<Record>>({
+      rows: [ProxyRecord],
+    } = await this.apiInstance.get<Pagination<ProxyRecord>>({
       route: this._route,
       ...options,
       limit: 1,
     });
 
-    return record || null;
+    return ProxyRecord || null;
+  }
+
+  protected extractParamsFromUrl(nextUrl?: string): Record<string, string> {
+    if (!nextUrl) {
+      return {};
+    }
+
+    const fakeBase = 'http://fake-url';
+    const urlObj = new URL(nextUrl, fakeBase);
+    const paramsObj: Record<string, string> = {};
+
+    urlObj.searchParams.forEach((value, key) => {
+      paramsObj[key] = value;
+    });
+
+    return paramsObj;
   }
 
   public async findAll(
     options?: Omit<Parameters<Api['get']>[0], 'route' | 'limit' | 'page'> & { batchSize?: number },
-  ): Promise<Record[]> {
+  ): Promise<ProxyRecord[]> {
     const limit = options?.batchSize || 100;
     const allData = [];
-    let page = 1;
-    let currentData: Record[] = [];
+
+    let currentData: ProxyRecord[] = [];
+    let hasNext = false;
+    let nextParams = {};
 
     do {
-      const fetchResult = await this.apiInstance.get<Pagination<Record>>({
+      const fetchResult = await this.apiInstance.get<Pagination<ProxyRecord>>({
         route: this._route,
         ...options,
-        page,
+        options: {
+          ...(options?.options || {}),
+          params: nextParams,
+        },
         limit,
       });
 
       currentData = fetchResult.rows;
-      allData.push(...currentData);
+      hasNext = fetchResult.hasNextPage;
+      nextParams = this.extractParamsFromUrl(fetchResult.nextUrl);
 
-      page++;
-    } while (currentData.length);
+      allData.push(...currentData);
+    } while (hasNext);
 
     return allData;
   }
@@ -59,9 +81,9 @@ abstract class ReadableProxy<Record> extends Proxy {
   public async findById(
     id: BaseModel['id'],
     options?: Omit<Parameters<Api['get']>[0], 'route' | 'page' | 'limit' | 'filter' | 'sorter'>,
-  ): Promise<Record | null> {
+  ): Promise<ProxyRecord | null> {
     try {
-      return await this.apiInstance.get<Record>({
+      return await this.apiInstance.get<ProxyRecord>({
         ...options,
         route: `${this._route}/${id}`,
       });
