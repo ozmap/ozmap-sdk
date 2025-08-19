@@ -7,3 +7,4 @@
 # Jest coverage report
 /coverage/
 .idea/
+/start-codex.sh
