@@ -28,6 +28,9 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
+    // Prevent circular deps and self-imports
+    'import/no-cycle': ['error', { maxDepth: 2 }],
+    'import/no-self-import': 'error',
     'no-console': 'error',
     'multiline-ternary': 0,
     'no-unused-vars': 'off',
@@ -54,4 +57,25 @@ module.exports = {
       },
     ],
   },
+  overrides: [
+    {
+      files: ['src/proxy/entities/**/*.ts'],
+      rules: {
+        // Prevent importing the barrel from within entities (causes cycles)
+        'import/no-restricted-paths': [
+          'error',
+          {
+            zones: [{ target: 'src/proxy/index.ts', from: 'src/proxy/entities' }],
+          },
+        ],
+        // Also discourage relative barrel imports via core rule
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: ['../index'],
+          },
+        ],
+      },
+    },
+  ],
 };

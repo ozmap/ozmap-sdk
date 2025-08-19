@@ -1,4 +1,4 @@
-import { WritableProxy } from '../index';
+import WritableProxy from '../WritableProxy';
 import { CreatePostDTO, CreatePostDTOSchema, Post, UpdatePostDTO } from '../../interface';
 import Api from '../../util/Api';
 

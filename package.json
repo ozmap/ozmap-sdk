@@ -8,13 +8,14 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
-    "coverage": "ts-node test --coverage --silent",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "husky": "husky",
     "prettier:format": "prettier --config .prettierrc.cjs '**/*.{js,ts,json,md}' --write",
     "pre-commit": "lint-staged && npm run build",
     "lint": "eslint ./src --ext .cjs,.js,.ts",
     "lint:fix": "eslint ./src --ext .cjs,.js,.ts --fix",
-    "test": "ts-node test",
     "publish:alpha": "npm run build && npm publish --tag alpha"
   },
   "files": [
@@ -60,9 +61,10 @@
     "prettier": "^2.4.1",
     "ts-node": "^10.0.0",
     "tsup": "^8.0.2",
-    "typescript": "^4.9.5"
-  }
-  ,
+    "typescript": "^4.9.5",
+    "vitest": "^1.6.0",
+    "@vitest/coverage-v8": "^1.6.0"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -71,5 +73,6 @@
       "default": "./dist/index.mjs"
     }
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "packageManager": "pnpm@9.1.4+sha1.2432063d815cfa88fd9fef1d85a445e3f609851d"
 }
