@@ -3,8 +3,8 @@ import { BaseModelSchema, stringOrObjectId } from './BaseModel';
 import { TagSchema } from './Tag';
 
 enum FTTHClientStatus {
-  OK = 'OK',
-  ERROR = 'ERROR',
+  OK = 0,
+  ERROR = 1,
 }
 
 const FTTHClientDataSchema = z.object({
@@ -44,10 +44,16 @@ const CreateFTTHClientDTOSchema = FTTHClientDataSchema.partial({
   cpe: true,
 }).merge(z.object({ external_id: z.any().optional() }));
 const UpdateFTTHClientDTOSchema = FTTHClientDataSchema.merge(z.object({ external_id: z.any().optional() })).partial();
+const BatchUpdateFTTHClientDTOSchema = FTTHClientDataSchema.pick({
+  certified: true,
+  implanted: true,
+  status: true,
+});
 
 type FTTHClient = z.infer<typeof FTTHClientSchema>;
 type CreateFTTHClientDTO = z.infer<typeof CreateFTTHClientDTOSchema>;
 type UpdateFTTHClientDTO = z.infer<typeof UpdateFTTHClientDTOSchema>;
+type BatchUpdateFTTHClientDTO = z.infer<typeof BatchUpdateFTTHClientDTOSchema>;
 
 export {
   FTTHClientStatus,
@@ -57,4 +63,6 @@ export {
   CreateFTTHClientDTO,
   UpdateFTTHClientDTOSchema,
   UpdateFTTHClientDTO,
+  BatchUpdateFTTHClientDTOSchema,
+  BatchUpdateFTTHClientDTO,
 };

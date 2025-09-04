@@ -81,14 +81,19 @@ const UpdatePropertyDTOSchema = PropertyDataSchema.merge(z.object({ external_id:
       auto_connect: z.boolean().optional(),
       force: z.boolean().optional(),
       connector: stringOrObjectId.nullish(),
-      port: z.number().optional()
+      port: z.number().optional(),
     }),
   )
   .partial();
 
+const BatchUpdatePropertyDTOSchema = PropertyDataSchema.pick({
+  potencyRead: true,
+});
+
 type Property = z.infer<typeof PropertySchema>;
 type CreatePropertyDTO = z.infer<typeof CreatePropertyDTOSchema>;
 type UpdatePropertyDTO = z.infer<typeof UpdatePropertyDTOSchema>;
+type BatchUpdatePropertyDTO = z.infer<typeof BatchUpdatePropertyDTOSchema>;
 
 export {
   PropertySchema,
@@ -97,4 +102,6 @@ export {
   CreatePropertyDTO,
   UpdatePropertyDTOSchema,
   UpdatePropertyDTO,
+  BatchUpdatePropertyDTOSchema,
+  BatchUpdatePropertyDTO,
 };
