@@ -88,7 +88,7 @@ const UpdatePropertyDTOSchema = PropertyDataSchema.merge(z.object({ external_id:
 
 const BatchUpdatePropertyDTOSchema = PropertyDataSchema.pick({
   potencyRead: true,
-});
+}).partial();
 
 type Property = z.infer<typeof PropertySchema>;
 type CreatePropertyDTO = z.infer<typeof CreatePropertyDTOSchema>;

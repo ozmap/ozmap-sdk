@@ -48,7 +48,7 @@ const BatchUpdateFTTHClientDTOSchema = FTTHClientDataSchema.pick({
   certified: true,
   implanted: true,
   status: true,
-});
+}).partial();
 
 type FTTHClient = z.infer<typeof FTTHClientSchema>;
 type CreateFTTHClientDTO = z.infer<typeof CreateFTTHClientDTOSchema>;
