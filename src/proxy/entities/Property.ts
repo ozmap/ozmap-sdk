@@ -34,7 +34,7 @@ class PropertyProxy extends WritableProxy<Property, CreatePropertyDTO, UpdatePro
 
     return this.apiInstance.post({
       route: `${this._route}/batch-update`,
-      inputData: { filter: parsedFilter, data: parsedData },
+      inputData: { filter: parsedFilter, update: parsedData },
       options,
     });
   }
