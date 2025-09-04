@@ -7,6 +7,7 @@ import {
   ApiFilter,
   ApiFilterSchema,
   BatchUpdatePropertyDTO,
+  BatchUpdatePropertyDTOSchema,
 } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
@@ -29,7 +30,7 @@ class PropertyProxy extends WritableProxy<Property, CreatePropertyDTO, UpdatePro
     options?: Parameters<Api['post']>[0]['options'],
   ): Promise<void> {
     const parsedFilter = ApiFilterSchema.parse(filter);
-    const parsedData = UpdatePropertyDTOSchema.parse(data);
+    const parsedData = BatchUpdatePropertyDTOSchema.parse(data);
 
     return this.apiInstance.post({
       route: `${this._route}/batch-update`,

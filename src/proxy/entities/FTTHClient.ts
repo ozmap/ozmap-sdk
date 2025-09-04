@@ -2,6 +2,7 @@ import {
   ApiFilter,
   ApiFilterSchema,
   BatchUpdateFTTHClientDTO,
+  BatchUpdateFTTHClientDTOSchema,
   FTTHClient,
   UpdateFTTHClientDTO,
   UpdateFTTHClientDTOSchema,
@@ -30,7 +31,7 @@ class FTTHClientProxy extends UpdatableProxy<FTTHClient, UpdateFTTHClientDTO> {
     options?: Parameters<Api['post']>[0]['options'],
   ): Promise<void> {
     const parsedFilter = ApiFilterSchema.parse(filter);
-    const parsedData = UpdateFTTHClientDTOSchema.parse(data);
+    const parsedData = BatchUpdateFTTHClientDTOSchema.parse(data);
 
     return this.apiInstance.post({
       route: `${this._route}/batch-update`,
