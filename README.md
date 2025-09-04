@@ -24,6 +24,33 @@ npm i --save @ozmap/ozmap-sdk
 
 ## Usage
 
+This package publishes dual builds (CJS and ESM) with type definitions, so it works in both JavaScript and TypeScript projects.
+
+### JavaScript (ESM)
+
+```js
+import OZMapSDK from '@ozmap/ozmap-sdk';
+
+const sdk = new OZMapSDK('https://api.example.com', { apiKey: 'your-ozmap-api-key' });
+```
+
+### JavaScript (CommonJS)
+
+```js
+// From v1.1.2+, `.default` is no longer needed
+const OZMapSDK = require('@ozmap/ozmap-sdk');
+
+const sdk = new OZMapSDK('https://api.example.com', { apiKey: 'your-ozmap-api-key' });
+```
+
+### TypeScript
+
+```ts
+import OZMapSDK from '@ozmap/ozmap-sdk';
+
+const sdk = new OZMapSDK('https://api.example.com', { apiKey: 'your-ozmap-api-key' });
+```
+
 ### Using login and password
 
 ```typescript
@@ -45,7 +72,7 @@ const sdk = new OZMapSDK('https://api.example.com', { apiKey: 'your-ozmap-api-ke
 ### Create
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -65,7 +92,7 @@ sdk.pop.create(newPopData).then((pop) => {
 ### Update
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -82,7 +109,7 @@ sdk.pop.updateById('popId', updatePopData).then(() => {
 ### Fetch
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -100,7 +127,7 @@ sdk.pop.find({ page: 1, limit: 10, filter: [
 ### Fetch by id
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -112,7 +139,7 @@ sdk.pop.findById('popId').then((pop) => {
 ### Delete
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -128,7 +155,7 @@ For making non-CRUD operations, such as viability or any other that isn't includ
 ### Get
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -144,7 +171,7 @@ sdk.apiInstance.get<OUTPUT>({
 ### Post
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -160,7 +187,7 @@ sdk.apiInstance.post<INPUT, OUTPUT>({
 ### Patch
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -176,7 +203,7 @@ sdk.apiInstance.patch<INPUT>({
 ### Delete
 
 ```typescript
-import OZMapSDK from 'ozmapsdk';
+import OZMapSDK from '@ozmap/ozmap-sdk';
 
 const sdk = new OZMapSDK('ozmapURL', { apiKey: 'yourApiKey' });
 
@@ -351,3 +378,19 @@ This project is licensed under the MIT License.
 
 - [OZmap Website](https://ozmap.net/)
 - [OZmap API Documentation](https://ozmap.stoplight.io/docs/ozmap/f20b389eedb19-o-zmap)
+
+## Testing
+
+Run lint, build, and tests locally before opening a PR:
+
+```bash
+pnpm run lint
+pnpm run build
+pnpm run test
+pnpm run test:coverage   # target >= 50% (desired)
+```
+
+Notes:
+- The test runner is Vitest with V8 coverage. Tests live under `test/*.spec.ts`.
+- No network calls are performed in unit tests. Prefer stubs/mocks.
+- TypeScript strict mode is enabled; keep tests type-safe.

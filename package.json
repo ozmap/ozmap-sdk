@@ -2,17 +2,20 @@
   "name": "@ozmap/ozmap-sdk",
   "version": "1.1.4",
   "description": "Use this sdk to access ozmap plataform and connect it to your own systems. ",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/cjs.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --dts",
-    "coverage": "ts-node test --coverage --silent",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "husky": "husky",
     "prettier:format": "prettier --config .prettierrc.cjs '**/*.{js,ts,json,md}' --write",
     "pre-commit": "lint-staged && npm run build",
     "lint": "eslint ./src --ext .cjs,.js,.ts",
     "lint:fix": "eslint ./src --ext .cjs,.js,.ts --fix",
-    "test": "ts-node test",
     "publish:alpha": "npm run build && npm publish --tag alpha"
   },
   "files": [
@@ -37,11 +40,9 @@
   "homepage": "https://github.com/ozmap/ozmap-sdk#readme",
   "dependencies": {
     "@ozmap/logger": "^0.2.3",
-    "@ozmap/ozmap-sdk": "^1.0.15-alpha.4",
     "axios": "^1.7.7",
     "bson-objectid": "^2.0.1",
     "http-status-codes": "^2.3.0",
-    "lodash": "^4.17.21",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -60,6 +61,18 @@
     "prettier": "^2.4.1",
     "ts-node": "^10.0.0",
     "tsup": "^8.0.2",
-    "typescript": "^4.9.5"
-  }
+    "typescript": "^4.9.5",
+    "vitest": "^1.6.0",
+    "@vitest/coverage-v8": "^1.6.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/cjs.cjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "sideEffects": false,
+  "packageManager": "pnpm@9.1.4+sha1.2432063d815cfa88fd9fef1d85a445e3f609851d"
 }

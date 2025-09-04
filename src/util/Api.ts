@@ -1,7 +1,6 @@
 import createLogger from '@ozmap/logger';
 import axios, { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import { StatusCodes } from 'http-status-codes';
-import _ from 'lodash';
 
 import { ApiFilter, ApiFilterSchema, ApiSort, ApiSortSchema } from '../interface';
 
@@ -82,7 +81,9 @@ class Api {
   }
 
   protected async handleTimeoutError(config: AxiosRequestConfig): Promise<AxiosResponse> {
-    logger.debug(`Timeout error requesting [${_.toUpper(config.method)}] ${config.url} - Requesting again in 5s`);
+    const method = String((config.method || '').toUpperCase());
+    const url = config.url;
+    logger.debug(`Timeout error requesting [${method}] ${url} - Requesting again in 5s`);
 
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
@@ -90,9 +91,9 @@ class Api {
   }
 
   protected async handleResetError(config: AxiosRequestConfig): Promise<AxiosResponse> {
-    logger.debug(
-      `Connection reset error requesting [${_.toUpper(config.method)}] ${config.url} - Requesting again in 5s`,
-    );
+    const method = String((config.method || '').toUpperCase());
+    const url = config.url;
+    logger.debug(`Connection reset error requesting [${method}] ${url} - Requesting again in 5s`);
 
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
