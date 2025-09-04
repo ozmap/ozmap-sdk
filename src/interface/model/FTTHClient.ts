@@ -3,8 +3,8 @@ import { BaseModelSchema, stringOrObjectId } from './BaseModel';
 import { TagSchema } from './Tag';
 
 enum FTTHClientStatus {
-  OK = 'OK',
-  ERROR = 'ERROR',
+  OK = 0,
+  ERROR = 1,
 }
 
 const FTTHClientDataSchema = z.object({

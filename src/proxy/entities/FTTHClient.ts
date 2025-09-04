@@ -1,4 +1,10 @@
-import { FTTHClient, UpdateFTTHClientDTO, UpdateFTTHClientDTOSchema } from '../../interface';
+import {
+  ApiFilter,
+  ApiFilterSchema,
+  FTTHClient,
+  UpdateFTTHClientDTO,
+  UpdateFTTHClientDTOSchema,
+} from '../../interface';
 import UpdatableProxy from '../UpdatableProxy';
 import Api from '../../util/Api';
 
@@ -15,6 +21,21 @@ class FTTHClientProxy extends UpdatableProxy<FTTHClient, UpdateFTTHClientDTO> {
     const parsedData = UpdateFTTHClientDTOSchema.parse(data);
 
     return super.updateById(id, parsedData, options);
+  }
+
+  public async batchUpdate(
+    filter: ApiFilter[] | ApiFilter[][] | Array<ApiFilter | ApiFilter[]>,
+    data: UpdateFTTHClientDTO,
+    options?: Parameters<Api['post']>[0]['options'],
+  ): Promise<void> {
+    const parsedFilter = ApiFilterSchema.parse(filter);
+    const parsedData = UpdateFTTHClientDTOSchema.parse(data);
+
+    return this.apiInstance.post({
+      route: `${this._route}/batch-update`,
+      inputData: { filter: parsedFilter, update: parsedData },
+      options,
+    });
   }
 
   public async deleteById(id: FTTHClient['id'], options?: Parameters<Api['delete']>[0]['options']): Promise<void> {
