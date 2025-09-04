@@ -1,6 +1,7 @@
 import {
   ApiFilter,
   ApiFilterSchema,
+  BatchUpdateFTTHClientDTO,
   FTTHClient,
   UpdateFTTHClientDTO,
   UpdateFTTHClientDTOSchema,
@@ -25,7 +26,7 @@ class FTTHClientProxy extends UpdatableProxy<FTTHClient, UpdateFTTHClientDTO> {
 
   public async batchUpdate(
     filter: ApiFilter[] | ApiFilter[][] | Array<ApiFilter | ApiFilter[]>,
-    data: UpdateFTTHClientDTO,
+    data: BatchUpdateFTTHClientDTO,
     options?: Parameters<Api['post']>[0]['options'],
   ): Promise<void> {
     const parsedFilter = ApiFilterSchema.parse(filter);

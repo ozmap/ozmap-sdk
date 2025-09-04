@@ -6,6 +6,7 @@ import {
   UpdatePropertyDTOSchema,
   ApiFilter,
   ApiFilterSchema,
+  BatchUpdatePropertyDTO,
 } from '../../interface';
 
 import WritableProxy from '../WritableProxy';
@@ -24,7 +25,7 @@ class PropertyProxy extends WritableProxy<Property, CreatePropertyDTO, UpdatePro
 
   public async batchUpdate(
     filter: ApiFilter[] | ApiFilter[][] | Array<ApiFilter | ApiFilter[]>,
-    data: UpdatePropertyDTO,
+    data: BatchUpdatePropertyDTO,
     options?: Parameters<Api['post']>[0]['options'],
   ): Promise<void> {
     const parsedFilter = ApiFilterSchema.parse(filter);

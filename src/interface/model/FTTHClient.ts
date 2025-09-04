@@ -48,6 +48,7 @@ const UpdateFTTHClientDTOSchema = FTTHClientDataSchema.merge(z.object({ external
 type FTTHClient = z.infer<typeof FTTHClientSchema>;
 type CreateFTTHClientDTO = z.infer<typeof CreateFTTHClientDTOSchema>;
 type UpdateFTTHClientDTO = z.infer<typeof UpdateFTTHClientDTOSchema>;
+type BatchUpdateFTTHClientDTO = Pick<UpdateFTTHClientDTO, 'certified' | 'implanted' | 'status'>;
 
 export {
   FTTHClientStatus,
@@ -57,4 +58,5 @@ export {
   CreateFTTHClientDTO,
   UpdateFTTHClientDTOSchema,
   UpdateFTTHClientDTO,
+  BatchUpdateFTTHClientDTO,
 };
