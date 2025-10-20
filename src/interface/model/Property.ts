@@ -64,6 +64,7 @@ const CreatePropertyDTOSchema = PropertyDataSchema.partial({
       auto_connect: z.boolean().optional(),
       force: z.boolean().optional(),
       connector: stringOrObjectId.nullish(),
+      port: z.number().optional(),
     }),
   );
 
