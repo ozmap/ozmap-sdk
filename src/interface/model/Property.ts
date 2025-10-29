@@ -65,6 +65,7 @@ const CreatePropertyDTOSchema = PropertyDataSchema.partial({
       force: z.boolean().optional(),
       connector: stringOrObjectId.nullish(),
       port: z.number().optional(),
+      drop_poles: z.array(stringOrObjectId).optional(),
     }),
   );
 
@@ -83,6 +84,7 @@ const UpdatePropertyDTOSchema = PropertyDataSchema.merge(z.object({ external_id:
       force: z.boolean().optional(),
       connector: stringOrObjectId.nullish(),
       port: z.number().optional(),
+      drop_poles: z.array(stringOrObjectId).optional(),
     }),
   )
   .partial();
