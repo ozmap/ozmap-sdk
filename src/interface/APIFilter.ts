@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import _ from 'lodash';
 import ObjectID from 'bson-objectid';
 
 import { FilterOperator } from './FilterOperator';
@@ -35,7 +34,21 @@ const PointValueSchema = z.union([
   z.object({ latitude: z.coerce.number(), longitude: z.coerce.number() }),
 ]);
 
-const DefaultEnumOperatorSchema = z.nativeEnum(_.omit(FilterOperator, ['WITHIN', 'POINT_INTERSECT', 'NEAR']));
+const DefaultOperators = {
+  EQUAL: FilterOperator.EQUAL,
+  LIKE: FilterOperator.LIKE,
+  NOT_EQUAL: FilterOperator.NOT_EQUAL,
+  ALL: FilterOperator.ALL,
+  EXISTS: FilterOperator.EXISTS,
+  LESS: FilterOperator.LESS,
+  LESS_OR_EQUAL: FilterOperator.LESS_OR_EQUAL,
+  GREATER: FilterOperator.GREATER,
+  GREATER_OR_EQUAL: FilterOperator.GREATER_OR_EQUAL,
+  IN: FilterOperator.IN,
+  NOT_IN: FilterOperator.NOT_IN,
+} as const;
+
+const DefaultEnumOperatorSchema = z.nativeEnum(DefaultOperators);
 
 const SingleApiFilterSchema = z.union([
   z.object({
