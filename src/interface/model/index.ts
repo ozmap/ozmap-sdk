@@ -59,3 +59,4 @@ export * from './SplitterType';
 export * from './SystemConfig';
 export * from './BoxStructure';
 export * from './ChangeRequest';
+export * from './PolygonReport';
