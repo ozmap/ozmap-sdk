@@ -13,7 +13,9 @@
     "lint": "eslint ./src --ext .cjs,.js,.ts",
     "lint:fix": "eslint ./src --ext .cjs,.js,.ts --fix",
     "test": "ts-node test",
-    "publish:alpha": "npm run build && npm publish --tag alpha"
+    "publish:alpha": "npm run build && npm publish --tag alpha",
+    "link:local": "npm run build && npm link",
+    "unlink:local": "npm unlink -g @ozmap/ozmap-sdk"
   },
   "files": [
     "dist/**/*"
