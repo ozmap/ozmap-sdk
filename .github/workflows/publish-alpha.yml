@@ -14,6 +14,11 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
+      - name: Set version from tag
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          VERSION=${TAG#v}
+          npm version "$VERSION" --no-git-tag-version
       - name: Install dependencies
         run: npm install
       - name: Build
