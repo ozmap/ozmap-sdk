@@ -3,29 +3,33 @@ import { stringOrObjectId } from '../BaseModel';
 import { PostItPositionsSchema } from './Postit';
 import { ConnectablePositionsSchema, ElementPositionsSchema } from './Positions';
 
-const DesignPositionsSchema = z.object({
-  cables: ElementPositionsSchema.optional(),
-  connectors: ElementPositionsSchema.optional(),
-  dios: ElementPositionsSchema.optional(),
-  drops: ElementPositionsSchema.optional(),
-  fusions: ElementPositionsSchema.optional(),
-  splitters: ElementPositionsSchema.optional(),
-  switches: ElementPositionsSchema.optional(),
-  fibers: ConnectablePositionsSchema.optional(),
-  cords: ConnectablePositionsSchema.optional(),
-  passings: ConnectablePositionsSchema.optional(),
-  postits: PostItPositionsSchema.optional(),
-  children: z.array(z.record(z.unknown())).optional(),
-});
+const DesignPositionsSchema = z
+  .object({
+    cables: ElementPositionsSchema,
+    connectors: ElementPositionsSchema,
+    dios: ElementPositionsSchema,
+    drops: ElementPositionsSchema,
+    fusions: ElementPositionsSchema,
+    splitters: ElementPositionsSchema,
+    switches: ElementPositionsSchema,
+    fibers: ConnectablePositionsSchema,
+    cords: ConnectablePositionsSchema,
+    passings: ConnectablePositionsSchema,
+    postits: PostItPositionsSchema,
+    children: z.array(z.record(z.unknown())),
+  })
+  .partial();
 
-const BoxDesignSchema = z.object({
-  id: z.string().nullable().optional(),
-  box: stringOrObjectId.optional(),
-  project: stringOrObjectId.optional(),
-  isTemplate: z.boolean().optional(),
-  template: z.string().nullable().optional(),
-  positions: DesignPositionsSchema.optional(),
-});
+const BoxDesignSchema = z
+  .object({
+    id: z.string().nullable(),
+    box: stringOrObjectId,
+    project: stringOrObjectId,
+    isTemplate: z.boolean(),
+    template: z.string().nullable(),
+    positions: DesignPositionsSchema,
+  })
+  .partial();
 
 type DesignPositions = z.infer<typeof DesignPositionsSchema>;
 type BoxDesign = z.infer<typeof BoxDesignSchema>;
