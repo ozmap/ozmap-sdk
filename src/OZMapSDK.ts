@@ -58,6 +58,10 @@ import {
   DuctTypeProxy,
   PostProxy,
   FileProxy,
+  ChangeRequestProxy,
+  BoxStructureChangeRequestProxy,
+  BoxCreateRequestProxy,
+  PolygonReportProxy,
 } from './proxy';
 
 class OZMapSDK {
@@ -120,6 +124,10 @@ class OZMapSDK {
   public readonly ductType: DuctTypeProxy;
   public readonly post: PostProxy;
   public readonly file: FileProxy;
+  public readonly changeRequest: ChangeRequestProxy;
+  public readonly boxStructureChangeRequest: BoxStructureChangeRequestProxy;
+  public readonly boxCreateRequest: BoxCreateRequestProxy;
+  public readonly polygonReport: PolygonReportProxy;
 
   constructor(ozmapURL: string, options: ConstructorParameters<typeof Api>[1]) {
     this.apiInstance = new Api(ozmapURL, options);
@@ -182,6 +190,10 @@ class OZMapSDK {
     this.ductType = new DuctTypeProxy(this.apiInstance);
     this.post = new PostProxy(this.apiInstance);
     this.file = new FileProxy(this.apiInstance);
+    this.changeRequest = new ChangeRequestProxy(this.apiInstance);
+    this.boxStructureChangeRequest = new BoxStructureChangeRequestProxy(this.apiInstance);
+    this.boxCreateRequest = new BoxCreateRequestProxy(this.apiInstance);
+    this.polygonReport = new PolygonReportProxy(this.apiInstance);
   }
 }
 

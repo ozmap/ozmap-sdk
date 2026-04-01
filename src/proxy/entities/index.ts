@@ -56,3 +56,5 @@ export { default as SwitchTypeProxy } from './SwitchType';
 export { default as TagProxy } from './Tag';
 export { default as UserProxy } from './User';
 export { default as SystemConfigProxy } from './SystemConfig';
+export * from './changeRequest';
+export { default as PolygonReportProxy } from './PolygonReport';
