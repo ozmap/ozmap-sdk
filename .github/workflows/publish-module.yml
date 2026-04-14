@@ -30,7 +30,8 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
       - name: publish to GitHub Packages
         run: |
-          npm config set @ozmap:registry https://npm.pkg.github.com
+          echo "@ozmap:registry=https://npm.pkg.github.com" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
           npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
