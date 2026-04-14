@@ -3,13 +3,17 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     name: tsc
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: "cat package.json"
+      - name: 'cat package.json'
         run: cat ./package.json
       - name: install node v20
         uses: actions/setup-node@v2
@@ -20,7 +24,13 @@ jobs:
         run: npm install
       - name: tsc
         run: npm run build
-      - name: publish
+      - name: publish to npm
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+      - name: publish to GitHub Packages
+        run: |
+          npm config set @ozmap:registry https://npm.pkg.github.com
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
