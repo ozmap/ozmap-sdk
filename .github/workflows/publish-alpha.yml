@@ -3,6 +3,10 @@ on:
     tags:
       - '*-alpha*'
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   publish-alpha:
     name: Publish Alpha
@@ -23,7 +27,13 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Publish alpha
+      - name: Publish alpha to npm
         run: npm publish --tag alpha --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish alpha to GitHub Packages
+        run: |
+          npm config set @ozmap:registry https://npm.pkg.github.com
+          npm publish --tag alpha
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
